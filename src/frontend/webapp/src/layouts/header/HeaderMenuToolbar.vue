@@ -3,7 +3,7 @@ defineOptions({
   name: "MenuToolbar",
 });
 // imports
-import { useAppPropertyStore } from "stores/AppProperty";
+import { useAppPropertyStore } from "stores/app-properties-store";
 // variables
 const appProperties = useAppPropertyStore();
 const tab_menu = [

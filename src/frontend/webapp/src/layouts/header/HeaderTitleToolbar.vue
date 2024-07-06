@@ -4,8 +4,8 @@ defineOptions({
 });
 // imports
 import { ref } from "vue";
-import { useAppPropertyStore } from "stores/AppProperty";
-import { useAppInfoStore } from "stores/AppInfo";
+import { useAppPropertyStore } from "stores/app-properties-store";
+import { useAppInfoStore } from "stores/app-info-store";
 // import UserLogin from "pages/user/LoginPage.vue";
 // import InfoPage from "pages/general/InfoPage.vue";
 // variable

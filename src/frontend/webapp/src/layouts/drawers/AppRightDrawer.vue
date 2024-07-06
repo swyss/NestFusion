@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>    <q-drawer
-  v-model="leftDrawerOpen"
+  v-model="rightDrawerOpen"
   show-if-above
   bordered
   class="bg-white"
