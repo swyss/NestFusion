@@ -9,5 +9,5 @@ Project Config Details
 ## create a go app
 
 ```bash
-
+go mod init <project-name>
 ```
