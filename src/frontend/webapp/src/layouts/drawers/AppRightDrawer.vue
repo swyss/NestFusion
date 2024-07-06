@@ -1,53 +1,82 @@
-<script setup></script>
+<script>
+import { ref } from 'vue'
 
-<template>    <q-drawer
-  v-model="rightDrawerOpen"
-  show-if-above
-  bordered
-  class="bg-white"
-  :width="280"
->
-  <q-scroll-area class="fit">
-    <q-list padding class="text-grey-8">
-      <q-item class="GNL__drawer-item" v-ripple v-for="link in links1" :key="link.text" clickable>
-        <q-item-section avatar>
-          <q-icon :name="link.icon" />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>{{ link.text }}</q-item-label>
-        </q-item-section>
-      </q-item>
+const menuList = [
+  {
+    icon: 'bi-inboxes',
+    label: 'Inbox',
+    separator: true
+  },
+  {
+    icon: 'bi-layout-wtf',
+    label: 'Outbox',
+    separator: false
+  },
+  {
+    icon: 'bi-trash3',
+    label: 'Trash',
+    separator: false
+  },
+  {
+    icon: 'bi-bug',
+    label: 'Spam',
+    separator: true
+  },
+  {
+    icon: 'bi-gear',
+    label: 'Settings',
+    separator: false
+  },
+  {
+    icon: 'bi-chat-left-text',
+    label: 'Send Feedback',
+    separator: false
+  },
+  {
+    icon: 'bi-question-diamond',
+    iconColor: 'primary',
+    label: 'Help',
+    separator: false
+  }
+]
 
-      <q-separator inset class="q-my-sm" />
+export default {
+  setup() {
+    return {
+      drawer: ref(false),
+      menuList
+    }
+  }
+}
+</script>
 
-      <q-item class="GNL__drawer-item" v-ripple v-for="link in links2" :key="link.text" clickable>
-        <q-item-section avatar>
-          <q-icon :name="link.icon" />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>{{ link.text }}</q-item-label>
-        </q-item-section>
-      </q-item>
+<template>
+  <q-drawer
+    v-model="drawer"
+    show-if-above
+    :width="200"
+    :breakpoint="500"
+    bordered
+    :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
+  >
+    <q-scroll-area class="fit">
+      <q-list>
 
-      <q-separator inset class="q-my-sm" />
+        <template v-for="(menuItem, index) in menuList" :key="index">
+          <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple>
+            <q-item-section avatar>
+              <q-icon :name="menuItem.icon"/>
+            </q-item-section>
+            <q-item-section>
+              {{ menuItem.label }}
+            </q-item-section>
+          </q-item>
+          <q-separator :key="'sep' + index" v-if="menuItem.separator"/>
+        </template>
 
-      <q-item class="GNL__drawer-item" v-ripple v-for="link in links3" :key="link.text" clickable>
-        <q-item-section>
-          <q-item-label>{{ link.text }} <q-icon v-if="link.icon" :name="link.icon" /></q-item-label>
-        </q-item-section>
-      </q-item>
-
-      <div class="q-mt-md">
-        <div class="flex flex-center q-gutter-xs">
-          <a class="GNL__drawer-footer-link" href="javascript:void(0)" aria-label="Privacy">Privacy</a>
-          <span> · </span>
-          <a class="GNL__drawer-footer-link" href="javascript:void(0)" aria-label="Terms">Terms</a>
-          <span> · </span>
-          <a class="GNL__drawer-footer-link" href="javascript:void(0)" aria-label="About">About Google</a>
-        </div>
-      </div>
-    </q-list>
-  </q-scroll-area>
-</q-drawer></template>
+      </q-list>
+    </q-scroll-area>
+  </q-drawer>
+</template>
 
 <style scoped></style>
