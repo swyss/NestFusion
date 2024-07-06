@@ -1,5 +1,8 @@
-<script>
-import { ref } from 'vue'
+<script setup>
+// imports
+import { useAppPropertyStore } from "stores/app-properties-store";
+// variables
+const appProperties = useAppPropertyStore();
 
 const menuList = [
   {
@@ -40,20 +43,12 @@ const menuList = [
   }
 ]
 
-export default {
-  setup() {
-    return {
-      drawer: ref(false),
-      menuList
-    }
-  }
-}
 </script>
 
 <template>
   <q-drawer
-    v-model="drawer"
-    show-if-above
+    side="right"
+    :model-value="appProperties.rightDrawerState"
     :width="200"
     :breakpoint="500"
     bordered
