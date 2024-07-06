@@ -32,7 +32,7 @@ yarn create quasar
 
 ## add modes
 
-### SSR ⭕
+### SSR ✅
 
 > https://quasar.dev/quasar-cli-vite/developing-ssr/preparation
 
@@ -40,7 +40,7 @@ yarn create quasar
 quasar mode add ssr
 ```
 
-### PWA ⭕
+### PWA ✅
 
 > https://quasar.dev/quasar-cli-vite/developing-pwa/preparation
 
