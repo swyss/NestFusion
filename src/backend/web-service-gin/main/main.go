@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 )
 
@@ -11,7 +12,7 @@ func main() {
 
 	err := router.Run("localhost:8080")
 	if err != nil {
-		return
+		log.Fatal(err)
 	}
 }
 
