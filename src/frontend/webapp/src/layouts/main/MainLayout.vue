@@ -14,9 +14,9 @@
 </template>
 
 <script setup>
-import AppHeader from "layouts/header/AppHeader.vue";
-import AppDrawer from "layouts/drawers/AppDrawer.vue";
-import AppFooter from "layouts/footer/AppFooter.vue";
+import AppHeader from "layouts/main/header/AppHeader.vue";
+import AppDrawer from "layouts/main/drawers/AppDrawer.vue";
+import AppFooter from "layouts/main/footer/AppFooter.vue";
 //
 defineOptions({
   name: "MainLayout",

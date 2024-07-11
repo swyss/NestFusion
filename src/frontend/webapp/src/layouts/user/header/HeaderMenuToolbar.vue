@@ -7,7 +7,8 @@ import { useAppPropertyStore } from "stores/app-properties-store";
 // variables
 const appProperties = useAppPropertyStore();
 const tab_menu = [
-  { name: "account", label: "account", link: "/account" },
+  { name: "account", label: "account", link: "/user/account" },
+  { name: "login", label: "login", link: "/user/login" },
   { name: "alarms", label: "Alarms", link: "/alarms" },
   { name: "movies", label: "Movies", link: "/movies" },
   { name: "photos", label: "Photos", link: "/photos" },
@@ -36,7 +37,7 @@ const tab_menu = [
         <q-icon name="bi-house" @click="$router.replace('/')" />
       </q-btn>
       <q-btn dense flat padding="sm md" square>
-        <q-icon color="accent" name="bi-star" />
+        <q-icon color="accent" name="bi-star" @click="$router.replace('/user')" />
       </q-btn>
       <q-separator color="on_primary" inset vertical />
       <q-tabs align="left" v-model="tab_menu" inline-label shrink stretch>
