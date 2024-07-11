@@ -7,7 +7,7 @@ import { useAppPropertyStore } from "stores/app-properties-store";
 // variables
 const appProperties = useAppPropertyStore();
 const tab_menu = [
-  { name: "mails", label: "Mails", link: "/mails" },
+  { name: "account", label: "account", link: "/account" },
   { name: "alarms", label: "Alarms", link: "/alarms" },
   { name: "movies", label: "Movies", link: "/movies" },
   { name: "photos", label: "Photos", link: "/photos" },
