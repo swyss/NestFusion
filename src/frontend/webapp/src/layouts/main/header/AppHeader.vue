@@ -3,8 +3,8 @@ defineOptions({
   name: "AppHeader",
 });
 // imports
-import TitleToolbar from "layouts/header/HeaderTitleToolbar.vue";
-import MenuToolbar from "layouts/header/HeaderMenuToolbar.vue";
+import TitleToolbar from "layouts/main/header/HeaderTitleToolbar.vue";
+import MenuToolbar from "layouts/main/header/HeaderMenuToolbar.vue";
 // variables
 
 // functions

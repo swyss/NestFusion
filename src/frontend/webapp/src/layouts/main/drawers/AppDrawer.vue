@@ -1,6 +1,6 @@
 <script setup>
-import AppLeftDrawer from "layouts/drawers/AppLeftDrawer.vue";
-import AppRightDrawer from "layouts/drawers/AppRightDrawer.vue";
+import AppLeftDrawer from "layouts/main/drawers/AppLeftDrawer.vue";
+import AppRightDrawer from "layouts/main/drawers/AppRightDrawer.vue";
 //
 defineOptions({
   name: "AppDrawer",
