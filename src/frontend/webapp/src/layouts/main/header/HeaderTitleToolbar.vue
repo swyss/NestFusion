@@ -33,7 +33,9 @@ function clickInfoBtn() {
   <div class="q-pt-md">
     <q-toolbar>
       <q-toolbar-title>
-        <q-avatar> </q-avatar>
+        <q-avatar>
+          <img src="public/icons/favicon-128x128.png" alt="Logo">
+        </q-avatar>
         Title
       </q-toolbar-title>
       <q-space></q-space>

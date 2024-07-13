@@ -1,0 +1,26 @@
+{
+  "params": {
+    "skipTrim": false,
+    "padding": [
+      2,
+      2
+    ],
+    "include": [
+      "all"
+    ],
+    "icon": "src/assets/nestfusion-logo.png"
+  },
+  "assets": [
+    {
+      "generator": "png",
+      "name": "favicon-{size}x{size}.png",
+      "folder": "public/icons",
+      "sizes": [ 128,96,32,16, 512, 1024 ]
+    },
+    {
+      "generator": "ico",
+      "name": "favicon.ico",
+      "folder": "public"
+    }
+  ]
+}
