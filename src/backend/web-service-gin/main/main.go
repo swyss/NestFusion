@@ -1,13 +1,14 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
+	"web-service-gin/main/routes"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
+	router := routes.SetupRouter()
 	router.GET("/albums", getAlbums)
 
 	err := router.Run("localhost:8080")
