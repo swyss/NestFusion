@@ -42,6 +42,10 @@ NestFusion is a modular home dashboard that integrates various functionalities s
 [![Vue.js](https://skillicons.dev/icons?i=vuejs)](https://vuejs.org)
 [![Quasar](https://skillicons.dev/icons?i=quasar)](https://quasar.dev)
 
+#### Helpers
+[![pinia](https://skillicons.dev/icons?i=pinia)]([https://quasar.dev](https://pinia.vuejs.org/))
+[![Yarn](https://skillicons.dev/icons?i=yarn)]([https://quasar.dev](https://classic.yarnpkg.com/en/))
+
 ### Backend
 
 [![Go](https://skillicons.dev/icons?i=go)](https://golang.org)
@@ -49,6 +53,7 @@ NestFusion is a modular home dashboard that integrates various functionalities s
 ### Database
 
 [![PostgreSQL](https://skillicons.dev/icons?i=postgresql)](https://www.postgresql.org)
+[![Redis](https://skillicons.dev/icons?i=redis)]([https://www.postgresql.org](https://redis.io/de/))
 
 ## Tools
 
