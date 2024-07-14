@@ -9,11 +9,9 @@ const appProperties = useAppPropertyStore();
 const tab_menu = [
   { name: "account", label: "account", link: "/user/account" },
   { name: "login", label: "login", link: "/user/login" },
+  { name: "news", label: "news", link: "/user/news" },
+  { name: "weather", label: "weather", link: "/user/weather" },
   { name: "alarms", label: "Alarms", link: "/alarms" },
-  { name: "movies", label: "Movies", link: "/movies" },
-  { name: "photos", label: "Photos", link: "/photos" },
-  { name: "videos", label: "Videos", link: "/videos" },
-  { name: "music", label: "Music", link: "/music" },
   { name: "calendar", label: "Calendar", link: "/calendar" },
   { name: "addressbook", label: "Address Book", link: "/addressbook" },
   { name: "settings", label: "Settings", link: "/settings" },
