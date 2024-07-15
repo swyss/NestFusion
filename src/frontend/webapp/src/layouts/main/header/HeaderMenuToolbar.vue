@@ -9,6 +9,7 @@ const appProperties = useAppPropertyStore();
 const tab_menu = [
   { name: "account", label: "account", link: "account" },
   { name: "login", label: "login", link: "login" },
+  { name: "components", label: "components", link: "components" },
 ];
 // functions
 </script>
