@@ -1,14 +1,16 @@
 package routes
 
 import (
-    "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
+	"web-service-gin/controllers"
 )
 
-func SetupRouter() *gin.Engine {
-    r := gin.Default()
+// SetupRouter initializes the Gin router and registers the routes
+func SetupRouter(userController *controllers.UserController, taskController *controllers.TaskController) *gin.Engine {
+	r := gin.Default()
 
-    // Register routes
-    RegisterTaskRoutes(r)
+	// Register user routes
+	RegisterRoutes(r, userController, taskController)
 
-    return r
+	return r
 }
