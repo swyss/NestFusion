@@ -33,7 +33,7 @@ NestFusion is a modular home dashboard that integrates various functionalities s
 
 ## Software Engineering
 
-> [SWE](./Engineering/readme.md)
+> [SWE](./Engineering/TechnicalSpecifications.md)
 
 ## Tech Stack
 
@@ -61,7 +61,7 @@ NestFusion is a modular home dashboard that integrates various functionalities s
 
 ## Environment
 
-[![Vagrant](https://skillicons.dev/icons?i=vagrant)](https://www.vagrantup.com)
+- TBD
 
 ## CI/CD
 
