@@ -75,6 +75,8 @@ Description of the technologies used in the project and the rationale for their 
 ### Libraries and Tools:
 - **dotenv:** Management of environment variables.
 - **lodash:** Utility library for handling and manipulating arrays, objects, and other data types.
+- Snyk: Sicherheits- und Schwachstellenmanagement.
+- Swagger: API-Dokumentation und -Testing.
 
 ## 5.2 System Architecture
 Detailed description of the system's high-level architecture, including the main components and their interactions.
