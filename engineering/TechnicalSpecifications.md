@@ -106,7 +106,6 @@ List of all software and hardware components used in the project.
 
 ### Hardware Components:
 - **Server:** 
-  - Cloud-based servers (AWS, Azure) for hosting backend services and databases.
   - Local development environment (developer PCs)
 
 ### Additional Tools:
