@@ -97,10 +97,12 @@ List of all software and hardware components used in the project.
 - **Libraries and Tools:**
   - dotenv
   - lodash
+  - Snyk
+  - Swagger
 - **External APIs:**
   - Weather API
   - News API
-  - Email and SMS services
+  - Email services
 
 ### Hardware Components:
 - **Server:** 
