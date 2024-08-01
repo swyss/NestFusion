@@ -1,0 +1,90 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="ER Diagram">
+    <mxGraphModel dx="1024" dy="768" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- User Entity -->
+        <mxCell id="2" value="User" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="20" width="160" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="user_id: INT" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="2">
+          <mxGeometry y="20" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="username: VARCHAR" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="2">
+          <mxGeometry y="40" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="password: VARCHAR" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="2">
+          <mxGeometry y="60" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="email: VARCHAR" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="2">
+          <mxGeometry y="80" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="role: VARCHAR" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="2">
+          <mxGeometry y="100" width="160" height="20" as="geometry" />
+        </mxCell>
+        <!-- Weather Data Entity -->
+        <mxCell id="8" value="WeatherData" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="20" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="weather_id: INT" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="8">
+          <mxGeometry y="20" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="date: DATE" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="8">
+          <mxGeometry y="40" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="temperature: FLOAT" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="8">
+          <mxGeometry y="60" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="humidity: FLOAT" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="8">
+          <mxGeometry y="80" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="wind_speed: FLOAT" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="8">
+          <mxGeometry y="100" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="forecast: VARCHAR" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="8">
+          <mxGeometry y="120" width="160" height="20" as="geometry" />
+        </mxCell>
+        <!-- News Data Entity -->
+        <mxCell id="15" value="NewsData" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="20" width="160" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="16" value="news_id: INT" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="15">
+          <mxGeometry y="20" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="17" value="title: VARCHAR" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="15">
+          <mxGeometry y="40" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="18" value="content: TEXT" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="15">
+          <mxGeometry y="60" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="19" value="date_published: DATE" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="15">
+          <mxGeometry y="80" width="160" height="20" as="geometry" />
+        </mxCell>
+        <!-- To-Do Data Entity -->
+        <mxCell id="20" value="ToDo" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="20" width="160" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="21" value="task_id: INT" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="20">
+          <mxGeometry y="20" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="22" value="user_id: INT" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="20">
+          <mxGeometry y="40" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="23" value="description: VARCHAR" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="20">
+          <mxGeometry y="60" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="24" value="due_date: DATE" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="20">
+          <mxGeometry y="80" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="25" value="priority: VARCHAR" style="text;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="20">
+          <mxGeometry y="100" width="160" height="20" as="geometry" />
+        </mxCell>
+        <!-- Relationships -->
+        <mxCell id="26" value="" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="2" target="20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

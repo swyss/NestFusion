@@ -81,11 +81,11 @@ Back [to Specification](./TechnicalSpecifications.md)
 
 ## 4. Component Diagrams
 ### 4.1 Overview of Components
-![Component Diagram](./pic/ComponentDiagram.png)
+![Component Diagram](./pic/Component-Diagram.png)
 
 ## 5. Data Modeling
 ### 5.1 Entity-Relationship Diagrams (ERD)
-![Entity Relationship Diagram](./pic/ERDiagram.png)
+![Entity Relationship Diagram](./pic/ER-Diagram.png)
 
 ### 5.2 Data Flow Diagrams (DFD)
 ![Data Flow Diagram](./pic/DataFlowDiagram.png)
