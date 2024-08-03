@@ -1,5 +1,7 @@
 # Requirement List
-Back [to Specification](./TechnicalSpecifications.md)
+For more details on technical specifications and system design, refer to the following documents:
+- [Technical Specifications](../TechnicalSpecifications.md)
+- [System Design](SystemDesign.md)
 
 ## Functional Requirements
 
@@ -202,3 +204,34 @@ Back [to Specification](./TechnicalSpecifications.md)
 | ID  | Name                         | Description                                                                                              | Version | Author      | Source                  | Reason                              | Stability      | Related risks                             | Criticality | Priority  |
 |-----|------------------------------|----------------------------------------------------------------------------------------------------------|---------|-------------|-------------------------|--------------------------------------|----------------|-------------------------------------------|-------------|-----------|
 | 100 | Integrate new modules        | The system must be easily extendable to integrate new modules.                                           | 1.0     | swyss | Extendability Requirement | Extendability                     | stable         | Difficult extensions                      | high        | high      |
+
+### Security Requirements
+
+| ID  | Name                                     | Description                                                                                              | Version | Author      | Source                  | Reason                              | Stability      | Related risks                             | Criticality | Priority  |
+|-----|------------------------------------------|----------------------------------------------------------------------------------------------------------|---------|-------------|-------------------------|--------------------------------------|----------------|-------------------------------------------|-------------|-----------|
+| 100 | Authentication                           | The system must ensure secure user authentication, including password-based and multi-factor authentication. | 1.0     | swyss | Security Requirement   | Protection against unauthorized access | stable         | Security vulnerabilities                  | high        | high      |
+| 101 | Authorization                            | The system must implement role-based access control (RBAC) to ensure that users only access authorized resources. | 1.0     | swyss | Security Requirement   | Protection of sensitive data          | stable         | Abuse of privileges                        | high        | high      |
+| 102 | Encryption                               | All sensitive data must be encrypted at rest and in transit.                                             | 1.0     | swyss | Security Requirement   | Protection against data loss           | stable         | Data leaks                                 | high        | high      |
+| 103 | Protocols for Handling Sensitive Data    | The system must implement protocols and policies for handling, storing, and transmitting sensitive data.  | 1.0     | swyss | Security Requirement   | Compliance with data protection regulations | stable         | Compliance violations                      | high        | high      |
+
+### Testing Requirements
+
+| ID  | Name                                     | Description                                                                                              | Version | Author      | Source                  | Reason                              | Stability      | Related risks                             | Criticality | Priority  |
+|-----|------------------------------------------|----------------------------------------------------------------------------------------------------------|---------|-------------|-------------------------|--------------------------------------|----------------|-------------------------------------------|-------------|-----------|
+| 104 | Unit Testing                             | The system must include unit tests to validate individual components.                                    | 1.0     | swyss | Testing Requirement    | Ensure code correctness              | stable         | Uncovered bugs                            | high        | high      |
+| 105 | Integration Testing                      | The system must include integration tests to verify interactions between components.                     | 1.0     | swyss | Testing Requirement    | Ensure component interaction         | stable         | Interface issues                          | high        | high      |
+| 106 | End-to-End Testing                       | The system must include end-to-end tests to validate complete workflows.                                 | 1.0     | swyss | Testing Requirement    | Ensure user experience               | stable         | Workflow disruptions                      | high        | high      |
+| 107 | Test Coverage                            | The system must achieve a test coverage of at least 80% for critical components.                         | 1.0     | swyss | Testing Requirement    | Ensure comprehensive testing         | stable         | Insufficient testing                      | high        | high      |
+| 108 | Continuous Integration                   | The system must include continuous integration (CI) to automate testing and deployment.                  | 1.0     | swyss | Testing Requirement    | Enable fast feedback                 | stable         | Delayed error detection                   | high        | high      |
+
+
+### Data Storage Requirements
+
+| ID  | Name                                     | Description                                                                                              | Version | Author      | Source                  | Reason                              | Stability      | Related risks                             | Criticality | Priority  |
+|-----|------------------------------------------|----------------------------------------------------------------------------------------------------------|---------|-------------|-------------------------|--------------------------------------|----------------|-------------------------------------------|-------------|-----------|
+| 109 | InfluxDB for Logs                        | The system must store log data in InfluxDB.                                                               | 1.0     | swyss | Data Storage Requirement | Efficient handling of time-series data | stable         | Data inconsistency                        | high        | high      |
+| 110 | InfluxDB for Weather Data                | The system must store weather data in InfluxDB.                                                           | 1.0     | swyss | Data Storage Requirement | Efficient handling of time-series data | stable         | Data inconsistency                        | high        | high      |
+| 111 | InfluxDB Integration                     | The system must integrate InfluxDB for storing and querying time-series data.                            | 1.0     | swyss | Data Storage Requirement | Scalability and performance            | stable         | Integration issues                        | high        | high      |
+| 112 | PostgreSQL for Relational Data           | The system must store relational data in PostgreSQL.                                                     | 1.0     | swyss | Data Storage Requirement | Reliable and ACID-compliant storage     | stable         | Data inconsistency                        | high        | high      |
+| 113 | Redis for Caching                        | The system must use Redis for caching frequently accessed data.                                           | 1.0     | swyss | Performance Requirement | Improved application performance        | stable         | Cache coherence issues                    | high        | high      |
+| 114 | Database Integration                     | The system must integrate PostgreSQL and Redis for storing and querying data.                            | 1.0     | swyss | Data Storage Requirement | Scalability and performance             | stable         | Integration issues                        | high        | high      |
