@@ -37,12 +37,12 @@ The ER diagram represents the relationships between different entities in the sy
 ## Relationships
 - **User** `has` **UserRole**
 - **User** `has` **UserSetting**
-- **User** `has` **UserLog**
+- **User** `has/logs` **UserLog**
 - **User** `uses` **Application**
 - **Application** `has` **ApplicationSetting**
-- **Application** `has` **ApplicationLog**
+- **Application** `has/logs` **ApplicationLog**
 - **Application** `has` **Modul**
 - **Modul** `has` **ModulSetting**
-- **Modul** `has` **ModulLog**
+- **Modul** `has/logs` **ModulLog**
 
 The enhanced ER diagram visually represents the relationships between these entities and their respective attributes and relationships.

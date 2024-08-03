@@ -9,10 +9,7 @@ The technical specifications document provides a comprehensive overview of the s
 - [System Design](docs/SystemDesign.md)
 
 ## System Architecture
-The system architecture consists of various components and their interactions. The architecture diagrams can be found in the `pic` directory:
-- [Architecture Diagram](pic/ArchitectureDiagram.png)
-- [Component Diagram](pic/Component-Diagram.png)
-- [ER Diagram](pic/ER-Diagram.png)
+The system architecture consists of various components and their interactions. The architecture diagrams can be found in the `pic` directory
 
 ## Further Details
 For detailed component specifications, refer to the component diagram, the entity-relationship diagram, the requirement list, and the system design documents.
@@ -37,7 +34,7 @@ Description of the system's high-level architecture, including the main componen
 ## 2.2 Sequence Diagrams
 Illustration of the interactions between components for key processes. These diagrams help understand the sequence of operations and how components work together at runtime.
 
-![Sequence Diagram](pic/Sequence-Diagram.png)
+![Sequence Diagram](pic/SequenceDiagram.png)
 
 ## 2.3 Class Diagrams
 Structure of the system in terms of classes, their attributes, operations, and the relationships between classes. Class diagrams provide detailed insight into the software design.
@@ -55,6 +52,8 @@ Detailed view of the various software and hardware components used in the system
 Representation of the data structure and relationships between entities in the system. ERDs are crucial for understanding data persistence and the relational structure of the database.
 
 ![Entity Relationship Diagram](pic/ER-Diagram.png)
+
+- Detailed ERD [Entity-Relationship Diagram](docs/ER-Diagram.md)
 
 ## 3.2 Data Flow Diagrams (DFD)
 Visualization of the flow of data through the system. DFDs show how data moves between processes, data stores, and external entities.
