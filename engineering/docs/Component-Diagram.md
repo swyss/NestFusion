@@ -6,6 +6,8 @@ For more details on technical specifications and system design, refer to the fol
 ## Overview
 The component diagram illustrates the different modules and their interactions within the system. Key components include:
 
+![Component Diagram](../pic/Component-Diagram.png)
+
 ### Frontend Components
 - **Application Management**
   - **Settings Manager**: Manages application settings.
