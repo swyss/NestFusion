@@ -2,14 +2,42 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis/v8"
 	"log"
 	"net/http"
+	"web-service-gin/controllers"
+	"web-service-gin/main/routes"
+	"web-service-gin/repositories"
+	_ "web-service-gin/repositories"
+	"web-service-gin/services"
 )
 
 func main() {
-	router := gin.Default()
+	// Redis-Client konfigurieren
+	rdb := redis.NewClient(&redis.Options{
+		Addr:     "localhost:6379",
+		Password: "",
+		DB:       0,
+	})
+
+	// User-Repository, -Service und -Controller initialisieren
+	userRepo := repositories.NewUserRepository(rdb)
+	userService := services.NewUserService(userRepo)
+	userController := controllers.NewUserController(userService)
+
+	// Task-Repository, -Service und -Controller initialisieren
+	//taskRepo := repositories.NewTaskRepository(rdb)
+	//taskService := services.NewTaskService(taskRepo)
+	//taskController := controllers.NewTaskController(taskService)
+
+	// Gin-Router konfigurieren und Routen registrieren
+	//router := routes.SetupRouter(userController, taskController)
+	router := routes.SetupRouter(userController, nil)
+
+	// Beispiel-Route für Alben
 	router.GET("/albums", getAlbums)
 
+	// Server starten
 	err := router.Run("localhost:8080")
 	if err != nil {
 		log.Fatal(err)
