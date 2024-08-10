@@ -1,151 +1,97 @@
 package main
 
 import (
+	"context"
 	"database/sql"
-	"encoding/json"
 	"log"
 	"net/http"
 	"os"
+	"os/signal"
+	"time"
 
-	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
+	"go-crud-api/controllers"
+	"go-crud-api/repos"
+	"go-crud-api/router"
+	"go-crud-api/services"
+
+	httpSwagger "github.com/swaggo/http-swagger" // Swagger HTTP-Handler
+	_ "go-crud-api/docs"                         // Path to generated Swagger docs
 )
 
-type User struct {
-	ID    int    `json:"id"`
-	Name  string `json:"name"`
-	Email string `json:"email"`
-}
+// @title User API
+// @version 1.0
+// @description API for user management in Go
+// @termsOfService http://swagger.io/terms/
 
+// @contact.name API Support
+// @contact.url http://www.swagger.io/support
+// @contact.email support@swagger.io
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host localhost:8000
+// @BasePath /
 func main() {
-	//connect to database
-	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+	// Validate environment variables
+	dbURL := os.Getenv("DATABASE_URL")
+	if dbURL == "" {
+		log.Fatal("DATABASE_URL environment variable is not set")
+	}
+
+	// Database connection
+	db, err := sql.Open("postgres", dbURL)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Failed to open database connection: %v", err)
 	}
-	defer db.Close()
-
-	//create the table if it doesn't exist
-	_, err = db.Exec("CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, name TEXT, email TEXT)")
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	//create router
-	router := mux.NewRouter()
-	router.HandleFunc("/users", getUsers(db)).Methods("GET")
-	router.HandleFunc("/users/{id}", getUser(db)).Methods("GET")
-	router.HandleFunc("/users", createUser(db)).Methods("POST")
-	router.HandleFunc("/users/{id}", updateUser(db)).Methods("PUT")
-	router.HandleFunc("/users/{id}", deleteUser(db)).Methods("DELETE")
-
-	//start server
-	log.Fatal(http.ListenAndServe(":8000", jsonContentTypeMiddleware(router)))
-}
-
-func jsonContentTypeMiddleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		next.ServeHTTP(w, r)
-	})
-}
-
-// get all users
-func getUsers(db *sql.DB) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		rows, err := db.Query("SELECT * FROM users")
+	defer func(db *sql.DB) {
+		err := db.Close()
 		if err != nil {
-			log.Fatal(err)
-		}
-		defer rows.Close()
 
-		users := []User{}
-		for rows.Next() {
-			var u User
-			if err := rows.Scan(&u.ID, &u.Name, &u.Email); err != nil {
-				log.Fatal(err)
-			}
-			users = append(users, u)
 		}
-		if err := rows.Err(); err != nil {
-			log.Fatal(err)
-		}
+	}(db)
 
-		json.NewEncoder(w).Encode(users)
+	// Configure connection pooling
+	db.SetMaxOpenConns(25)
+	db.SetMaxIdleConns(25)
+	db.SetConnMaxLifetime(5 * time.Minute)
+
+	// Initialize Repository, Service, and Controller
+	userRepo := repos.NewUserRepo(db)
+	userService := services.NewUserService(userRepo)
+	userController := controllers.NewUserController(userService)
+
+	// Set up Router
+	r := router.NewRouter(userController)
+
+	// Add Swagger-UI route
+	r.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+
+	// Start server with middleware
+	server := &http.Server{
+		Addr:    ":8000",
+		Handler: router.JSONContentTypeMiddleware(r),
 	}
-}
 
-// get user by id
-func getUser(db *sql.DB) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		vars := mux.Vars(r)
-		id := vars["id"]
-
-		var u User
-		err := db.QueryRow("SELECT * FROM users WHERE id = $1", id).Scan(&u.ID, &u.Name, &u.Email)
-		if err != nil {
-			w.WriteHeader(http.StatusNotFound)
-			return
+	// Run server in a goroutine to allow for graceful shutdown
+	go func() {
+		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			log.Fatalf("Could not listen on :8000: %v", err)
 		}
+	}()
 
-		json.NewEncoder(w).Encode(u)
+	// Graceful shutdown
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, os.Interrupt)
+	<-quit
+	log.Println("Shutting down server...")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	if err := server.Shutdown(ctx); err != nil {
+		log.Fatalf("Server forced to shutdown: %v", err)
 	}
-}
 
-// create user
-func createUser(db *sql.DB) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		var u User
-		json.NewDecoder(r.Body).Decode(&u)
-
-		err := db.QueryRow("INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id", u.Name, u.Email).Scan(&u.ID)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		json.NewEncoder(w).Encode(u)
-	}
-}
-
-// update user
-func updateUser(db *sql.DB) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		var u User
-		json.NewDecoder(r.Body).Decode(&u)
-
-		vars := mux.Vars(r)
-		id := vars["id"]
-
-		_, err := db.Exec("UPDATE users SET name = $1, email = $2 WHERE id = $3", u.Name, u.Email, id)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		json.NewEncoder(w).Encode(u)
-	}
-}
-
-// delete user
-func deleteUser(db *sql.DB) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		vars := mux.Vars(r)
-		id := vars["id"]
-
-		var u User
-		err := db.QueryRow("SELECT * FROM users WHERE id = $1", id).Scan(&u.ID, &u.Name, &u.Email)
-		if err != nil {
-			w.WriteHeader(http.StatusNotFound)
-			return
-		} else {
-			_, err := db.Exec("DELETE FROM users WHERE id = $1", id)
-			if err != nil {
-				//todo : fix error handling
-				w.WriteHeader(http.StatusNotFound)
-				return
-			}
-
-			json.NewEncoder(w).Encode("User deleted")
-		}
-	}
+	log.Println("Server exiting")
 }

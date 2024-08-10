@@ -3,25 +3,52 @@ version: '3.9'
 services:
   go-app:
     container_name: go-app
-    image: francescoxx/go-app:1.0.0
+    image: nestfusion/go-app:1.0.0
     build: .
     environment:
-      DATABASE_URL: "host=go_db user=postgres password=postgres dbname=postgres sslmode=disable"
+      DATABASE_URL: "${DATABASE_URL}"
+      REDIS_URL: "${REDIS_URL}"
+      INFLUXDB_URL: "${INFLUXDB_URL}"
     ports:
       - "8000:8000"
     depends_on:
       - go_db
+      - go_redis
+      - go_influxdb
+
   go_db:
     container_name: go_db
     image: postgres:12
     environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_DB: "${POSTGRES_DB}"
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  go_redis:
+    container_name: go_redis
+    image: redis:6.2
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
+  go_influxdb:
+    container_name: go_influxdb
+    image: influxdb:2.0
+    environment:
+      INFLUXDB_DB: "${INFLUXDB_DB}"
+      INFLUXDB_ADMIN_USER: "${INFLUXDB_ADMIN_USER}"
+      INFLUXDB_ADMIN_PASSWORD: "${INFLUXDB_ADMIN_PASSWORD}"
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdbdata:/var/lib/influxdb
+
 volumes:
-  pgdata: {}
+  pgdata: { }
+  redisdata: { }
+  influxdbdata: { }
