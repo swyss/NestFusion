@@ -27,7 +27,7 @@ paths:
     get:
       description: Get details of all users
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: OK
@@ -37,20 +37,20 @@ paths:
             type: array
       summary: Get all users
       tags:
-      - users
+        - users
     post:
       consumes:
-      - application/json
+        - application/json
       description: Create a new user with the input payload
       parameters:
-      - description: Create user
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/models.User'
+        - description: Create user
+          in: body
+          name: user
+          required: true
+          schema:
+            $ref: '#/definitions/models.User'
       produces:
-      - application/json
+        - application/json
       responses:
         "201":
           description: Created
@@ -70,18 +70,18 @@ paths:
             type: object
       summary: Create a new user
       tags:
-      - users
+        - users
   /users/{id}:
     delete:
       description: Delete a user by ID
       parameters:
-      - description: User ID
-        in: path
-        name: id
-        required: true
-        type: integer
+        - description: User ID
+          in: path
+          name: id
+          required: true
+          type: integer
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: OK
@@ -97,17 +97,17 @@ paths:
             type: object
       summary: Delete a user
       tags:
-      - users
+        - users
     get:
       description: Get details of a user by ID
       parameters:
-      - description: User ID
-        in: path
-        name: id
-        required: true
-        type: integer
+        - description: User ID
+          in: path
+          name: id
+          required: true
+          type: integer
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: OK
@@ -121,25 +121,25 @@ paths:
             type: object
       summary: Get a user by ID
       tags:
-      - users
+        - users
     put:
       consumes:
-      - application/json
+        - application/json
       description: Update an existing user by ID with the input payload
       parameters:
-      - description: User ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      - description: Update user
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/models.User'
+        - description: User ID
+          in: path
+          name: id
+          required: true
+          type: integer
+        - description: Update user
+          in: body
+          name: user
+          required: true
+          schema:
+            $ref: '#/definitions/models.User'
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: OK
@@ -165,5 +165,5 @@ paths:
             type: object
       summary: Update an existing user
       tags:
-      - users
+        - users
 swagger: "2.0"

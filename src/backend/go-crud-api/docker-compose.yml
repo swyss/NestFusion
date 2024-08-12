@@ -11,6 +11,7 @@ services:
       DATABASE_URL: "${DATABASE_URL}"
       REDIS_URL: "${REDIS_URL}"
       INFLUXDB_URL: "${INFLUXDB_URL}"
+      INFLUXDB_TOKEN: "${INFLUXDB_TOKEN}"
     ports:
       - "8000:8000"
     depends_on:
@@ -51,6 +52,6 @@ services:
       - influxdbdata:/var/lib/influxdb
 
 volumes:
-  pgdata: {}
-  redisdata: {}
-  influxdbdata: {}
+  pgdata: { }
+  redisdata: { }
+  influxdbdata: { }

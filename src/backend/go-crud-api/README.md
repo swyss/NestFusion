@@ -10,7 +10,37 @@ docker compose up -d go_db
 
 This will start the PostgreSQL container in detached mode.
 
-### 2. View All Containers
+### 2. Start the Redis Container
+
+To start the Redis container, run the following command:
+
+```bash
+docker compose up -d go_redis
+```
+
+Redis will start in detached mode, and you can access the Redis CLI by running:
+
+```bash
+docker exec -it go_redis redis-cli
+```
+
+### 3. Start the InfluxDB Container
+
+To start the InfluxDB container, run the following command:
+
+```bash
+docker compose up -d go_influxdb
+```
+
+Once started, you can access the InfluxDB web interface by navigating to:
+
+```plaintext
+http://localhost:8086
+```
+
+Log in with the credentials you set during the InfluxDB setup or the default credentials if this is a new setup.
+
+### 4. View All Containers
 
 To display all Docker containers (both running and stopped), use the following command:
 
@@ -18,7 +48,7 @@ To display all Docker containers (both running and stopped), use the following c
 docker ps -a
 ```
 
-### 3. Build the Docker Image
+### 5. Build the Docker Image
 
 Navigate to the directory where your `docker-compose.yml` file is located, and then build the Docker image with the following command:
 
@@ -26,7 +56,7 @@ Navigate to the directory where your `docker-compose.yml` file is located, and t
 docker compose build
 ```
 
-### 4. Verify the Docker Image
+### 6. Verify the Docker Image
 
 After building, check if the image has been successfully created by running:
 
@@ -34,7 +64,7 @@ After building, check if the image has been successfully created by running:
 docker images
 ```
 
-### 5. Run the Application
+### 7. Run the Application
 
 To start the application, execute the following command:
 
@@ -44,7 +74,7 @@ docker compose up go-app
 
 This will launch the application container.
 
-### 6. Generate Swagger Documentation
+### 8. Generate Swagger Documentation
 
 To generate the Swagger documentation, run:
 
@@ -59,3 +89,29 @@ http://localhost:8000/swagger/index.html
 ```
 
 This URL will display the Swagger UI, where you can interact with the API documentation.
+
+### 9. Accessing Redis and InfluxDB
+
+#### Redis:
+
+- **CLI Access**: You can interact with Redis using the Redis CLI:
+
+  ```bash
+  docker exec -it go_redis redis-cli
+  ```
+
+    - Use commands like `PING`, `SET`, `GET`, etc., to interact with the Redis store.
+
+#### InfluxDB:
+
+- **Web Interface**: Access the InfluxDB web interface at:
+
+  ```plaintext
+  http://localhost:8086
+  ```
+
+    - Use this interface to manage databases, view dashboards, and monitor data.
+
+### Summary
+
+This project uses PostgreSQL, Redis, and InfluxDB as its primary data stores. Ensure each service is running and properly configured before interacting with the application. Swagger provides an easy way to test and explore the API.
