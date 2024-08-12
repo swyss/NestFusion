@@ -1,7 +1,7 @@
 package router
 
 import (
-	"go-crud-api/controllers"
+	"go-crud-api/internal/controllers"
 	"net/http"
 
 	"github.com/gorilla/mux"

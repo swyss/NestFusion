@@ -2,7 +2,7 @@ package repos
 
 import (
 	"database/sql"
-	"go-crud-api/models"
+	"go-crud-api/internal/models"
 )
 
 type UserRepo struct {

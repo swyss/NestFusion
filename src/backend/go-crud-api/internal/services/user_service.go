@@ -1,8 +1,8 @@
 package services
 
 import (
-	"go-crud-api/models"
-	"go-crud-api/repos"
+	"go-crud-api/internal/models"
+	"go-crud-api/internal/repos"
 )
 
 type UserService struct {

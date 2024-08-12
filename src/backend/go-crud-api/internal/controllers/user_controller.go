@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"encoding/json"
-	"go-crud-api/models"
-	"go-crud-api/services"
+	"go-crud-api/internal/models"
+	"go-crud-api/internal/services"
 	"net/http"
 	"strconv"
 
@@ -28,13 +28,10 @@ func NewUserController(service *services.UserService) *UserController {
 func (c *UserController) GetUsers(w http.ResponseWriter, r *http.Request) {
 	users, err := c.Service.GetAllUsers()
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		c.handleError(w, err, http.StatusInternalServerError)
 		return
 	}
-	err = json.NewEncoder(w).Encode(users)
-	if err != nil {
-		return
-	}
+	c.handleJSONResponse(w, users, http.StatusOK)
 }
 
 // GetUser godoc
@@ -51,10 +48,10 @@ func (c *UserController) GetUser(w http.ResponseWriter, r *http.Request) {
 	id, _ := strconv.Atoi(vars["id"])
 	user, err := c.Service.GetUserByID(id)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusNotFound)
+		c.handleError(w, err, http.StatusNotFound)
 		return
 	}
-	json.NewEncoder(w).Encode(user)
+	c.handleJSONResponse(w, user, http.StatusOK)
 }
 
 // CreateUser godoc
@@ -70,14 +67,16 @@ func (c *UserController) GetUser(w http.ResponseWriter, r *http.Request) {
 // @Router /users [post]
 func (c *UserController) CreateUser(w http.ResponseWriter, r *http.Request) {
 	var user models.User
-	json.NewDecoder(r.Body).Decode(&user)
-	err := c.Service.CreateUser(&user)
+	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(user)
+	err = c.Service.CreateUser(&user)
+	if err != nil {
+		c.handleError(w, err, http.StatusInternalServerError)
+		return
+	}
+	c.handleJSONResponse(w, user, http.StatusCreated)
 }
 
 // UpdateUser godoc
@@ -95,17 +94,20 @@ func (c *UserController) CreateUser(w http.ResponseWriter, r *http.Request) {
 // @Router /users/{id} [put]
 func (c *UserController) UpdateUser(w http.ResponseWriter, r *http.Request) {
 	var user models.User
-	json.NewDecoder(r.Body).Decode(&user)
+	err := json.NewDecoder(r.Body).Decode(&user)
+	if err != nil {
+		return
+	}
 	vars := mux.Vars(r)
 	id, _ := strconv.Atoi(vars["id"])
 	user.ID = id
 
-	err := c.Service.UpdateUser(&user)
+	err = c.Service.UpdateUser(&user)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		c.handleError(w, err, http.StatusInternalServerError)
 		return
 	}
-	json.NewEncoder(w).Encode(user)
+	c.handleJSONResponse(w, user, http.StatusOK)
 }
 
 // DeleteUser godoc
@@ -123,8 +125,22 @@ func (c *UserController) DeleteUser(w http.ResponseWriter, r *http.Request) {
 
 	err := c.Service.DeleteUser(id)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusNotFound)
+		c.handleError(w, err, http.StatusNotFound)
 		return
 	}
-	json.NewEncoder(w).Encode(map[string]string{"message": "User deleted"})
+	c.handleJSONResponse(w, map[string]string{"message": "User deleted"}, http.StatusOK)
+}
+
+// handleError handles errors by sending appropriate HTTP responses.
+func (c *UserController) handleError(w http.ResponseWriter, err error, status int) {
+	http.Error(w, err.Error(), status)
+}
+
+// handleJSONResponse encodes and sends a JSON response with a given status code.
+func (c *UserController) handleJSONResponse(w http.ResponseWriter, data interface{}, status int) {
+	w.WriteHeader(status)
+	jsonEncoder := json.NewEncoder(w)
+	if err := jsonEncoder.Encode(data); err != nil {
+		c.handleError(w, err, http.StatusInternalServerError)
+	}
 }
