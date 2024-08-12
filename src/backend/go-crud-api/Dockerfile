@@ -1,20 +1,26 @@
-# use official Golang image
+# Use the official Golang image as the base
 FROM golang:1.22
 
-# set working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the source code
+# Install Swag CLI for generating Swagger documentation
+RUN go install github.com/swaggo/swag/cmd/swag@latest
+
+# Copy the source code into the container
 COPY . .
 
-# Download and install the dependencies
+# Download and install dependencies
 RUN go get -d -v ./...
 
-# Build the Go app
+# Generate Swagger documentation
+RUN swag init
+
+# Build the Go application
 RUN go build -o api .
 
-#EXPOSE the port
+# Expose the application port
 EXPOSE 8000
 
-# Run the executable
+# Set the command to run the application
 CMD ["./api"]

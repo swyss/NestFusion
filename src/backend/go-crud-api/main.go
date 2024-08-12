@@ -12,14 +12,13 @@
 
 // @host localhost:8000
 // @BasePath /
+
 package main
 
 import (
 	"context"
 	"database/sql"
 	"errors"
-	_ "fmt"
-	_ "github.com/lib/pq" // PostgreSQL driver
 	"log"
 	"net/http"
 	"os"
@@ -27,15 +26,27 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/swaggo/http-swagger"
+	_ "github.com/lib/pq"            // PostgreSQL driver
+	"github.com/swaggo/http-swagger" // Swagger handler
+	_ "go-crud-api/docs"             // Import the generated Swagger docs
 	"go-crud-api/internal/controllers"
 	"go-crud-api/internal/repos"
 	"go-crud-api/internal/services"
 	"go-crud-api/pkg/router"
 )
 
+// @title User API
+// @version 1.0
+// @description API for user management in Go
+// @termsOfService http://swagger.io/terms/
+// @contact.name API Support
+// @contact.url http://www.swagger.io/support
+// @contact.email support@swagger.io
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 // @host localhost:8000
 // @BasePath /
+
 func main() {
 	db := initializeDatabase()
 	defer closeDatabase(db)
@@ -85,7 +96,10 @@ func initializeController(db *sql.DB) *controllers.UserController {
 
 func setupRouter(userController *controllers.UserController) *mux.Router {
 	r := router.NewRouter(userController)
+
+	// Serve Swagger UI
 	r.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+
 	return r
 }
 
