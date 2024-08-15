@@ -50,7 +50,8 @@ docker ps -a
 
 ### 5. Build the Docker Image
 
-Navigate to the directory where your `docker-compose.yml` file is located, and then build the Docker image with the following command:
+Navigate to the directory where your `docker-compose.yml` file is located, and then build the Docker image with the
+following command:
 
 ```bash
 docker compose build
@@ -69,6 +70,7 @@ docker images
 To start the application, execute the following command:
 
 ```bash
+docker compose up --build
 docker compose up go-app
 ```
 
@@ -114,4 +116,5 @@ This URL will display the Swagger UI, where you can interact with the API docume
 
 ### Summary
 
-This project uses PostgreSQL, Redis, and InfluxDB as its primary data stores. Ensure each service is running and properly configured before interacting with the application. Swagger provides an easy way to test and explore the API.
+This project uses PostgreSQL, Redis, and InfluxDB as its primary data stores. Ensure each service is running and
+properly configured before interacting with the application. Swagger provides an easy way to test and explore the API.

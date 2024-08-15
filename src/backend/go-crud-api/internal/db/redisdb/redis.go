@@ -12,7 +12,8 @@ import (
 func InitializeRedis() *redis.Client {
 	redisURL := os.Getenv("REDIS_URL")
 	if redisURL == "" {
-		log.Fatal("REDIS_URL environment variable is not set")
+		log.Println("REDIS_URL environment variable is not set, falling back to default Redis URL")
+		redisURL = "redis://localhost:6379/0" // Default to local Redis
 	}
 
 	options, err := redis.ParseURL(redisURL)
@@ -26,7 +27,9 @@ func InitializeRedis() *redis.Client {
 	ctx := context.Background()
 	_, err = client.Ping(ctx).Result()
 	if err != nil {
-		log.Fatalf("Failed to connect to Redis: %v", err)
+		log.Fatalf("Failed to connect to Redis at %s: %v", redisURL, err)
+	} else {
+		log.Printf("Successfully connected to Redis at %s", redisURL)
 	}
 
 	return client
