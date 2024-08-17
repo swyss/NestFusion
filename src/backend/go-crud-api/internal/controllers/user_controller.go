@@ -10,10 +10,12 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// UserController is responsible for handling user-related HTTP requests.
 type UserController struct {
 	Service *services.UserService
 }
 
+// NewUserController creates a new instance of UserController with the provided UserService.
 func NewUserController(service *services.UserService) *UserController {
 	return &UserController{Service: service}
 }
@@ -28,9 +30,11 @@ func NewUserController(service *services.UserService) *UserController {
 func (c *UserController) GetUsers(w http.ResponseWriter, r *http.Request) {
 	users, err := c.Service.GetAllUsers()
 	if err != nil {
+		// If there is an error, respond with a 500 status code.
 		c.handleError(w, err, http.StatusInternalServerError)
 		return
 	}
+	// Respond with the list of users and a 200 status code.
 	c.handleJSONResponse(w, users, http.StatusOK)
 }
 
@@ -48,9 +52,11 @@ func (c *UserController) GetUser(w http.ResponseWriter, r *http.Request) {
 	id, _ := strconv.Atoi(vars["id"])
 	user, err := c.Service.GetUserByID(id)
 	if err != nil {
+		// If the user is not found, respond with a 404 status code.
 		c.handleError(w, err, http.StatusNotFound)
 		return
 	}
+	// Respond with the user details and a 200 status code.
 	c.handleJSONResponse(w, user, http.StatusOK)
 }
 
@@ -69,13 +75,16 @@ func (c *UserController) CreateUser(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil {
+		// If decoding the request body fails, do not proceed.
 		return
 	}
 	err = c.Service.CreateUser(&user)
 	if err != nil {
+		// If there is an error while creating the user, respond with a 500 status code.
 		c.handleError(w, err, http.StatusInternalServerError)
 		return
 	}
+	// Respond with the created user and a 201 status code.
 	c.handleJSONResponse(w, user, http.StatusCreated)
 }
 
@@ -96,17 +105,20 @@ func (c *UserController) UpdateUser(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil {
+		// If decoding the request body fails, do not proceed.
 		return
 	}
 	vars := mux.Vars(r)
 	id, _ := strconv.Atoi(vars["id"])
-	user.ID = id
+	user.ID = uint(id)
 
 	err = c.Service.UpdateUser(&user)
 	if err != nil {
+		// If there is an error while updating the user, respond with a 500 status code.
 		c.handleError(w, err, http.StatusInternalServerError)
 		return
 	}
+	// Respond with the updated user and a 200 status code.
 	c.handleJSONResponse(w, user, http.StatusOK)
 }
 
@@ -125,9 +137,11 @@ func (c *UserController) DeleteUser(w http.ResponseWriter, r *http.Request) {
 
 	err := c.Service.DeleteUser(id)
 	if err != nil {
+		// If the user is not found, respond with a 404 status code.
 		c.handleError(w, err, http.StatusNotFound)
 		return
 	}
+	// Respond with a success message and a 200 status code.
 	c.handleJSONResponse(w, map[string]string{"message": "User deleted"}, http.StatusOK)
 }
 
@@ -141,6 +155,7 @@ func (c *UserController) handleJSONResponse(w http.ResponseWriter, data interfac
 	w.WriteHeader(status)
 	jsonEncoder := json.NewEncoder(w)
 	if err := jsonEncoder.Encode(data); err != nil {
+		// If encoding the response fails, respond with a 500 status code.
 		c.handleError(w, err, http.StatusInternalServerError)
 	}
 }
