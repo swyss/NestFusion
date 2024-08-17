@@ -8,7 +8,7 @@ import (
 )
 
 // NewRouter konfiguriert das Routing für User, UserRoles und Settings.
-func NewRouter(userController *controllers.UserController, userRoleController *controllers.UserRoleController, settingController *controllers.SettingController) *mux.Router {
+func NewRouter(userController *controllers.UserController) *mux.Router {
 	router := mux.NewRouter()
 
 	// User-Routen
@@ -17,14 +17,6 @@ func NewRouter(userController *controllers.UserController, userRoleController *c
 	router.HandleFunc("/users", userController.CreateUser).Methods("POST")
 	router.HandleFunc("/users/{id}", userController.UpdateUser).Methods("PUT")
 	router.HandleFunc("/users/{id}", userController.DeleteUser).Methods("DELETE")
-
-	// UserRole-Routen
-	router.HandleFunc("/roles", userRoleController.GetAllRoles).Methods("GET")
-	router.HandleFunc("/roles", userRoleController.CreateRole).Methods("POST")
-
-	// Setting-Routen
-	router.HandleFunc("/settings", settingController.GetAllSettings).Methods("GET")
-	router.HandleFunc("/settings", settingController.CreateSetting).Methods("POST")
 
 	return router
 }

@@ -46,11 +46,9 @@ func main() {
 
 	// Initialize controllers
 	userController := initializeUserController(dbPostgres)
-	userRoleController := initializeUserRoleController(redisClient)
-	settingController := initializeSettingController(redisClient)
 
 	// Setup and start server
-	r := setupRouter(userController, userRoleController, settingController)
+	r := setupRouter(userController)
 	startServer(r)
 
 	// Handle graceful shutdown
@@ -63,20 +61,8 @@ func initializeUserController(db *sql.DB) *controllers.UserController {
 	return controllers.NewUserController(userService)
 }
 
-func initializeUserRoleController(redisClient *redis.Client) *controllers.UserRoleController {
-	userRoleRepo := repos.NewUserRoleRepository(redisClient)
-	userRoleService := services.NewUserRoleService(userRoleRepo)
-	return controllers.NewUserRoleController(userRoleService)
-}
-
-func initializeSettingController(redisClient *redis.Client) *controllers.SettingController {
-	settingRepo := repos.NewSettingRepository(redisClient)
-	settingService := services.NewSettingService(settingRepo)
-	return controllers.NewSettingController(settingService)
-}
-
-func setupRouter(userController *controllers.UserController, userRoleController *controllers.UserRoleController, settingController *controllers.SettingController) *mux.Router {
-	r := router.NewRouter(userController, userRoleController, settingController)
+func setupRouter(userController *controllers.UserController) *mux.Router {
+	r := router.NewRouter(userController)
 
 	// Serve Swagger UI
 	r.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)

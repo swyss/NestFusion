@@ -5,23 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25fb366a-5d42-466a-8cda-8658c4a600f2" name="Changes" comment="feat(init): add swagger doc">
-      <change afterPath="$PROJECT_DIR$/internal/controllers/setting_controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/controllers/userrole_controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/models/settings_app.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/models/user_role.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/repos/setting_repo.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/repos/userrole_repo.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/services/settings_service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/services/userrole_service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/postman.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/db/redisdb/redis.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/db/redisdb/redis.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/models/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repos/user_repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repos/user_repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/services/user_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/controllers/setting_controller.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/controllers/userrole_controller.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/models/settings_app.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/models/user_role.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repos/setting_repo.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repos/userrole_repo.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/services/settings_service.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/services/userrole_service.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/router/router.go" afterDir="false" />
     </list>
