@@ -168,7 +168,7 @@ icongenie g -b .\src\assets\icons\app_background.png
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
-const {configure} = require("quasar/wrappers");
+const { configure } = require("quasar/wrappers");
 const path = require("path");
 
 module.exports = configure(function (/* ctx */) {
@@ -190,7 +190,8 @@ module.exports = configure(function (/* ctx */) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
       target: {
-        browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"], node: "node20",
+        browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
+        node: "node20",
       },
 
       vueRouterMode: "hash", // available values: 'hash', 'history'
@@ -212,21 +213,31 @@ module.exports = configure(function (/* ctx */) {
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
 
-      vitePlugins: [["@intlify/vite-plugin-vue-i18n", {
-        // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
-        // compositionOnly: false,
+      vitePlugins: [
+        [
+          "@intlify/vite-plugin-vue-i18n",
+          {
+            // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
+            // compositionOnly: false,
 
-        // if you want to use named tokens in your Vue I18n messages, such as 'Hello {name}',
-        // you need to set `runtimeOnly: false`
-        // runtimeOnly: false,
+            // if you want to use named tokens in your Vue I18n messages, such as 'Hello {name}',
+            // you need to set `runtimeOnly: false`
+            // runtimeOnly: false,
 
-        // you need to set i18n resource including paths !
-        include: path.resolve(__dirname, "./src/i18n/**"),
-      },], ["vite-plugin-checker", {
-        eslint: {
-          lintCommand: 'eslint "./**/*.{js,mjs,cjs,vue}"',
-        },
-      }, {server: false},],],
+            // you need to set i18n resource including paths !
+            include: path.resolve(__dirname, "./src/i18n/**"),
+          },
+        ],
+        [
+          "vite-plugin-checker",
+          {
+            eslint: {
+              lintCommand: 'eslint "./**/*.{js,mjs,cjs,vue}"',
+            },
+          },
+          { server: false },
+        ],
+      ],
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
@@ -308,7 +319,8 @@ module.exports = configure(function (/* ctx */) {
       // Has effect only when server.static() is used
 
       // List of SSR middleware files (src-ssr/middlewares/*). Order is important.
-      middlewares: [// ...
+      middlewares: [
+        // ...
         "render", // Should not be missing, and should be last in the list.
       ],
 
@@ -460,7 +472,6 @@ module.exports = configure(function (/* ctx */) {
     },
   };
 });
-
 ```
 
 ## default
