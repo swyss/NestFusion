@@ -12,12 +12,12 @@ import (
 
 // UserController is responsible for handling user-related HTTP requests.
 type UserController struct {
-	Service *services.UserService
+	UserService services.UserServiceInterface
 }
 
-// NewUserController creates a new instance of UserController with the provided UserService.
-func NewUserController(service *services.UserService) *UserController {
-	return &UserController{Service: service}
+// NewUserController creates a new instance of UserController with the provided UserServiceInterface.
+func NewUserController(service services.UserServiceInterface) *UserController {
+	return &UserController{UserService: service}
 }
 
 // GetUsers godoc
@@ -28,7 +28,7 @@ func NewUserController(service *services.UserService) *UserController {
 // @Success 200 {array} models.User
 // @Router /users [get]
 func (c *UserController) GetUsers(w http.ResponseWriter, r *http.Request) {
-	users, err := c.Service.GetAllUsers()
+	users, err := c.UserService.GetAllUsers()
 	if err != nil {
 		// If there is an error, respond with a 500 status code.
 		c.handleError(w, err, http.StatusInternalServerError)
@@ -50,7 +50,7 @@ func (c *UserController) GetUsers(w http.ResponseWriter, r *http.Request) {
 func (c *UserController) GetUser(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, _ := strconv.Atoi(vars["id"])
-	user, err := c.Service.GetUserByID(id)
+	user, err := c.UserService.GetUserByID(id)
 	if err != nil {
 		// If the user is not found, respond with a 404 status code.
 		c.handleError(w, err, http.StatusNotFound)
@@ -78,7 +78,7 @@ func (c *UserController) CreateUser(w http.ResponseWriter, r *http.Request) {
 		// If decoding the request body fails, do not proceed.
 		return
 	}
-	err = c.Service.CreateUser(&user)
+	err = c.UserService.CreateUser(&user)
 	if err != nil {
 		// If there is an error while creating the user, respond with a 500 status code.
 		c.handleError(w, err, http.StatusInternalServerError)
@@ -112,7 +112,7 @@ func (c *UserController) UpdateUser(w http.ResponseWriter, r *http.Request) {
 	id, _ := strconv.Atoi(vars["id"])
 	user.ID = uint(id)
 
-	err = c.Service.UpdateUser(&user)
+	err = c.UserService.UpdateUser(&user)
 	if err != nil {
 		// If there is an error while updating the user, respond with a 500 status code.
 		c.handleError(w, err, http.StatusInternalServerError)
@@ -135,7 +135,7 @@ func (c *UserController) DeleteUser(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, _ := strconv.Atoi(vars["id"])
 
-	err := c.Service.DeleteUser(id)
+	err := c.UserService.DeleteUser(id)
 	if err != nil {
 		// If the user is not found, respond with a 404 status code.
 		c.handleError(w, err, http.StatusNotFound)

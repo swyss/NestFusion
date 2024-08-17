@@ -5,6 +5,15 @@ import (
 	"go-crud-api/internal/repos"
 )
 
+// UserServiceInterface defines the methods that the UserService must implement.
+type UserServiceInterface interface {
+	GetAllUsers() ([]models.User, error)
+	GetUserByID(id int) (*models.User, error)
+	CreateUser(u *models.User) error
+	UpdateUser(u *models.User) error
+	DeleteUser(id int) error
+}
+
 // UserService provides business logic for user-related operations.
 type UserService struct {
 	Repo *repos.UserRepository
@@ -14,6 +23,9 @@ type UserService struct {
 func NewUserService(repo *repos.UserRepository) *UserService {
 	return &UserService{Repo: repo}
 }
+
+// Ensure UserService implements UserServiceInterface.
+var _ UserServiceInterface = &UserService{}
 
 // GetAllUsers retrieves all users by delegating the call to the UserRepository.
 func (s *UserService) GetAllUsers() ([]models.User, error) {

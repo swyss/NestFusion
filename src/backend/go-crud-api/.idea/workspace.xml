@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25fb366a-5d42-466a-8cda-8658c4a600f2" name="Changes" comment="feat(backend): code refactoring">
+    <list default="true" id="25fb366a-5d42-466a-8cda-8658c4a600f2" name="Changes" comment="feat(backend): code refactoring; add comments">
+      <change afterPath="$PROJECT_DIR$/tests/mock_user_service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/user-controllers_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/controllers/user_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controllers/user_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/models/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repos/user_repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repos/user_repo.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/services/user_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/router/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +47,7 @@
   &quot;isMigrated&quot;: true
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
     <option name="sortByName" value="true" />
   </component>
   <component name="ProjectColorInfo">{
@@ -104,7 +101,8 @@
     <MESSAGE value="feat(init): add user endpoint and db-engine repos" />
     <MESSAGE value="feat(init): add swagger doc" />
     <MESSAGE value="feat(backend): code refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(backend): code refactoring" />
+    <MESSAGE value="feat(backend): code refactoring; add comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(backend): code refactoring; add comments" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

@@ -114,7 +114,35 @@ This URL will display the Swagger UI, where you can interact with the API docume
 
     - Use this interface to manage databases, view dashboards, and monitor data.
 
-### Summary
+### 10. Running Tests
 
-This project uses PostgreSQL, Redis, and InfluxDB as its primary data stores. Ensure each service is running and
-properly configured before interacting with the application. Swagger provides an easy way to test and explore the API.
+#### Run Unit Tests
+
+To run the unit tests, use the following command:
+
+```bash
+go test -v ./tests
+```
+
+This will execute all the tests in the project and provide detailed output about which tests passed and which failed.
+
+#### Check Test Coverage
+
+To check the test coverage of your code, use:
+
+```bash
+go test -cover ./tests
+```
+
+This command will show the percentage of your code that is covered by tests.
+
+#### Generate a Coverage Report
+
+To generate a detailed coverage report, use the following commands:
+
+```bash
+go test -coverprofile=coverage.out ./tests
+go tool cover -html=coverage.out
+```
+
+This will open an HTML report in your browser, showing which lines of code are covered by tests.
