@@ -25,18 +25,7 @@ module.exports = configure(function (/* ctx */) {
     css: ["app.scss"],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
-    extras: [
-      // 'ionicons-v4',
-      // 'mdi-v7',
-      // 'fontawesome-v6',
-      // 'eva-icons',
-      // 'themify',
-      // 'line-awesome',
-      // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
-
-      "roboto-font", // optional, you are not bound to it
-      "material-icons", // optional, you are not bound to it
-    ],
+    extras: ["bootstrap-icons"],
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
@@ -132,38 +121,148 @@ module.exports = configure(function (/* ctx */) {
     // },
 
     // https://v2.quasar.dev/quasar-cli-vite/developing-ssr/configuring-ssr
+    //https://quasar.dev/quasar-cli-webpack/developing-ssr/configuring-ssr/
     ssr: {
-      // ssrPwaHtmlFilename: 'offline.html', // do NOT use index.html as name!
-      // will mess up SSR
+      pwa: true, // should a PWA take over (default: false), or just a SPA?
 
-      // extendSSRWebserverConf (esbuildConf) {},
-      // extendPackageJson (json) {},
+      /**
+       * Manually serialize the store state and provide it yourself
+       * as window.__INITIAL_STATE__ to the client-side (through a <script> tag)
+       * (Requires @quasar/app-webpack v3.5+)
+       */
+      manualStoreSerialization: false,
 
-      pwa: false,
+      /**
+       * Manually inject the store state into ssrContext.state
+       * (Requires @quasar/app-webpack v3.5+)
+       */
+      manualStoreSsrContextInjection: false,
 
-      // manualStoreHydration: true,
-      // manualPostHydrationTrigger: true,
+      /**
+       * Manually handle the store hydration instead of letting Quasar CLI do it.
+       * For Pinia: store.state.value = window.__INITIAL_STATE__
+       * For Vuex: store.replaceState(window.__INITIAL_STATE__)
+       */
+      manualStoreHydration: false,
+
+      /**
+       * Manually call $q.onSSRHydrated() instead of letting Quasar CLI do it.
+       * This announces that client-side code should takeover.
+       */
+      manualPostHydrationTrigger: false,
 
       prodPort: 3000, // The default port that the production server should use
-      // (gets superseded if process.env.PORT is specified at runtime)
+      // (gets superseded if process∙env∙PORT is specified at runtime)
 
+      maxAge: 1000 * 60 * 60 * 24 * 30, // Tell browser when a file from the server should expire from cache
+      // (the default value, in ms)
+      // Has effect only when server.static() is used
+
+      // List of SSR middleware files (src-ssr/middlewares/*). Order is important.
       middlewares: [
-        "render", // keep this as last one
+        // ...
+        "render", // Should not be missing, and should be last in the list.
       ],
+
+      // optional; add/remove/change properties
+      // of production generated package.json
+      extendPackageJson(pkg) {
+        // directly change props of pkg;
+        // no need to return anything
+      },
+
+      // optional;
+      // handles the Webserver webpack config ONLY
+      // which includes the SSR middleware
+      extendWebpackWebserver(cfg) {
+        // directly change props of cfg;
+        // no need to return anything
+      },
+
+      // optional; EQUIVALENT to extendWebpack() but uses webpack-chain;
+      // handles the Webserver webpack config ONLY
+      // which includes the SSR middleware
+      chainWebpackWebserver(chain) {
+        // chain is a webpack-chain instance
+        // of the Webpack configuration
+      },
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/developing-pwa/configuring-pwa
     pwa: {
-      workboxMode: "generateSW", // or 'injectManifest'
-      injectPwaMetaTags: true,
-      swFilename: "sw.js",
-      manifestFilename: "manifest.json",
-      useCredentialsForManifestTag: false,
-      // useFilenameHashes: true,
-      // extendGenerateSWOptions (cfg) {}
-      // extendInjectManifestOptions (cfg) {},
-      // extendManifestJson (json) {}
-      // extendPWACustomSWConf (esbuildConf) {}
+      // workboxPluginMode: 'InjectManifest',
+      // workboxOptions: {},
+      manifest: {
+        // ...
+      },
+
+      // Use this OR metaVariablesFn, but not both;
+      // variables used to inject specific PWA
+      // meta tags (below are default values);
+      metaVariables: {
+        appleMobileWebAppCapable: "yes",
+        appleMobileWebAppStatusBarStyle: "default",
+        appleTouchIcon120: "icons/apple-icon-120x120.png",
+        appleTouchIcon180: "icons/apple-icon-180x180.png",
+        appleTouchIcon152: "icons/apple-icon-152x152.png",
+        appleTouchIcon167: "icons/apple-icon-167x167.png",
+        appleSafariPinnedTab: "icons/safari-pinned-tab.svg",
+        msapplicationTileImage: "icons/ms-icon-144x144.png",
+        msapplicationTileColor: "#000000",
+      },
+
+      /*  // Optional, overrides metaVariables above;
+       // Use this OR metaVariables, but not both;
+       metaVariablesFn(manifest) {
+         // ...
+         return [
+           {
+             // this entry will generate:
+             // <meta name="theme-color" content="ff0">
+
+             tagName: "meta",
+             attributes: {
+               name: "theme-color",
+               content: "#ff0",
+             },
+           },
+
+           {
+             // this entry will generate:
+             // <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+             // references /public/icons/icon-180.png
+
+             tagName: "link",
+             attributes: {
+               rel: "apple-touch-icon",
+               sizes: "180x180",
+               href: "icons/icon-180.png",
+             },
+             closeTag: false, // this is optional;
+             // specifies if tag also needs an explicit closing tag;
+             // it's Boolean false by default
+           },
+         ];
+       }, */
+
+      // optional; webpack config Object for
+      // the custom service worker ONLY (/src-pwa/custom-service-worker.[js|ts])
+      // if using workbox in InjectManifest mode
+      extendWebpackCustomSW(cfg) {
+        // directly change props of cfg;
+        // no need to return anything
+      },
+
+      // optional; EQUIVALENT to extendWebpackCustomSW() but uses webpack-chain;
+      // for the custom service worker ONLY (/src-pwa/custom-service-worker.[js|ts])
+      // if using workbox in InjectManifest mode
+      chainWebpackCustomSW(chain) {
+        // chain is a webpack-chain instance
+        // of the Webpack configuration
+        // example:
+        // chain.plugin('eslint-webpack-plugin')
+        //   .use(ESLintPlugin, [{ extensions: [ 'js' ] }])
+      },
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-cordova-apps/configuring-cordova
@@ -200,7 +299,7 @@ module.exports = configure(function (/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: "quasar-web-app",
+        appId: "quasar-project",
       },
     },
 
