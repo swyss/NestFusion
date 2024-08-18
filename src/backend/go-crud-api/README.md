@@ -70,6 +70,9 @@ docker images
 To start the application, execute the following command:
 
 ```bash
+# stop
+docker stop $(docker ps -q)
+# run
 docker compose up --build
 docker compose up go_app
 ```
