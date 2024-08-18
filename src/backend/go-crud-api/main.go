@@ -69,14 +69,30 @@ func setupRouter(userController *controllers.UserController) *mux.Router {
 	return r
 }
 
+// CORSHandler sets the necessary headers for CORS.
+func CORSHandler(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+
+		// Handle preflight requests
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
+}
+
 // startServer starts the HTTP server in a new goroutine.
 func startServer(handler http.Handler, log *logger.Logger) {
 	server := &http.Server{
 		Addr:    ":8000",
-		Handler: router.JSONContentTypeMiddleware(handler),
+		Handler: CORSHandler(router.JSONContentTypeMiddleware(handler)), // Added CORSHandler here
 	}
 
-	// Start the server and log any errors except when the server is closed
 	go func() {
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			log.ErrorMsg(err)

@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
-import axios from "axios";
+import { api } from "src/boot/axios"; // Verwende die konfigurierte API-Instanz
 
 // Constants
-const API_BASE_URL = "http://localhost:8000/users";
+const API_BASE_URL = "/users"; // baseURL ist bereits in der api Instanz konfiguriert
 
 // Extracted async API handler
 async function apiHandler(context, action) {
@@ -27,25 +27,25 @@ export const useUserStore = defineStore("userStore", {
   actions: {
     async fetchUsers() {
       await apiHandler(this, async () => {
-        const response = await axios.get(API_BASE_URL);
+        const response = await api.get(API_BASE_URL);
         this.users = response.data;
       });
     },
     async fetchUser(userId) {
       await apiHandler(this, async () => {
-        const response = await axios.get(API_BASE_URL, userId);
+        const response = await api.get(`${API_BASE_URL}/${userId}`);
         this.user = response.data;
       });
     },
     async createUser(newUser) {
       await apiHandler(this, async () => {
-        const response = await axios.post(API_BASE_URL, newUser);
+        const response = await api.post(API_BASE_URL, newUser);
         this.users.push(response.data);
       });
     },
     async updateUser(userId, updatedUser) {
       await apiHandler(this, async () => {
-        const response = await axios.put(API_BASE_URL, userId, updatedUser);
+        const response = await api.put(`${API_BASE_URL}/${userId}`, updatedUser);
         this.users = this.users.map((user) =>
           user.id === userId ? response.data : user
         );
@@ -53,7 +53,7 @@ export const useUserStore = defineStore("userStore", {
     },
     async deleteUser(userId) {
       await apiHandler(this, async () => {
-        await axios.delete(API_BASE_URL, userId);
+        await api.delete(`${API_BASE_URL}/${userId}`);
         this.users = this.users.filter((user) => user.id !== userId);
       });
     },
