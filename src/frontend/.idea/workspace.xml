@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="33389d79-d26a-4f4c-abcc-f85e1cd25786" name="Changes" comment="feat(frontend): add some user-pages">
+      <change beforePath="$PROJECT_DIR$/../backend/go-crud-api/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/go-crud-api/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Composition API Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;swyss&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/swyss/NestFusion.git&quot;,
+    &quot;accountId&quot;: &quot;48677f2a-0831-4e29-9875-7050334c7fa2&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2kmrRuRGeoGcH8CZmYo082GnEBt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev__frontend&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/dev/templates/ssr_vuetify&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\wyss\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\dev\com\NestFusion\src\frontend\quasar-web-app\src\pages" />
+      <recent name="D:\dev\com\NestFusion\src\frontend\quasar-web-app\src\assets\icons" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-WS-242.20224.342" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="33389d79-d26a-4f4c-abcc-f85e1cd25786" name="Changes" comment="" />
+      <created>1723899589220</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723899589220</updated>
+      <workItem from="1723899590048" duration="31000" />
+      <workItem from="1723899632081" duration="23422000" />
+      <workItem from="1723987507967" duration="2214000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat(frontend): add new quasar project">
+      <option name="closed" value="true" />
+      <created>1723902006711</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1723902006711</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat(frontend): code-cleaning &amp; code-formating">
+      <option name="closed" value="true" />
+      <created>1723914732463</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1723914732463</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat(frontend): add user-store.js">
+      <option name="closed" value="true" />
+      <created>1723915800283</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1723915800283</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat(frontend): add app layout">
+      <option name="closed" value="true" />
+      <created>1723920095091</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1723920095091</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat(frontend): add new primary color">
+      <option name="closed" value="true" />
+      <created>1723920364715</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1723920364715</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix(frontend): remove user pages and code cleaning">
+      <option name="closed" value="true" />
+      <created>1723977691293</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1723977691293</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat(frontend): add some user-pages">
+      <option name="closed" value="true" />
+      <created>1723982741769</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1723982741769</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat(frontend): add new quasar project" />
+    <MESSAGE value="feat(frontend): code-cleaning &amp; code-formating" />
+    <MESSAGE value="feat(frontend): add user-store.js" />
+    <MESSAGE value="feat(frontend): add app layout" />
+    <MESSAGE value="feat(frontend): add new primary color" />
+    <MESSAGE value="fix(frontend): remove user pages and code cleaning" />
+    <MESSAGE value="feat(frontend): add some user-pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(frontend): add some user-pages" />
+  </component>
+</project>

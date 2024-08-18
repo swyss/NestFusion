@@ -4,14 +4,6 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25fb366a-5d42-466a-8cda-8658c4a600f2" name="Changes" comment="feat(backend): implement logger">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/init/init_controllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/startup/init_controllers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/init/init_services.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/startup/init_services.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repos/user_repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repos/user_repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,9 +94,6 @@
     <MESSAGE value="feat(init): add swagger doc" />
     <MESSAGE value="feat(backend): code refactoring" />
     <MESSAGE value="feat(backend): code refactoring; add comments" />
-    <MESSAGE value="fix(backend): implement start chain" />
-    <MESSAGE value="feat(backend): implement logger" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(backend): implement logger" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
