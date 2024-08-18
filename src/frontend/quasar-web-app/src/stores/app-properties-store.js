@@ -9,21 +9,26 @@ export const useAppPropertyStore = defineStore("properties", () => {
   //
   const leftDrawerState = computed(() => leftDrawerOpen.value);
   const rightDrawerState = computed(() => rightDrawerOpen.value);
+
   //
   function toggleLeftDrawer() {
     leftDrawerOpen.value = !leftDrawerOpen.value;
   }
+
   function toggleRightDrawer() {
     rightDrawerOpen.value = !rightDrawerOpen.value;
   }
+
   function toggleDarkMode() {
     $q.dark.toggle();
   }
+
   function init() {
     leftDrawerOpen.value = false;
     rightDrawerOpen.value = false;
     $q.dark.set(false);
   }
+
   //
   return {
     init,

@@ -1,7 +1,7 @@
 <script setup></script>
 <template>
-  <q-page-sticky position="bottom" offset="0">
-    <q-linear-progress color="primary" :value="50" :buffer-value="75" />
+  <q-page-sticky offset="0" position="bottom">
+    <q-linear-progress :buffer-value="75" :value="50" color="primary" />
   </q-page-sticky>
 </template>
 <style scoped></style>

@@ -6,7 +6,7 @@
     <app-drawer></app-drawer>
     <!-- CONTENTS -->
     <q-page-container>
-      <router-view/>
+      <router-view />
     </q-page-container>
     <!-- FOOTER -->
     <app-footer></app-footer>
@@ -23,6 +23,6 @@ const layoutView = "hHh lpR fFf";
 
 defineOptions({
   name: "MainLayout",
-  components: {AppHeader, AppDrawer, AppFooter},
+  components: { AppHeader, AppDrawer, AppFooter },
 });
 </script>

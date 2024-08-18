@@ -50,12 +50,12 @@ const toggleRightDrawer = () => {
         <q-icon color="accent" name="bi-star" />
       </q-btn>
       <q-separator color="on_primary" inset vertical />
-      <q-tabs align="left" v-model="tabs" inline-label shrink stretch>
+      <q-tabs v-model="tabs" align="left" inline-label shrink stretch>
         <q-route-tab
           v-for="tab in tabs"
           :key="tab.name"
-          v-bind="tab"
           :to="tab.link"
+          v-bind="tab"
         />
       </q-tabs>
       <q-space></q-space>
