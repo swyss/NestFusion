@@ -28,7 +28,7 @@ import {
  */
 export const create = ssrCreate((/* { ... } */) => {
   const app = express();
-
+  const cors = require('cors');
   // attackers can use this header to detect apps running Express
   // and then launch specifically-targeted attacks
   app.disable("x-powered-by");
@@ -36,7 +36,7 @@ export const create = ssrCreate((/* { ... } */) => {
   // place here any middlewares that
   // absolutely need to run before anything else
   if (process.env.PROD) {
-    app.use(compression());
+    app.use(cors({ origin: 'http://localhost:9000'}),compression());
   }
 
   return app;

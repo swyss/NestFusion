@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"errors"
 	"github.com/go-redis/redis/v8"
+	"github.com/joho/godotenv"
 	"log"
 	"net/http"
 	"os"
@@ -15,21 +16,30 @@ import (
 	"github.com/swaggo/http-swagger" // Swagger handler
 	_ "go-crud-api/docs"             // Import the generated Swagger docs
 	"go-crud-api/internal/controllers"
-	"go-crud-api/internal/db"          // Separate package for database initialization
-	"go-crud-api/internal/db/influxdb" // InfluxDB initialization
-	"go-crud-api/internal/db/redisdb"  // Redis initialization
+	"go-crud-api/internal/databases"          // Separate package for database initialization
+	"go-crud-api/internal/databases/influxdb" // InfluxDB initialization
+	"go-crud-api/internal/databases/redisdb"  // Redis initialization
 	"go-crud-api/internal/repos"
 	"go-crud-api/internal/services"
 	"go-crud-api/pkg/router"
 )
 
 func main() {
+	log.Println("Starting application...")
+
+	// Load environment variables from .env file
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+	log.Println(".env file loaded successfully")
+
 	// Initialize the PostgreSQL database
-	dbPostgres := db.InitializePostgres()
+	dbPostgres := databases.InitializePostgres()
 	defer func(db *sql.DB) {
 		err := db.Close()
 		if err != nil {
-			// Handle error when closing the database connection
+			log.Printf("Error closing PostgreSQL connection: %v", err)
 		}
 	}(dbPostgres)
 
@@ -38,13 +48,15 @@ func main() {
 	defer func(redisClient *redis.Client) {
 		err := redisClient.Close()
 		if err != nil {
-			// Handle error when closing the Redis connection
+			log.Printf("Error closing Redis connection: %v", err)
 		}
 	}(redisClient)
 
 	// Initialize InfluxDB client
 	influxClient := influxdb.InitializeInfluxDB()
 	defer influxClient.Close()
+
+	log.Println("All services initialized successfully")
 
 	// Initialize user controller
 	userController := initializeUserController(dbPostgres)
@@ -86,6 +98,7 @@ func startServer(handler http.Handler) {
 			log.Fatalf("Could not listen on :8000: %v", err)
 		}
 	}()
+	log.Println("Server started on port 8000")
 }
 
 // handleGracefulShutdown manages graceful server shutdown upon receiving OS signals.

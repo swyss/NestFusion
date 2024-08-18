@@ -1,15 +1,31 @@
+import UserPage from "pages/UserPage.vue";
+
+const MainLayout = () => import("layouts/MainLayout.vue");
+const IndexPage = () => import("pages/IndexPage.vue");
+const ErrorNotFound = () => import("pages/ErrorNotFound.vue");
+const UserList = () => import("components/UserList.vue");
+const UserDetails = () => import("components/UserDetails.vue");
+const UserForm = () => import("components/UserForm.vue");
+
 const routes = [
   {
     path: "/",
-    component: () => import("layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("pages/IndexPage.vue") }],
+    component: MainLayout,
+    children: [{path: "", component: IndexPage}],
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
+  {
+    path: "/user",
+    component: UserPage,
+    children: [
+      {path: "", component: UserList}, // List all users
+      {path: ":id", component: UserDetails}, // View user details
+      {path: ":id/edit", component: UserForm}, // Edit user
+      {path: "new", component: UserForm}, // Create new user
+    ],
+  },
   {
     path: "/:catchAll(.*)*",
-    component: () => import("pages/ErrorNotFound.vue"),
+    component: ErrorNotFound,
   },
 ];
 

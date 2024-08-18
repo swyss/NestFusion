@@ -71,7 +71,7 @@ To start the application, execute the following command:
 
 ```bash
 docker compose up --build
-docker compose up go-app
+docker compose up go_app
 ```
 
 This will launch the application container.

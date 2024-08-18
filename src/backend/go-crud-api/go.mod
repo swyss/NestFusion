@@ -6,6 +6,7 @@ require (
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/gorilla/mux v1.8.1
 	github.com/influxdata/influxdb-client-go/v2 v2.14.0
+	github.com/joho/godotenv v1.5.1
 	github.com/lib/pq v1.10.9
 	github.com/stretchr/testify v1.9.0
 	github.com/swaggo/http-swagger v1.3.4
