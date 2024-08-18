@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25fb366a-5d42-466a-8cda-8658c4a600f2" name="Changes" comment="feat(backend): implement logger">
+    <list default="true" id="25fb366a-5d42-466a-8cda-8658c4a600f2" name="Changes" comment="feat(backend): code refactoring; add comments">
+      <change afterPath="$PROJECT_DIR$/tests/mock_user_service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/user-controllers_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/init/init_controllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/startup/init_controllers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/init/init_services.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/startup/init_services.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repos/user_repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repos/user_repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/controllers/user_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controllers/user_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/services/user_service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +65,7 @@
     &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev__frontend&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/wyss&quot;,
@@ -102,9 +102,7 @@
     <MESSAGE value="feat(init): add swagger doc" />
     <MESSAGE value="feat(backend): code refactoring" />
     <MESSAGE value="feat(backend): code refactoring; add comments" />
-    <MESSAGE value="fix(backend): implement start chain" />
-    <MESSAGE value="feat(backend): implement logger" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(backend): implement logger" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(backend): code refactoring; add comments" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
