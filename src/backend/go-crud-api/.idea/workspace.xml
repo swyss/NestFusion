@@ -5,27 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25fb366a-5d42-466a-8cda-8658c4a600f2" name="Changes" comment="fix(backend): implement start chain">
-      <change afterPath="$PROJECT_DIR$/internal/databases/postgres.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/quasar-web-app/src/components/UserDetails.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/quasar-web-app/src/components/UserForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/quasar-web-app/src/components/UserList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/quasar-web-app/src/pages/UserPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/init/init_controllers.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/init/init_services.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/logger/logger.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/db/influxdb/influxdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/databases/influxdb/influxdb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/db/postgres.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/db/redisdb/redis.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/databases/redisdb/redis.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/quasar-web-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/quasar-web-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/quasar-web-app/quasar.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/quasar-web-app/quasar.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/quasar-web-app/src-ssr/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/quasar-web-app/src-ssr/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/quasar-web-app/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/quasar-web-app/src/router/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/quasar-web-app/src/stores/user-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/quasar-web-app/src/stores/user-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/quasar-web-app/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/quasar-web-app/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
