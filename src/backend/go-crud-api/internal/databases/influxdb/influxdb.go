@@ -13,11 +13,13 @@ func InitializeInfluxDB() influxdb2.Client {
 	if influxURL == "" {
 		log.Fatal("INFLUXDB_URL environment variable is not set")
 	}
+	log.Println("INFLUXDB_URL environment variable loaded successfully")
 
 	token := os.Getenv("INFLUXDB_TOKEN")
 	if token == "" {
 		log.Fatal("INFLUXDB_TOKEN environment variable is not set")
 	}
+	log.Println("INFLUXDB_TOKEN environment variable loaded successfully")
 
 	client := influxdb2.NewClient(influxURL, token)
 
@@ -25,6 +27,8 @@ func InitializeInfluxDB() influxdb2.Client {
 	_, err := client.Ready(context.Background())
 	if err != nil {
 		log.Fatalf("Failed to connect to InfluxDB: %v", err)
+	} else {
+		log.Println("Successfully connected to InfluxDB")
 	}
 
 	return client

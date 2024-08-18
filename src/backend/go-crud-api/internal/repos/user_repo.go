@@ -17,39 +17,35 @@ func NewUserRepository(db *sql.DB) *UserRepository {
 
 // GetAllUsers retrieves all users from the database.
 func (r *UserRepository) GetAllUsers() ([]models.User, error) {
-	// Execute the query to get all users.
-	rows, err := r.DB.Query("SELECT * FROM users")
+	// Explicitly select relevant columns to ensure clarity.
+	rows, err := r.DB.Query("SELECT id, is_active, name, email FROM users")
 	if err != nil {
 		return nil, err
 	}
-	// Ensure rows are closed after processing to avoid resource leaks.
 	defer func(rows *sql.Rows) {
 		err := rows.Close()
 		if err != nil {
-			// Handle potential error when closing rows.
+			// Handle error when closing rows
 		}
 	}(rows)
 
 	var users []models.User
-	// Iterate over each row in the result set.
 	for rows.Next() {
 		var u models.User
-		// Scan the row into a User struct.
-		if err := rows.Scan(&u.ID, &u.Name, &u.Email); err != nil {
+		// Scan all four fields into the User struct
+		if err := rows.Scan(&u.ID, &u.IsActive, &u.Name, &u.Email); err != nil {
 			return nil, err
 		}
-		// Add the user to the slice.
 		users = append(users, u)
 	}
-	// Return the slice of users and check for any error during iteration.
 	return users, rows.Err()
 }
 
 // GetUserByID retrieves a single user by their ID.
 func (r *UserRepository) GetUserByID(id int) (*models.User, error) {
 	var u models.User
-	// Execute the query to get a user by ID.
-	err := r.DB.QueryRow("SELECT * FROM users WHERE id = $1", id).Scan(&u.ID, &u.Name, &u.Email)
+	// Adjust the query and Scan to match the columns in the table
+	err := r.DB.QueryRow("SELECT id, is_active, name, email FROM users WHERE id = $1", id).Scan(&u.ID, &u.IsActive, &u.Name, &u.Email)
 	if err != nil {
 		return nil, err
 	}

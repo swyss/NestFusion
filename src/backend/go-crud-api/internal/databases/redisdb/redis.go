@@ -14,6 +14,8 @@ func InitializeRedis() *redis.Client {
 	if redisURL == "" {
 		log.Println("REDIS_URL environment variable is not set, falling back to default Redis URL")
 		redisURL = "redis://localhost:6379/0" // Default to local Redis
+	} else {
+		log.Println("REDIS_URL environment variable loaded successfully")
 	}
 
 	options, err := redis.ParseURL(redisURL)
