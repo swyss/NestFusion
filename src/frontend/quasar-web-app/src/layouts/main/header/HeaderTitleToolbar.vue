@@ -5,8 +5,8 @@ defineOptions({
 
 // Imports
 import { ref } from "vue";
-import { useAppPropertyStore } from "stores/app-properties-store";
-import { useAppInfoStore } from "stores/app-info-store";
+import { useAppPropertyStore } from "stores/app/app-properties-store";
+import { useAppInfoStore } from "stores/app/app-info-store";
 
 // Variables
 const appProperties = useAppPropertyStore();

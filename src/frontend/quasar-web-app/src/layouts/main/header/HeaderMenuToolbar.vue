@@ -5,7 +5,7 @@ defineOptions({
 });
 
 // Imports
-import { useAppPropertyStore } from "stores/app-properties-store";
+import { useAppPropertyStore } from "stores/app/app-properties-store";
 
 // Constants
 const TABS = [

@@ -4,39 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33389d79-d26a-4f4c-abcc-f85e1cd25786" name="Changes" comment="feat(frontend): add some user-pages">
-      <change afterPath="$PROJECT_DIR$/quasar-web-app/src/pages/UserDetailPage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/quasar-web-app/src/pages/UserForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/quasar-web-app/src/pages/UserListPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/go-crud-api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/go-crud-api/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/go-crud-api/pkg/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/go-crud-api/pkg/router/router.go" afterDir="false" />
+    <list default="true" id="33389d79-d26a-4f4c-abcc-f85e1cd25786" name="Changes" comment="feat(frontend): add backend connection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/axios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/axios.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/axios.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/chunk-HBUNUZ33.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/chunk-HBUNUZ33.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/chunk-JC4IRQUL.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/chunk-JC4IRQUL.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/chunk-JC4IRQUL.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/chunk-JC4IRQUL.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/chunk-YPSMCZO7.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/chunk-YPSMCZO7.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/pinia.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/pinia.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/pinia.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/pinia.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/quasar_dist_quasar_client_js.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/quasar_dist_quasar_client_js.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/quasar_dist_quasar_client_js.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/quasar_dist_quasar_client_js.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/quasar_wrappers.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/quasar_wrappers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/quasar_wrappers.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/quasar_wrappers.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/vue-i18n.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/vue-i18n.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/vue-i18n.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/vue-i18n.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/vue-router.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/vue-router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/vue-router.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/vue-router.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/vue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/vue.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/node_modules/.q-cache/vite/spa/deps/vue.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/pages/UserCreate.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/pages/UserDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/pages/UserList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/layouts/main/drawers/AppLeftDrawer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/src/layouts/main/drawers/AppLeftDrawer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/layouts/main/drawers/AppRightDrawer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/src/layouts/main/drawers/AppRightDrawer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/layouts/main/header/HeaderMenuToolbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/src/layouts/main/header/HeaderMenuToolbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/layouts/main/header/HeaderTitleToolbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/src/layouts/main/header/HeaderTitleToolbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/pages/ErrorNotFound.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/src/pages/error/ErrorNotFound.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/pages/UserDetailPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/src/pages/user/UserDetailPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/pages/UserForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/src/pages/user/UserForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/pages/UserListPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/src/pages/user/UserListPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quasar-web-app/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/src/router/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/stores/user-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/src/stores/user-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/stores/app-info-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/src/stores/app/app-info-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/stores/app-properties-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/src/stores/app/app-properties-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-web-app/src/stores/user-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-web-app/src/stores/user/user-store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,32 +58,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/dev/templates/ssr_vuetify",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Users\\wyss\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/dev/templates/ssr_vuetify&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\wyss\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "vue.recent.templates": [
-      "Vue Composition API Component"
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\dev\com\NestFusion\src\frontend\quasar-web-app\src\stores\user" />
+      <recent name="D:\dev\com\NestFusion\src\frontend\quasar-web-app\src\stores\app" />
+      <recent name="D:\dev\com\NestFusion\src\frontend\quasar-web-app\src\pages\error" />
+      <recent name="D:\dev\com\NestFusion\src\frontend\quasar-web-app\src\pages\user" />
       <recent name="D:\dev\com\NestFusion\src\frontend\quasar-web-app\src\pages" />
-      <recent name="D:\dev\com\NestFusion\src\frontend\quasar-web-app\src\assets\icons" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -123,7 +107,10 @@
       <workItem from="1723899590048" duration="31000" />
       <workItem from="1723899632081" duration="23422000" />
       <workItem from="1723987507967" duration="2214000" />
-      <workItem from="1724004574929" duration="1404000" />
+      <workItem from="1724004574929" duration="1763000" />
+      <workItem from="1724008848535" duration="28000" />
+      <workItem from="1724008897663" duration="32000" />
+      <workItem from="1724008936811" duration="2322000" />
     </task>
     <task id="LOCAL-00001" summary="feat(frontend): add new quasar project">
       <option name="closed" value="true" />
@@ -181,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723982741769</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat(frontend): add backend connection">
+      <option name="closed" value="true" />
+      <created>1724006083616</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1724006083616</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +190,7 @@
     <MESSAGE value="feat(frontend): add new primary color" />
     <MESSAGE value="fix(frontend): remove user pages and code cleaning" />
     <MESSAGE value="feat(frontend): add some user-pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(frontend): add some user-pages" />
+    <MESSAGE value="feat(frontend): add backend connection" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(frontend): add backend connection" />
   </component>
 </project>

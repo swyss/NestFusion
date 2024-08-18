@@ -1,25 +1,12 @@
 <script setup>
 // imports
-import { useAppPropertyStore } from "stores/app-properties-store";
+import {useAppPropertyStore} from "stores/app/app-properties-store";
+import {useRoute} from "vue-router";
 
-// constants
-const MENU_LIST = [
-  { icon: "bi-inboxes", label: "Inbox", separator: true },
-  { icon: "bi-layout-wtf", label: "Outbox", separator: false },
-  { icon: "bi-trash3", label: "Trash", separator: false },
-  { icon: "bi-bug", label: "Spam", separator: true },
-  { icon: "bi-gear", label: "Settings", separator: false },
-  { icon: "bi-chat-left-text", label: "Send Feedback", separator: false },
-  {
-    icon: "bi-question-diamond",
-    iconColor: "primary",
-    label: "Help",
-    separator: false,
-  },
-];
-
-// setup
+// Get the app property store instance
 const appProperties = useAppPropertyStore();
+// Get the current route to handle active link highlighting
+const route = useRoute();
 </script>
 
 <template>
@@ -33,16 +20,22 @@ const appProperties = useAppPropertyStore();
   >
     <q-scroll-area class="fit">
       <q-list>
-        <template v-for="(menuItem, index) in MENU_LIST" :key="index">
-          <q-item v-ripple :active="menuItem.label === 'Outbox'" clickable>
+        <template v-for="(menuItem, index) in appProperties.menuListLeft" :key="index">
+          <q-item
+            v-ripple
+            clickable
+            :to="menuItem.route"
+            tag="router-link"
+            :active="route.path === menuItem.route"
+          >
             <q-item-section avatar>
-              <q-icon :name="menuItem.icon" />
+              <q-icon :name="menuItem.icon"/>
             </q-item-section>
             <q-item-section>
               {{ menuItem.label }}
             </q-item-section>
           </q-item>
-          <q-separator v-if="menuItem.separator" :key="'sep' + index" />
+          <q-separator v-if="menuItem.separator" :key="'sep' + index"/>
         </template>
       </q-list>
     </q-scroll-area>

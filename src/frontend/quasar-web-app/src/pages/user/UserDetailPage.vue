@@ -25,7 +25,7 @@
 <script setup>
 import { onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { useUserStore } from 'src/stores/user-store';
+import { useUserStore } from 'stores/user/user-store';
 
 const route = useRoute();
 const router = useRouter();

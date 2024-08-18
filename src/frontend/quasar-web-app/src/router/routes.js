@@ -1,9 +1,9 @@
 const MainLayout = () => import("layouts/MainLayout.vue");
 const IndexPage = () => import("pages/IndexPage.vue");
-const UserListPage = () => import("pages/UserListPage.vue");
-const UserDetailPage = () => import("pages/UserDetailPage.vue");
+const UserListPage = () => import("pages/user/UserListPage.vue");
+const UserDetailPage = () => import("pages/user/UserDetailPage.vue");
 const UserFormPage = () => import("pages/UserFormPage.vue");
-const ErrorNotFound = () => import("pages/ErrorNotFound.vue");
+const ErrorNotFound = () => import("pages/error/ErrorNotFound.vue");
 
 const routes = [
   {

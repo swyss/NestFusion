@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { api } from "src/boot/axios"; // Verwende die konfigurierte API-Instanz
+import { api } from "boot/axios"; // Verwende die konfigurierte API-Instanz
 
 // Constants
 const API_BASE_URL = "/users"; // baseURL ist bereits in der api Instanz konfiguriert
