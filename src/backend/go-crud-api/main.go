@@ -7,8 +7,8 @@ import (
 	"github.com/go-redis/redis/v8"
 	"github.com/joho/godotenv"
 	"go-crud-api/internal/controllers"
-	"go-crud-api/internal/init"
 	"go-crud-api/internal/logger"
+	"go-crud-api/internal/startup"
 	"net/http"
 	"os"
 	"os/signal"
@@ -33,7 +33,7 @@ func main() {
 	log.InfoMsg(".env file loaded successfully")
 
 	// Initialize services
-	dbPostgres, redisClient, influxClient := init.InitializeServices(log)
+	dbPostgres, redisClient, influxClient := startup.InitializeServices(log)
 	defer func(dbPostgres *sql.DB) {
 		err := dbPostgres.Close()
 		if err != nil {
@@ -51,7 +51,7 @@ func main() {
 	log.InfoMsg("All services initialized successfully")
 
 	// Initialize controllers
-	userController := init.InitializeControllers(dbPostgres, log)
+	userController := startup.InitializeControllers(dbPostgres, log)
 
 	// Setup and start the HTTP server
 	r := setupRouter(userController)
