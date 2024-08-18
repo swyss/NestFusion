@@ -9,6 +9,18 @@ const routes = [
     children: [{ path: "", component: IndexPage }],
   },
   {
+    path: '/users',
+    component: () => import('pages/UserList.vue'),
+  },
+  {
+    path: '/users/:id',
+    component: () => import('pages/UserDetail.vue'),
+  },
+  {
+    path: '/users/create',
+    component: () => import('pages/UserCreate.vue'),
+  },
+  {
     path: "/:catchAll(.*)*",
     component: ErrorNotFound,
   },
