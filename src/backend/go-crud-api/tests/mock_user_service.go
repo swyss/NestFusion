@@ -17,7 +17,7 @@ func (m *MockUserService) GetAllUsers() ([]models.User, error) {
 }
 
 // GetUserByID simuliert die Methode zum Abrufen eines Benutzers nach ID
-func (m *MockUserService) GetUserByID(id int) (*models.User, error) {
+func (m *MockUserService) GetUserByID(id uint) (*models.User, error) {
 	args := m.Called(id)
 	return args.Get(0).(*models.User), args.Error(1)
 }
@@ -35,7 +35,7 @@ func (m *MockUserService) UpdateUser(u *models.User) error {
 }
 
 // DeleteUser simuliert die Methode zum Löschen eines Benutzers
-func (m *MockUserService) DeleteUser(id int) error {
+func (m *MockUserService) DeleteUser(id uint) error {
 	args := m.Called(id)
 	return args.Error(0)
 }

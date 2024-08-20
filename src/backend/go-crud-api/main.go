@@ -2,70 +2,90 @@ package main
 
 import (
 	"context"
-	"database/sql"
 	"errors"
 	"github.com/go-redis/redis/v8"
 	"github.com/joho/godotenv"
 	"go-crud-api/internal/controllers"
-	"go-crud-api/internal/logger"
 	"go-crud-api/internal/startup"
+	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/swaggo/http-swagger" // Swagger handler
 	"go-crud-api/pkg/router"
+	"gorm.io/gorm"
+
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
-func main() {
-	log := logger.NewLogger()
+// @title Swagger Example API
+// @version 1.0
+// @description This is a sample server.
+// @termsOfService http://swagger.io/terms/
 
-	log.InfoMsg("Starting application...")
+// @contact.name API Support
+// @contact.url http://www.swagger.io/support
+// @contact.email support@swagger.io
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host localhost:8000
+// @BasePath /
+func main() {
+
+	log.Println("Starting application...")
 
 	// Load environment variables from .env file
 	if err := godotenv.Load(); err != nil {
-		log.ErrorMsg(err)
-		log.InfoMsg("Error loading .env file")
+		log.Println("Error loading .env file")
+		log.Fatal(err)
 		return
 	}
-	log.InfoMsg(".env file loaded successfully")
+	log.Println(".env file loaded successfully")
 
 	// Initialize services
-	dbPostgres, redisClient, influxClient := startup.InitializeServices(log)
-	defer func(dbPostgres *sql.DB) {
-		err := dbPostgres.Close()
+	dbPostgres, redisClient, influxClient := startup.InitializeServices()
+	defer func(dbPostgres *gorm.DB) {
+		sqlDB, err := dbPostgres.DB()
 		if err != nil {
-
+			log.Fatal(err)
+			return
+		}
+		if err := sqlDB.Close(); err != nil {
+			log.Fatal(err)
 		}
 	}(dbPostgres)
 	defer func(redisClient *redis.Client) {
-		err := redisClient.Close()
-		if err != nil {
-
+		if err := redisClient.Close(); err != nil {
+			log.Fatal(err)
 		}
 	}(redisClient)
 	defer influxClient.Close()
 
-	log.InfoMsg("All services initialized successfully")
+	log.Println("All services initialized successfully")
 
 	// Initialize controllers
-	userController := startup.InitializeControllers(dbPostgres, log)
+	userController := startup.InitializeControllers(dbPostgres)
 
 	// Setup and start the HTTP server
 	r := setupRouter(userController)
-	startServer(r, log)
+	startServer(r)
 
 	// Handle graceful server shutdown on OS interrupt signals
-	handleGracefulShutdown(log)
+	handleGracefulShutdown()
 }
 
-// setupRouter configures the HTTP router and adds Swagger UI.
+// setupRouter configures the HTTP router
 func setupRouter(userController *controllers.UserController) *mux.Router {
-	// Initialize router with user routes and attach Swagger handler
+	// Initialize router with user routes
 	r := router.NewRouter(userController)
+
+	// Swagger UI route
 	r.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+
 	return r
 }
 
@@ -87,7 +107,7 @@ func CORSHandler(next http.Handler) http.Handler {
 }
 
 // startServer starts the HTTP server in a new goroutine.
-func startServer(handler http.Handler, log *logger.Logger) {
+func startServer(handler http.Handler) {
 	server := &http.Server{
 		Addr:    ":8000",
 		Handler: CORSHandler(router.JSONContentTypeMiddleware(handler)), // Added CORSHandler here
@@ -95,30 +115,30 @@ func startServer(handler http.Handler, log *logger.Logger) {
 
 	go func() {
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
-			log.ErrorMsg(err)
-			log.InfoMsg("Could not listen on :8000")
+			log.Println("Could not listen on :8000")
+			log.Fatal(err)
 		}
 	}()
-	log.InfoMsg("Server started on port 8000")
+	log.Println("Server started on port 8000")
 }
 
 // handleGracefulShutdown manages graceful server shutdown upon receiving OS signals.
-func handleGracefulShutdown(log *logger.Logger) {
+func handleGracefulShutdown() {
 	// Create a channel to listen for OS interrupt signals
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
 	<-quit // Block until a signal is received
-	log.InfoMsg("Shutting down server...")
+	log.Println("Shutting down server...")
 
 	// Create a context with a 5-second timeout for the shutdown process
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	// Attempt to gracefully shutdown the server
+	// Attempt to gracefully shut down the server
 	server := &http.Server{}
 	if err := server.Shutdown(ctx); err != nil {
-		log.ErrorMsg(err)
-		log.InfoMsg("Server forced to shutdown")
+		log.Println("Server forced to shutdown")
+		log.Fatal(err)
 	}
-	log.InfoMsg("Server exiting")
+	log.Println("Server exiting")
 }

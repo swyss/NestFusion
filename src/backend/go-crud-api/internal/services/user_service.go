@@ -8,10 +8,10 @@ import (
 // UserServiceInterface defines the methods that the UserService must implement.
 type UserServiceInterface interface {
 	GetAllUsers() ([]models.User, error)
-	GetUserByID(id int) (*models.User, error)
+	GetUserByID(id uint) (*models.User, error) // ID should be of type uint
 	CreateUser(u *models.User) error
 	UpdateUser(u *models.User) error
-	DeleteUser(id int) error
+	DeleteUser(id uint) error // ID should be of type uint
 }
 
 // UserService provides business logic for user-related operations.
@@ -33,7 +33,7 @@ func (s *UserService) GetAllUsers() ([]models.User, error) {
 }
 
 // GetUserByID retrieves a user by their ID by delegating the call to the UserRepository.
-func (s *UserService) GetUserByID(id int) (*models.User, error) {
+func (s *UserService) GetUserByID(id uint) (*models.User, error) { // ID should be of type uint
 	return s.Repo.GetUserByID(id)
 }
 
@@ -48,6 +48,6 @@ func (s *UserService) UpdateUser(u *models.User) error {
 }
 
 // DeleteUser deletes a user by their ID by delegating the call to the UserRepository.
-func (s *UserService) DeleteUser(id int) error {
+func (s *UserService) DeleteUser(id uint) error { // ID should be of type uint
 	return s.Repo.DeleteUser(id)
 }

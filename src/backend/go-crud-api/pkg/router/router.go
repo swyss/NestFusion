@@ -1,6 +1,7 @@
 package router
 
 import (
+	httpSwagger "github.com/swaggo/http-swagger"
 	"go-crud-api/internal/controllers"
 	"net/http"
 
@@ -18,6 +19,9 @@ func NewRouter(userController *controllers.UserController) *mux.Router {
 	router.HandleFunc("/users/{id}", userController.UpdateUser).Methods("PUT")
 	router.HandleFunc("/users/{id}", userController.DeleteUser).Methods("DELETE")
 
+	// Swagger UI route (falls noch nicht hinzugefügt)
+	router.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+
 	return router
 }
 
@@ -25,23 +29,6 @@ func NewRouter(userController *controllers.UserController) *mux.Router {
 func JSONContentTypeMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		next.ServeHTTP(w, r)
-	})
-}
-
-// CORSHandler sets the necessary headers for CORS.
-func CORSHandler(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:9000")
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-
-		// Handle preflight requests
-		if r.Method == http.MethodOptions {
-			w.WriteHeader(http.StatusOK)
-			return
-		}
-
 		next.ServeHTTP(w, r)
 	})
 }

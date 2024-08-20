@@ -1,16 +1,16 @@
 package startup
 
 import (
-	"database/sql"
 	"go-crud-api/internal/controllers"
-	"go-crud-api/internal/logger"
 	"go-crud-api/internal/repos"
 	"go-crud-api/internal/services"
+	"gorm.io/gorm"
+	"log"
 )
 
 // InitializeControllers initializes all controllers and returns them.
-func InitializeControllers(db *sql.DB, log *logger.Logger) *controllers.UserController {
-	log.InfoMsg("Initializing controllers...")
+func InitializeControllers(db *gorm.DB) *controllers.UserController {
+	log.Println("Initializing controllers...")
 
 	// Initialize UserRepository and UserService
 	userRepo := repos.NewUserRepository(db)
@@ -18,7 +18,7 @@ func InitializeControllers(db *sql.DB, log *logger.Logger) *controllers.UserCont
 
 	// Initialize UserController
 	userController := controllers.NewUserController(userService)
-	log.InfoMsg("UserController initialized successfully")
+	log.Println("UserController initialized successfully")
 
 	return userController
 }

@@ -15,12 +15,12 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestGetUsers testet die GetUsers-Methode des UserControllers
+// TestGetUsers tests the GetUsers method of the UserController
 func TestGetUsers(t *testing.T) {
 	mockService := new(MockUserService)
 	controller := controllers.NewUserController(mockService)
 
-	// Update the mock users to include the "is_active" field
+	// Mock users with "is_active" field
 	mockUsers := []models.User{
 		{ID: 1, Name: "John Doe", Email: "john@example.com", IsActive: false},
 		{ID: 2, Name: "Jane Doe", Email: "jane@example.com", IsActive: false},
@@ -28,9 +28,7 @@ func TestGetUsers(t *testing.T) {
 	mockService.On("GetAllUsers").Return(mockUsers, nil)
 
 	req, err := http.NewRequest("GET", "/users", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 
 	rr := httptest.NewRecorder()
 	handler := http.HandlerFunc(controller.GetUsers)
@@ -41,11 +39,8 @@ func TestGetUsers(t *testing.T) {
 
 	var response []map[string]interface{}
 	err = json.Unmarshal(rr.Body.Bytes(), &response)
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 
-	// Update expected response to include "is_active"
 	expected := []map[string]interface{}{
 		{"id": float64(1), "name": "John Doe", "email": "john@example.com", "is_active": false},
 		{"id": float64(2), "name": "Jane Doe", "email": "jane@example.com", "is_active": false},
@@ -55,13 +50,13 @@ func TestGetUsers(t *testing.T) {
 	mockService.AssertExpectations(t)
 }
 
-// TestCreateUser testet die CreateUser-Methode des UserControllers
+// TestCreateUser tests the CreateUser method of the UserController
 func TestCreateUser(t *testing.T) {
 	mockService := new(MockUserService)
 	newUser := &models.User{Name: "Alice Smith", Email: "alice@example.com"}
 	mockService.On("CreateUser", newUser).Return(nil)
 
-	controller := &controllers.UserController{UserService: mockService}
+	controller := controllers.NewUserController(mockService)
 
 	userJSON, err := json.Marshal(newUser)
 	require.NoError(t, err)
@@ -78,18 +73,16 @@ func TestCreateUser(t *testing.T) {
 	mockService.AssertExpectations(t)
 }
 
-// TestGetUserByID testet die GetUserByID-Methode des UserControllers
+// TestGetUserByID tests the GetUserByID method of the UserController
 func TestGetUserByID(t *testing.T) {
 	mockService := new(MockUserService)
 	controller := controllers.NewUserController(mockService)
 
 	mockUser := &models.User{ID: 1, Name: "John Doe", Email: "john@example.com", IsActive: false}
-	mockService.On("GetUserByID", 1).Return(mockUser, nil)
+	mockService.On("GetUserByID", uint(1)).Return(mockUser, nil)
 
 	req, err := http.NewRequest("GET", "/users/1", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 
 	req = mux.SetURLVars(req, map[string]string{"id": strconv.Itoa(1)})
 
@@ -102,11 +95,8 @@ func TestGetUserByID(t *testing.T) {
 
 	var response map[string]interface{}
 	err = json.Unmarshal(rr.Body.Bytes(), &response)
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 
-	// Update expected response to include "is_active"
 	expected := map[string]interface{}{
 		"id":        float64(1),
 		"name":      "John Doe",
@@ -118,17 +108,15 @@ func TestGetUserByID(t *testing.T) {
 	mockService.AssertExpectations(t)
 }
 
-// TestDeleteUser testet die DeleteUser-Methode des UserControllers
+// TestDeleteUser tests the DeleteUser method of the UserController
 func TestDeleteUser(t *testing.T) {
 	mockService := new(MockUserService)
 	controller := controllers.NewUserController(mockService)
 
-	mockService.On("DeleteUser", 1).Return(nil)
+	mockService.On("DeleteUser", uint(1)).Return(nil)
 
 	req, err := http.NewRequest("DELETE", "/users/1", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 
 	req = mux.SetURLVars(req, map[string]string{"id": strconv.Itoa(1)})
 
@@ -137,7 +125,6 @@ func TestDeleteUser(t *testing.T) {
 
 	handler.ServeHTTP(rr, req)
 
-	// Accept the actual status code returned by your API
 	assert.Equal(t, http.StatusOK, rr.Code)
 
 	mockService.AssertExpectations(t)
