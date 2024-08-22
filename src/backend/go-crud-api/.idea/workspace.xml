@@ -4,28 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="">
+    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="fix (backend): add GORM remove unused code... SWAGGER is NOT working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docs.go" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docs.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/controllers/user_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controllers/user_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/databases/postgres.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/databases/postgres.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/databases/redisdb/redis.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/databases/redisdb/redis.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/logger/logger.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/models/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repos/user_repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repos/user_repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/services/user_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/startup/init_controllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/startup/init_controllers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/startup/init_services.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/startup/init_services.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/mock_user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/tests/mock_user_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/user-controllers_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tests/user-controllers_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +76,10 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix (backend): add GORM remove unused code... SWAGGER is NOT working" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix (backend): add GORM remove unused code... SWAGGER is NOT working" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

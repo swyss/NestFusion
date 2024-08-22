@@ -5,25 +5,36 @@ defineOptions({
 });
 
 // Imports
-import { useAppPropertyStore } from "stores/app/app-properties-store";
+import {ref} from 'vue';
+import {useRouter} from 'vue-router'; // Importing useRouter hook
+import {useAppPropertyStore} from "stores/app/app-properties-store";
 
 // Constants
-const TABS = [
-  { name: "account", label: "account", link: "account" },
-  { name: "login", label: "login", link: "login" },
-];
-
-// Variables
-const appProperties = useAppPropertyStore();
-const tabs = TABS;
-
-// Methods
-const goToHome = () => {
-  $router.replace("/");
+const ICON_NAMES = {
+  list: "bi-list",
+  house: "bi-house",
+  star: "bi-star",
+  sliders: "bi-sliders",
 };
 
-const goToUser = () => {
-  $router.replace("/user");
+// Store variable
+const appProperties = useAppPropertyStore();
+
+// Tabs configuration
+const tabItems = [
+  {name: "account", label: "account", link: "account"},
+  {name: "login", label: "login", link: "login"},
+];
+
+// Reactive property for active tab
+const activeTab = ref('account');
+
+// Router instance
+const router = useRouter();
+
+// Method to navigate
+const navigateTo = (route) => {
+  router.replace(route); // Using the router instance to navigate
 };
 
 // Methods to toggle drawers
@@ -35,36 +46,34 @@ const toggleRightDrawer = () => {
   appProperties.toggleRightDrawer();
 };
 </script>
-
 <template>
   <div class="q-py-md">
     <q-toolbar>
       <q-btn dense flat padding="sm md" square @click="toggleLeftDrawer">
-        <q-icon name="bi-list" />
+        <q-icon :name="ICON_NAMES.list"/>
       </q-btn>
-      <q-separator color="on_primary" inset vertical />
-      <q-btn dense flat padding="sm md" square @click="goToHome">
-        <q-icon name="bi-house" />
+      <q-separator color="on_primary" inset vertical/>
+      <q-btn dense flat padding="sm md" square @click="() => navigateTo('/')">
+        <q-icon :name="ICON_NAMES.house"/>
       </q-btn>
-      <q-btn dense flat padding="sm md" square @click="goToUser">
-        <q-icon color="accent" name="bi-star" />
+      <q-btn dense flat padding="sm md" square @click="() => navigateTo('/user')">
+        <q-icon color="accent" :name="ICON_NAMES.star"/>
       </q-btn>
-      <q-separator color="on_primary" inset vertical />
-      <q-tabs v-model="tabs" align="left" inline-label shrink stretch>
+      <q-separator color="on_primary" inset vertical/>
+      <q-tabs v-model="activeTab" align="left" inline-label shrink stretch>
         <q-route-tab
-          v-for="tab in tabs"
-          :key="tab.name"
-          :to="tab.link"
-          v-bind="tab"
+            v-for="tab in tabItems"
+            :key="tab.name"
+            :to="tab.link"
+            v-bind="tab"
         />
       </q-tabs>
       <q-space></q-space>
-      <q-separator color="$on_primary" inset vertical />
+      <q-separator color="$on_primary" inset vertical/>
       <q-btn dense flat padding="sm md" square @click="toggleRightDrawer">
-        <q-icon name="bi-sliders" />
+        <q-icon :name="ICON_NAMES.sliders"/>
       </q-btn>
     </q-toolbar>
   </div>
 </template>
-
 <style scoped></style>
