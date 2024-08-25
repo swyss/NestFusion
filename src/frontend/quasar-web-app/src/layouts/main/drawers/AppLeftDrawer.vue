@@ -23,10 +23,10 @@ const route = useRoute();
         <template v-for="(menuItem, index) in appProperties.menuListLeft" :key="index">
           <q-item
             v-ripple
-            clickable
-            :to="menuItem.route"
-            tag="router-link"
             :active="route.path === menuItem.route"
+            :to="menuItem.route"
+            clickable
+            tag="router-link"
           >
             <q-item-section avatar>
               <q-icon :name="menuItem.icon"/>

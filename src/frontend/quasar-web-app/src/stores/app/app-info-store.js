@@ -1,5 +1,5 @@
-import { defineStore } from "pinia";
-import { useQuasar } from "quasar";
+import {defineStore} from "pinia";
+import {useQuasar} from "quasar";
 
 export const useAppInfoStore = defineStore("infos", () => {
   const $q = useQuasar();
@@ -14,5 +14,5 @@ export const useAppInfoStore = defineStore("infos", () => {
   }
 
   //
-  return { msg, printInfo };
+  return {msg, printInfo};
 });

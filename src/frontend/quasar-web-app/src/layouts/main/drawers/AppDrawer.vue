@@ -4,13 +4,13 @@ import AppRightDrawer from "./AppRightDrawer.vue";
 
 defineOptions({
   name: "AppDrawer",
-  components: { AppLeftDrawer, AppRightDrawer },
+  components: {AppLeftDrawer, AppRightDrawer},
 });
 </script>
 
 <template>
-  <AppLeftDrawer />
-  <AppRightDrawer />
+  <AppLeftDrawer/>
+  <AppRightDrawer/>
 </template>
 
 <style scoped></style>

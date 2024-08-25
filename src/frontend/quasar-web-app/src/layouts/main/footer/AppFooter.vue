@@ -1,17 +1,14 @@
 <!-- Import the required component -->
 <script setup>
-import ProgressBar from "./ProgressBar.vue";
-import Footer from "./FooterSection.vue";
 </script>
 
 <template>
-  <!-- Page Content Section -->
-  <div>
-    <ProgressBar />
-
-    <!-- Footer Section -->
-    <Footer />
-  </div>
+  <q-footer elevated>
+    <q-linear-progress color="accent" indeterminate/>
+    <q-toolbar>
+      <q-toolbar-title>Footer</q-toolbar-title>
+    </q-toolbar>
+  </q-footer>
 </template>
 
 <style scoped></style>

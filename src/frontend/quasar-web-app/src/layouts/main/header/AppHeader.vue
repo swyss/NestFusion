@@ -13,8 +13,8 @@ const MenuToolbar = HeaderMenuToolbar;
 </script>
 <template>
   <q-header class="bg-primary text-black" elevated>
-    <TitleToolbar />
-    <MenuToolbar />
+    <TitleToolbar/>
+    <MenuToolbar/>
   </q-header>
 </template>
 <style scoped></style>

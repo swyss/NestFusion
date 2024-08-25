@@ -12,16 +12,12 @@
  **/
 
 
-
-import { Quasar } from 'quasar'
-import { markRaw } from 'vue'
+import {Quasar} from 'quasar'
+import {markRaw} from 'vue'
 import RootComponent from 'app/src/App.vue'
 
 import createStore from 'app/src/stores/index'
 import createRouter from 'app/src/router/index'
-
-
-
 
 
 export default async function (createAppFn, quasarUserOptions) {
@@ -29,25 +25,20 @@ export default async function (createAppFn, quasarUserOptions) {
   // Here we inject into it the Quasar UI, the router & possibly the store.
   const app = createAppFn(RootComponent)
 
-  
+
   app.config.performance = true
-  
+
 
   app.use(Quasar, quasarUserOptions)
 
-  
 
-  
-    const store = typeof createStore === 'function'
-      ? await createStore({})
-      : createStore
+  const store = typeof createStore === 'function'
+    ? await createStore({})
+    : createStore
 
-    
-      app.use(store)
 
-      
-    
-  
+  app.use(store)
+
 
   const router = markRaw(
     typeof createRouter === 'function'
@@ -55,12 +46,13 @@ export default async function (createAppFn, quasarUserOptions) {
       : createRouter
   )
 
-  
-    // make router instance available in store
-    
-      store.use(({ store }) => { store.router = router })
-    
-  
+
+  // make router instance available in store
+
+  store.use(({store}) => {
+    store.router = router
+  })
+
 
   // Expose the app, the router and the store.
   // Note that we are not mounting the app here, since bootstrapping will be

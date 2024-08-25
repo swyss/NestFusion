@@ -1,7 +1,7 @@
 <script setup>
 // imports
-import { useAppPropertyStore } from "stores/app/app-properties-store";
-import { useRoute } from "vue-router";
+import {useAppPropertyStore} from "stores/app/app-properties-store";
+import {useRoute} from "vue-router";
 
 // Get the app property store instance
 const appProperties = useAppPropertyStore();
@@ -23,19 +23,19 @@ const route = useRoute();
         <template v-for="(menuItem, index) in appProperties.menuListRight" :key="index">
           <q-item
             v-ripple
-            clickable
-            :to="menuItem.route"
-            tag="router-link"
             :active="route.path === menuItem.route"
+            :to="menuItem.route"
+            clickable
+            tag="router-link"
           >
             <q-item-section avatar>
-              <q-icon :name="menuItem.icon" />
+              <q-icon :name="menuItem.icon"/>
             </q-item-section>
             <q-item-section>
               {{ menuItem.label }}
             </q-item-section>
           </q-item>
-          <q-separator v-if="menuItem.separator" :key="'sep' + index" />
+          <q-separator v-if="menuItem.separator" :key="'sep' + index"/>
         </template>
       </q-list>
     </q-scroll-area>
