@@ -46,7 +46,7 @@ const toggleRightDrawer = () => {
       <q-btn dense flat padding="sm md" square @click="() => navigateTo('/')">
         <q-icon :name="ICON_NAMES.house"/>
       </q-btn>
-      <q-btn dense flat padding="sm md" square @click="() => navigateTo('/user')">
+      <q-btn dense flat padding="sm md" square @click="() => navigateTo('/user/profile')">
         <q-icon :name="ICON_NAMES.star" color="accent"/>
       </q-btn>
       <q-separator color="on_primary" inset vertical/>
@@ -59,7 +59,7 @@ const toggleRightDrawer = () => {
         />
       </q-tabs>
       <q-space></q-space>
-      <q-btn dense flat padding="sm md" square>
+      <q-btn dense flat padding="sm md" square @click="() => navigateTo('/user')">
         <q-icon name="bi-person"/>
       </q-btn>
       <q-separator color="$on_primary" inset vertical/>

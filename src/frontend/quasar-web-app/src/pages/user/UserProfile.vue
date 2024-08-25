@@ -5,6 +5,9 @@
 </template>
 
 <script>
+defineOptions({
+  name: "UserProfile",
+});
 import {useAuthStore} from 'stores/user/auth-store';
 import UserProfileCard from 'components/user/UserProfileCard.vue';
 
