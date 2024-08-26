@@ -1,5 +1,5 @@
 <template>
-  <q-page class="bg-light-green window-height window-width row justify-center items-center">
+  <q-page class="bg-light-green row justify-center items-center q-pa-xl" style="max-height: fit-content; min-height: fit-content">
     <div class="column">
       <div class="row">
         <h5 class="text-h5 text-white q-my-md">Register</h5>

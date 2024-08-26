@@ -5,10 +5,11 @@
       src="~assets/icons/app_background.png"
       style="width: 200px; height: 200px"
     />
-    <q-dialog v-model="isLoginDialogVisible" persistent transition-hide="scale" transition-show="scale">
+    <q-dialog v-model="isLoginDialogVisible" transition-hide="scale" transition-show="scale" backdrop-filter="sepia(90%)">
       <UserLogin></UserLogin>
     </q-dialog>
-    <q-dialog v-model="isInfoDialogVisible" persistent transition-hide="scale" transition-show="scale">
+    <q-dialog v-model="isInfoDialogVisible" transition-hide="scale" transition-show="scale" backdrop-filter="sepia(90%)">
+      <UserRegister></UserRegister>
     </q-dialog>
   </q-page>
 </template>
@@ -16,6 +17,7 @@
 <script setup>
 import {ref} from "vue";
 import UserLogin from "components/user/UserLogin.vue";
+import UserRegister from "components/user/UserRegister.vue";
 
 defineOptions({
   name: "IndexPage",
@@ -23,13 +25,4 @@ defineOptions({
 const isLoginDialogVisible = ref(true);
 const isInfoDialogVisible = ref(false);
 
-// Functions
-function handleLoginButtonClick() {
-  isLoginDialogVisible.value = true;
-}
-
-function handleInfoButtonClick() {
-  isInfoDialogVisible.value = true;
-  appInfos.printInfo();
-}
 </script>
