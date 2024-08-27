@@ -5,24 +5,22 @@
       src="~assets/icons/app_background.png"
       style="width: 200px; height: 200px"
     />
-    <q-dialog v-model="isLoginDialogVisible" transition-hide="scale" transition-show="scale" backdrop-filter="sepia(90%)">
-      <UserLogin></UserLogin>
+    <q-dialog v-model="isLoginDialogVisible" persistent transition-hide="scale" transition-show="scale" backdrop-filter="sepia(90%)">
+<UserLogin></UserLogin>
     </q-dialog>
-    <q-dialog v-model="isInfoDialogVisible" transition-hide="scale" transition-show="scale" backdrop-filter="sepia(90%)">
+    <q-dialog v-model="isRegisterDialogVisible" persistent transition-hide="scale" transition-show="scale" backdrop-filter="sepia(90%)">
       <UserRegister></UserRegister>
     </q-dialog>
   </q-page>
 </template>
-
 <script setup>
-import {ref} from "vue";
 import UserLogin from "components/user/UserLogin.vue";
 import UserRegister from "components/user/UserRegister.vue";
+import { isLoginDialogVisible, isRegisterDialogVisible } from '/src/utils/user/modalFunctions';
+import {ref} from "vue";
+const toolbar= ref(false);
 
 defineOptions({
-  name: "IndexPage",
+  name: "UserPage",
 });
-const isLoginDialogVisible = ref(true);
-const isInfoDialogVisible = ref(false);
-
 </script>

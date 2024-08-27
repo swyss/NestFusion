@@ -5,8 +5,9 @@ defineOptions({
 });
 
 // Imports
-import {useRouter} from 'vue-router'; // Importing useRouter hook
-import {useAppPropertyStore} from "stores/app/app-properties-store";
+import { useRouter } from 'vue-router'; // Importing useRouter hook
+import { useAppPropertyStore } from "stores/app/app-properties-store";
+import { showLoginDialog } from 'src/utils/user/modalFunctions'; // Import showLoginDialog function
 
 // Constants
 const ICON_NAMES = {
@@ -35,7 +36,14 @@ const toggleLeftDrawer = () => {
 const toggleRightDrawer = () => {
   appProperties.toggleRightDrawer();
 };
+
+// Method to navigate to user page and show login modal
+const openUserPageAndShowLogin = () => {
+  router.replace('/user'); // Navigate to user page
+  showLoginDialog();       // Show login modal
+};
 </script>
+
 <template>
   <div class="q-py-md">
     <q-toolbar>
@@ -59,7 +67,7 @@ const toggleRightDrawer = () => {
         />
       </q-tabs>
       <q-space></q-space>
-      <q-btn dense flat padding="sm md" square @click="() => navigateTo('/user')">
+      <q-btn dense flat padding="sm md" square @click="openUserPageAndShowLogin">
         <q-icon name="bi-person"/>
       </q-btn>
       <q-separator color="$on_primary" inset vertical/>
