@@ -3,7 +3,7 @@
     <q-card-section class="row items-center q-pb-none">
       <div class="text-h6 text-white">Register</div>
       <q-space />
-      <q-btn icon="bi-x" flat round dense v-close-popup />
+      <q-btn text-color="white" icon="bi-x" flat round dense v-close-popup />
     </q-card-section>
 
     <q-card-section>
@@ -23,7 +23,7 @@
                      unelevated @click="handleRegister"/>
             </q-card-actions>
             <q-card-section class="text-center q-pa-none">
-              <p class="text-grey-6">Have an account? Login</p>
+              <p class="text-grey-6">Have an account? <span @click="switchToLoginModal" style="cursor: pointer; color: #42b983;">Login</span></p>
             </q-card-section>
           </q-card>
         </div>
@@ -38,6 +38,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 import { useQuasar } from 'quasar';
 import { useAuthStore } from "stores/user/auth-store";
+import {hideRegisterDialog, showLoginDialog} from 'src/utils/user/modalFunctions';
 
 const router = useRouter();
 const $q = useQuasar();
@@ -74,5 +75,10 @@ const handleRegister = () => {
     email: email.value,
     password: password.value
   });
+};
+
+const switchToLoginModal = () => {
+  hideRegisterDialog();
+  showLoginDialog();
 };
 </script>

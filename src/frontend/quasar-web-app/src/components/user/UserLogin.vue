@@ -3,7 +3,7 @@
     <q-card-section class="row items-center q-pb-none">
       <div class="text-h6 text-white">Login</div>
       <q-space />
-      <q-btn icon="bi-x" flat round dense v-close-popup />
+      <q-btn text-color="white" icon="bi-x" flat round dense v-close-popup />
     </q-card-section>
 
     <q-card-section>
@@ -21,7 +21,7 @@
                      unelevated @click="handleLogin"/>
             </q-card-actions>
             <q-card-section class="text-center q-pa-none">
-              <p class="text-grey-6">Not registered? Create an Account</p>
+              <p class="text-grey-6">Not registered? <span @click="switchToRegisterModal" style="cursor: pointer; color: #42b983;">Create an Account</span></p>
             </q-card-section>
           </q-card>
         </div>
@@ -30,14 +30,11 @@
   </q-card>
 </template>
 
-<script>
+<script setup>
 import { useAuthStore } from 'stores/user/auth-store';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import {hideLoginDialog, showRegisterDialog} from 'src/utils/user/modalFunctions'; // Import showRegisterDialog function
-
-export default {
-  setup() {
     // Constants
     const SUCCESS_ROUTE = '/';
 
@@ -68,16 +65,7 @@ export default {
     };
 
     const switchToRegisterModal = () => {
+      hideLoginDialog();
       showRegisterDialog(); // Show register modal dialog
     };
-
-    const closeModal = () => {
-      // Functionality to handle modal close
-hideLoginDialog();
-      router.replace('/user'); // Redirect to the user page
-    };
-
-    return { authStore, email, password, handleLogin, switchToRegisterModal, closeModal };
-  }
-};
 </script>
