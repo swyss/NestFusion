@@ -69,9 +69,10 @@ func main() {
 
 	// Initialize controllers
 	userController := startup.InitializeControllers(dbPostgres)
+  taskController := startup.InitializeTaskController(dbPostgres)
 
 	// Setup and start the HTTP server
-	r := setupRouter(userController)
+	r := setupRouter(userController, taskController)
 	startServer(r)
 
 	// Handle graceful server shutdown on OS interrupt signals
@@ -79,9 +80,10 @@ func main() {
 }
 
 // setupRouter configures the HTTP router
-func setupRouter(userController *controllers.UserController) *mux.Router {
+func setupRouter(userController *controllers.UserController, taskController *controllers.TaskController) *mux.Router {
 	// Initialize router with user routes
 	r := router.NewRouter(userController)
+  r = router.TaskRouter(r, taskController)
 
 	// Swagger UI route
 	r.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)

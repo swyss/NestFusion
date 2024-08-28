@@ -25,6 +25,16 @@ func NewRouter(userController *controllers.UserController) *mux.Router {
 	return router
 }
 
+func TaskRouter(router *mux.Router, taskController *controllers.TaskController) *mux.Router{
+	router.HandleFunc("/getTasks", taskController.GetAllTasks).Methods("GET")
+  router.HandleFunc("/createTask", taskController.CreateTask).Methods("POST")
+  router.HandleFunc("/markTaskAsDone", taskController.MarkTaskAsDone).Methods("PUT")
+
+	// Swagger UI route (falls noch nicht hinzugefügt)
+	router.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+  return router
+}
+
 // JSONContentTypeMiddleware sets the Content-Type header to "application/json".
 func JSONContentTypeMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
