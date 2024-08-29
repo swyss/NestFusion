@@ -47,6 +47,54 @@ func (c *TaskController) CreateTask(w http.ResponseWriter, r *http.Request) {
 	c.handleJSONResponse(w, tasks, http.StatusCreated)
 
 }
+
+func (c *TaskController) UpdateTask(w http.ResponseWriter, r *http.Request) {
+	var task models.Task
+	err := json.NewDecoder(r.Body).Decode(&task)
+	if err != nil {
+		// If decoding the request body fails, respond with a 400 status code.
+		c.handleError(w, err, http.StatusBadRequest)
+		return
+	}
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		// Respond with a 400 status code if the ID is not a valid integer.
+		c.handleError(w, err, http.StatusBadRequest)
+		return
+	}
+
+	task.ID = uint(id)
+	tasks, err := c.TaskService.UpdateTask(&task)
+	if err != nil {
+		// If there is an error while creating the task, respond with a 500 status code.
+		c.handleError(w, err, http.StatusInternalServerError)
+		return
+	}
+	// Respond with all the tasks and a 201 status code.
+	c.handleJSONResponse(w, tasks, http.StatusCreated)
+}
+
+func (c *TaskController) DeleteTask(w http.ResponseWriter, r *http.Request) {
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		// Respond with a 400 status code if the ID is not a valid integer.
+		c.handleError(w, err, http.StatusBadRequest)
+		return
+	}
+
+	tasks, err := c.TaskService.DeleteTask(uint(id))
+	if err != nil {
+		// If there is an error while creating the task, respond with a 500 status code.
+		c.handleError(w, err, http.StatusInternalServerError)
+		return
+	}
+	// Respond with all the tasks and a 201 status code.
+	c.handleJSONResponse(w, tasks, http.StatusAccepted)
+}
 func (c *TaskController) MarkTaskAsDone(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])

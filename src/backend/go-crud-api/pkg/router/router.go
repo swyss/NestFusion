@@ -26,9 +26,11 @@ func NewRouter(userController *controllers.UserController) *mux.Router {
 }
 
 func TaskRouter(router *mux.Router, taskController *controllers.TaskController) *mux.Router{
-	router.HandleFunc("/getTasks", taskController.GetAllTasks).Methods("GET")
-  router.HandleFunc("/createTask", taskController.CreateTask).Methods("POST")
-  router.HandleFunc("/markTaskAsDone", taskController.MarkTaskAsDone).Methods("PUT")
+	router.HandleFunc("/tasks", taskController.GetAllTasks).Methods("GET")
+  router.HandleFunc("/tasks", taskController.CreateTask).Methods("POST")
+  router.HandleFunc("/tasks/markTaskAsDone/{id}", taskController.MarkTaskAsDone).Methods("PUT")
+  router.HandleFunc("/tasks/{id}", taskController.UpdateTask).Methods("PUT")
+  router.HandleFunc("/tasks/{id}", taskController.DeleteTask).Methods("DELETE")
 
 	// Swagger UI route (falls noch nicht hinzugefügt)
 	router.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
