@@ -1,21 +1,33 @@
+// Dynamically imported components
 const MainLayout = () => import("layouts/MainLayout.vue");
-const IndexPage = () => import("pages/IndexPage.vue");
-const UserListPage = () => import("pages/user/UserListPage.vue");
-const UserDetailPage = () => import("pages/user/UserDetailPage.vue");
-const UserFormPage = () => import("pages/UserFormPage.vue");
 const ErrorNotFound = () => import("pages/error/ErrorNotFound.vue");
+const IndexPage = () => import('pages/IndexPage.vue');
+const UserPage = () => import('pages/user/UserPage.vue');
+const AdminDashboard = () => import('pages/user/AdminDashboard.vue');
+const UserProfile = () => import('pages/user/UserProfile.vue');
 
+// Extracted child routes of MainLayout
+const mainLayoutChildren = [
+  {path: '', component: IndexPage},
+];
+
+const userLayoutChildren = [
+  {path: '', component: UserPage},
+  {path: 'admin', component: AdminDashboard, meta: {requiresAdmin: true}},
+  {path: 'profile', component: UserProfile}
+];
+
+// Structured and organized routes array
 const routes = [
   {
     path: "/",
     component: MainLayout,
-    children: [
-      { path: "", component: IndexPage },
-      { path: "users", component: UserListPage },
-      { path: "users/create", component: UserFormPage },
-      { path: "users/:id", component: UserDetailPage },
-      { path: "users/:id/edit", component: UserFormPage },
-    ],
+    children: mainLayoutChildren
+  },
+  {
+    path: "/user",
+    component: MainLayout,
+    children: userLayoutChildren
   },
   {
     path: "/:catchAll(.*)*",

@@ -1,16 +1,16 @@
-import { ssrMiddleware } from "quasar/wrappers";
+import {ssrMiddleware} from "quasar/wrappers";
 
 // This middleware should execute as last one
 // since it captures everything and tries to
 // render the page with Vue
 
-export default ssrMiddleware(({ app, resolve, render, serve }) => {
+export default ssrMiddleware(({app, resolve, render, serve}) => {
   // we capture any other Express route and hand it
   // over to Vue and Vue Router to render our page
   app.get(resolve.urlPath("*"), (req, res) => {
     res.setHeader("Content-Type", "text/html");
 
-    render(/* the ssrContext: */ { req, res })
+    render(/* the ssrContext: */ {req, res})
       .then((html) => {
         // now let's send the rendered html to the client
         res.send(html);
@@ -38,7 +38,7 @@ export default ssrMiddleware(({ app, resolve, render, serve }) => {
           // and other useful information
 
           // serve.error is available on dev only
-          serve.error({ err, req, res });
+          serve.error({err, req, res});
         } else {
           // we're in production, so we should have another method
           // to display something to the client when we encounter an error

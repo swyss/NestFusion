@@ -11,13 +11,7 @@
  */
 import express from "express";
 import compression from "compression";
-import {
-  ssrClose,
-  ssrCreate,
-  ssrListen,
-  ssrRenderPreloadTag,
-  ssrServeStaticContent,
-} from "quasar/wrappers";
+import {ssrClose, ssrCreate, ssrListen, ssrRenderPreloadTag, ssrServeStaticContent,} from "quasar/wrappers";
 
 /**
  * Create your webserver and return its instance.
@@ -36,7 +30,7 @@ export const create = ssrCreate((/* { ... } */) => {
   // place here any middlewares that
   // absolutely need to run before anything else
   if (process.env.PROD) {
-    app.use(cors({ origin: "http://localhost:9000" }), compression());
+    app.use(cors({origin: "http://localhost:9000"}), compression());
   }
 
   return app;
@@ -53,7 +47,7 @@ export const create = ssrCreate((/* { ... } */) => {
  * For production, you can instead export your
  * handler for serverless use or whatever else fits your needs.
  */
-export const listen = ssrListen(async ({ app, port, isReady }) => {
+export const listen = ssrListen(async ({app, port, isReady}) => {
   await isReady();
   return app.listen(port, () => {
     if (process.env.PROD) {
@@ -72,7 +66,7 @@ export const listen = ssrListen(async ({ app, port, isReady }) => {
  *
  * Can be async.
  */
-export const close = ssrClose(({ listenResult }) => {
+export const close = ssrClose(({listenResult}) => {
   return listenResult.close();
 });
 

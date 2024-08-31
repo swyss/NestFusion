@@ -5,9 +5,9 @@ defineOptions({
 });
 
 // Imports
-import {ref} from 'vue';
-import {useRouter} from 'vue-router'; // Importing useRouter hook
-import {useAppPropertyStore} from "stores/app/app-properties-store";
+import { useRouter } from 'vue-router'; // Importing useRouter hook
+import { useAppPropertyStore } from "stores/app/app-properties-store";
+import { showLoginDialog } from 'src/utils/user/modalFunctions'; // Import showLoginDialog function
 
 // Constants
 const ICON_NAMES = {
@@ -19,15 +19,6 @@ const ICON_NAMES = {
 
 // Store variable
 const appProperties = useAppPropertyStore();
-
-// Tabs configuration
-const tabItems = [
-  {name: "account", label: "account", link: "account"},
-  {name: "login", label: "login", link: "login"},
-];
-
-// Reactive property for active tab
-const activeTab = ref('account');
 
 // Router instance
 const router = useRouter();
@@ -45,7 +36,14 @@ const toggleLeftDrawer = () => {
 const toggleRightDrawer = () => {
   appProperties.toggleRightDrawer();
 };
+
+// Method to navigate to user page and show login modal
+const openUserPageAndShowLogin = () => {
+  router.replace('/user'); // Navigate to user page
+  showLoginDialog();       // Show login modal
+};
 </script>
+
 <template>
   <div class="q-py-md">
     <q-toolbar>
@@ -56,19 +54,22 @@ const toggleRightDrawer = () => {
       <q-btn dense flat padding="sm md" square @click="() => navigateTo('/')">
         <q-icon :name="ICON_NAMES.house"/>
       </q-btn>
-      <q-btn dense flat padding="sm md" square @click="() => navigateTo('/user')">
-        <q-icon color="accent" :name="ICON_NAMES.star"/>
+      <q-btn dense flat padding="sm md" square @click="() => navigateTo('/user/profile')">
+        <q-icon :name="ICON_NAMES.star" color="accent"/>
       </q-btn>
       <q-separator color="on_primary" inset vertical/>
-      <q-tabs v-model="activeTab" align="left" inline-label shrink stretch>
+      <q-tabs align="left" inline-label shrink stretch>
         <q-route-tab
-            v-for="tab in tabItems"
-            :key="tab.name"
-            :to="tab.link"
-            v-bind="tab"
+          v-for="tab in appProperties.linkList"
+          :key="tab.name"
+          :to="tab.link"
+          v-bind="tab"
         />
       </q-tabs>
       <q-space></q-space>
+      <q-btn dense flat padding="sm md" square @click="openUserPageAndShowLogin">
+        <q-icon name="bi-person"/>
+      </q-btn>
       <q-separator color="$on_primary" inset vertical/>
       <q-btn dense flat padding="sm md" square @click="toggleRightDrawer">
         <q-icon :name="ICON_NAMES.sliders"/>

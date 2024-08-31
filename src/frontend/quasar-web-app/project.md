@@ -28,6 +28,12 @@ yarn create quasar
 √ Install project dependencies? (recommended) » Yes, use yarn
 ```
 
+### add pinia store ✅
+
+```bash
+quasar new store <name>
+```
+
 ---
 
 ## add modes

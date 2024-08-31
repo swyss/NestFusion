@@ -8,7 +8,7 @@
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
-const { configure } = require("quasar/wrappers");
+const {configure} = require("quasar/wrappers");
 const path = require("path");
 
 module.exports = configure(function (/* ctx */) {
@@ -75,7 +75,7 @@ module.exports = configure(function (/* ctx */) {
               lintCommand: 'eslint "./**/*.{js,mjs,cjs,vue}"',
             },
           },
-          { server: false },
+          {server: false},
         ],
       ],
     },
