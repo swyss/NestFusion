@@ -1,0 +1,262 @@
+{
+  "name": "user",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "delete -users--id",
+      "seq": 5,
+      "request": {
+        "url": "http://localhost:8000/users/:id",
+        "method": "DELETE",
+        "headers": [],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "get -users--id",
+      "seq": 3,
+      "request": {
+        "url": "http://localhost:8000/users/:id",
+        "method": "GET",
+        "headers": [],
+        "params": [
+          {
+            "name": "id",
+            "value": "1",
+            "type": "path",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "get -users",
+      "seq": 1,
+      "request": {
+        "url": "http://localhost:8000/users",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "post -users--id-assign-accesslevel",
+      "seq": 12,
+      "request": {
+        "url": "http://localhost:8000/users/:id/assign-accesslevel",
+        "method": "POST",
+        "headers": [],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"access_level_id\": \"\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "post -users--id-assign-role",
+      "seq": 6,
+      "request": {
+        "url": "http://localhost:8000/users/:id/assign-role",
+        "method": "POST",
+        "headers": [],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"role_id\": \"\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "post -users--id-set-password",
+      "seq": 18,
+      "request": {
+        "url": "http://localhost:8000/users/:id/set-password",
+        "method": "POST",
+        "headers": [],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"new_password\": \"\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "post -users--id-set-userinfo",
+      "seq": 20,
+      "request": {
+        "url": "http://localhost:8000/users/:id/set-userinfo",
+        "method": "POST",
+        "headers": [],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"user_info\": \"\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "post -users",
+      "seq": 2,
+      "request": {
+        "url": "http://localhost:8000/users",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"username\": \"john_doe\",\n  \"email\": \"john.doe@example.com\",\n  \"user_password\": {\n    \"hash\": \"securepassword123\"\n  },\n  \"user_info\": {\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"address\": \"123 Main St, Anytown, USA\"\n  },\n  \"roles\": [\n    {\n      \"id\": 1\n    }\n  ],\n  \"is_active\": true\n}\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "put -users--id",
+      "seq": 4,
+      "request": {
+        "url": "http://localhost:8000/users/:id",
+        "method": "PUT",
+        "headers": [],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"username\": \"\",\n  \"email\": \"\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "post -auth",
+      "seq": 21,
+      "request": {
+        "url": "http://localhost:8000/auth",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"user_id\": \"1\",\n  \"password_id\": \"1\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "auth": {
+          "mode": "none"
+        }
+      }
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "user",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}

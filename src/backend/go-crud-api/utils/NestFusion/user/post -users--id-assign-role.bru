@@ -1,0 +1,21 @@
+meta {
+  name: post -users--id-assign-role
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:8000/users/:id/assign-role
+  body: json
+  auth: none
+}
+
+params:path {
+  id: 1
+}
+
+body:json {
+  {
+    "role_id": 1
+  }
+}

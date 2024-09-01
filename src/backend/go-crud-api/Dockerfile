@@ -1,6 +1,6 @@
 # Use the official Golang image as the base
 FROM golang:1.22
-
+#RUN go get -u github.com/cosmtrek/air
 # Set the working directory inside the container
 WORKDIR /app
 
@@ -17,7 +17,7 @@ COPY . .
 RUN go get -d -v ./...
 
 # Generate Swagger documentation
-RUN swag init
+#RUN swag init
 
 # Build the Go application
 RUN go build -o api .

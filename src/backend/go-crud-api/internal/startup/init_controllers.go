@@ -1,27 +1,51 @@
 package startup
 
 import (
-	"go-crud-api/internal/controllers"
-	"go-crud-api/internal/repos"
-	"go-crud-api/internal/services"
-	"gorm.io/gorm"
 	"log"
+
+	usercontroller "go-crud-api/internal/controllers/user"
+	userrepo "go-crud-api/internal/repos/user"
+	userservice "go-crud-api/internal/services/user"
+	"gorm.io/gorm"
 )
 
+type Controllers struct {
+	UserController *usercontroller.UserController
+	AuthController *usercontroller.AuthController
+	RoleController *usercontroller.RoleController
+	InfoController *usercontroller.InfoController
+}
+
 // InitializeControllers initializes all controllers and returns them.
-func InitializeControllers(db *gorm.DB) *controllers.UserController {
+func InitializeControllers(db *gorm.DB) *Controllers {
 	log.Println("Initializing controllers...")
 
-	// Initialize UserRepository and UserService
-	userRepo := repos.NewUserRepository(db)
-	userService := services.NewUserService(userRepo)
+	// Initialize repositories
+	userRepo := userrepo.NewUserRepository(db)
+	authRepo := userrepo.NewAuthRepository(db)
+	roleRepo := userrepo.NewRoleRepository(db)
+	infoRepo := userrepo.NewInfoRepository(db)
 
-	// Initialize UserController
-	userController := controllers.NewUserController(userService)
-	log.Println("UserController initialized successfully")
+	// Initialize services
+	userService := userservice.NewUserService(userRepo)
+	authService := userservice.NewAuthService(authRepo)
+	roleService := userservice.NewRoleService(roleRepo)
+	infoService := userservice.NewInfoService(infoRepo)
 
-  log.Println("Testing")
-	return userController
+	// Initialize controllers with the required services
+	userController := usercontroller.NewUserController(userService)
+	authController := usercontroller.NewAuthController(authService)
+	roleController := usercontroller.NewRoleController(roleService)
+	infoController := usercontroller.NewInfoController(infoService)
+
+	log.Println("All controllers initialized successfully")
+
+	return &Controllers{
+		UserController: userController,
+		AuthController: authController,
+		RoleController: roleController,
+		InfoController: infoController,
+	}
 }
 
 func InitializeTaskController(db *gorm.DB) *controllers.TaskController {

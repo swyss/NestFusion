@@ -1,6 +1,8 @@
 services:
   go_app:
     container_name: go_app
+    env_file:
+      - .env
     # Build the Docker image from the Dockerfile in the current directory
     build:
       context: .

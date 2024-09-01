@@ -4,7 +4,55 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="fix (backend): add GORM remove unused code... SWAGGER is NOT working" />
+    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="fix (backend): add some models">
+      <change afterPath="$PROJECT_DIR$/internal/controllers/user/helper_controller.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/controllers/user/user_controller.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/models/user/access_level.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/models/user/audit_log.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/models/user/password.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/models/user/role.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/models/user/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/models/user/user_info.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/repos/user/helper_repo.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/repos/user/user_repo.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/services/user/helper_service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/services/user/user_service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/NestFusion.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/NestFusion/bruno.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/bruno.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/collection.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/delete -users--id.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/get -users--id.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/get -users.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/post -users--id-assign-accesslevel.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/post -users--id-assign-role.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/post -users--id-set-password.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/post -users--id-set-userinfo.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/post -users.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/put -users--id.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_08_2024_19_10_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_08_2024_19_10_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_08_2024_19_10__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_08_2024_19_10__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/controllers/user_controller.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/databases/postgres.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/databases/postgres.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/models/user.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repos/user_repo.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/services/user_service.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/startup/init_controllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/startup/init_controllers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/mock_user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/tests/mock_user_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/user-controllers_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tests/user-controllers_test.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +65,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file://$USER_HOME$/sdk/go1.23rc2" />
+  <component name="GOROOT" url="file://C:/Program Files/Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
@@ -45,24 +93,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "develop",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/repos/projects/NestFusion/src/backend/go-crud-api",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/repos/projects/NestFusion/src/backend/go-crud-api&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\repos\projects\NestFusion\src\backend\go-crud-api\internal\models\user" />
+      <recent name="D:\repos\projects\NestFusion\src\backend\go-crud-api\internal\services\user" />
+      <recent name="D:\repos\projects\NestFusion\src\backend\go-crud-api\internal\repos\user" />
+      <recent name="D:\repos\projects\NestFusion\src\backend\go-crud-api\internal\controllers\user" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

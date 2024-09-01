@@ -1,30 +1,36 @@
 package router
 
 import (
-	httpSwagger "github.com/swaggo/http-swagger"
-	"go-crud-api/internal/controllers"
-	"net/http"
-
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
+	usercontrollers "go-crud-api/internal/controllers/user"
 )
 
-// NewRouter configures the routing for users, user roles, and settings.
-func NewRouter(userController *controllers.UserController) *mux.Router {
-	router := mux.NewRouter()
+// NewRouter configures the routing for users, user roles, settings, and other controllers.
+func NewRouter(
+	userController *usercontrollers.UserController,
+	authController *usercontrollers.AuthController,
+	roleController *usercontrollers.RoleController,
+	infoController *usercontrollers.InfoController,
+) *gin.Engine {
+	router := gin.Default()
 
 	// User routes
-	router.HandleFunc("/users", userController.GetUsers).Methods("GET")
-	router.HandleFunc("/users/{id}", userController.GetUser).Methods("GET")
-	router.HandleFunc("/users", userController.CreateUser).Methods("POST")
-	router.HandleFunc("/users/{id}", userController.UpdateUser).Methods("PUT")
-	router.HandleFunc("/users/{id}", userController.DeleteUser).Methods("DELETE")
+	router.GET("/users", userController.GetUsers)
+	router.GET("/users/:id", userController.GetUserByID)
+	router.POST("/users", userController.CreateUser)
+	router.PUT("/users/:id", userController.UpdateUser)
+	router.DELETE("/users/:id", userController.DeleteUser)
 
-	// Swagger UI route (falls noch nicht hinzugefügt)
-	router.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+	// Authentication route
+	router.POST("/auth", authController.Authenticate)
 
-	return router
+	// Role assignment route
+	router.POST("/users/:id/assign-role", roleController.AssignRole)
+
+  	// User info setting route
+	router.POST("/users/:id/set-userinfo", infoController.SetUserInfo)
+  
 }
-
 func TaskRouter(router *mux.Router, taskController *controllers.TaskController) *mux.Router{
 	router.HandleFunc("/tasks", taskController.GetAllTasks).Methods("GET")
   router.HandleFunc("/tasks", taskController.CreateTask).Methods("POST")
@@ -43,4 +49,5 @@ func JSONContentTypeMiddleware(next http.Handler) http.Handler {
 		w.Header().Set("Content-Type", "application/json")
 		next.ServeHTTP(w, r)
 	})
+	return router
 }
