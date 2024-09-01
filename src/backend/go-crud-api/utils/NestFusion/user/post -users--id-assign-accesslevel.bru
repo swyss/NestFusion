@@ -1,0 +1,21 @@
+meta {
+  name: post -users--id-assign-accesslevel
+  type: http
+  seq: 12
+}
+
+post {
+  url: http://localhost:8000/users/:id/assign-accesslevel
+  body: json
+  auth: none
+}
+
+params:path {
+  id: 22
+}
+
+body:json {
+  {
+    "access_level_id": ""
+  }
+}

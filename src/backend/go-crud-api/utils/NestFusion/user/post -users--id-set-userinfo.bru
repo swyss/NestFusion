@@ -1,0 +1,21 @@
+meta {
+  name: post -users--id-set-userinfo
+  type: http
+  seq: 20
+}
+
+post {
+  url: http://localhost:8000/users/:id/set-userinfo
+  body: json
+  auth: none
+}
+
+params:path {
+  id: 1
+}
+
+body:json {
+  {
+    "user_info": ""
+  }
+}

@@ -34,16 +34,16 @@ paths:
   /users/{id}:
     get:
       consumes:
-      - application/json
+        - application/json
       description: Get a user by ID
       parameters:
-      - description: User ID
-        in: path
-        name: id
-        required: true
-        type: integer
+        - description: User ID
+          in: path
+          name: id
+          required: true
+          type: integer
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: OK
@@ -62,5 +62,5 @@ paths:
               type: string
             type: object
       tags:
-      - users
+        - users
 swagger: "2.0"

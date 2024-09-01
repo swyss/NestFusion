@@ -5,35 +5,18 @@ import (
 	"errors"
 	"github.com/go-redis/redis/v8"
 	"github.com/joho/godotenv"
-	"go-crud-api/internal/controllers"
 	"go-crud-api/internal/startup"
+	"go-crud-api/pkg/router"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
 
-	"github.com/gorilla/mux"
-	"go-crud-api/pkg/router"
+	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-
-	httpSwagger "github.com/swaggo/http-swagger"
 )
 
-// @title Swagger Example API
-// @version 1.0
-// @description This is a sample server.
-// @termsOfService http://swagger.io/terms/
-
-// @contact.name API Support
-// @contact.url http://www.swagger.io/support
-// @contact.email support@swagger.io
-
-// @license.name Apache 2.0
-// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
-
-// @host localhost:8000
-// @BasePath /
 func main() {
 
 	log.Println("Starting application...")
@@ -68,10 +51,10 @@ func main() {
 	log.Println("All services initialized successfully")
 
 	// Initialize controllers
-	userController := startup.InitializeControllers(dbPostgres)
+	controllers := startup.InitializeControllers(dbPostgres)
 
 	// Setup and start the HTTP server
-	r := setupRouter(userController)
+	r := setupRouter(controllers)
 	startServer(r)
 
 	// Handle graceful server shutdown on OS interrupt signals
@@ -79,38 +62,23 @@ func main() {
 }
 
 // setupRouter configures the HTTP router
-func setupRouter(userController *controllers.UserController) *mux.Router {
-	// Initialize router with user routes
-	r := router.NewRouter(userController)
-
-	// Swagger UI route
-	r.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+func setupRouter(controllers *startup.Controllers) *gin.Engine {
+	// Initialize router with all routes
+	r := router.NewRouter(
+		controllers.UserController,
+		controllers.AuthController,
+		controllers.RoleController,
+		controllers.InfoController,
+	)
 
 	return r
 }
 
-// CORSHandler sets the necessary headers for CORS.
-func CORSHandler(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-
-		// Handle preflight requests
-		if r.Method == http.MethodOptions {
-			w.WriteHeader(http.StatusOK)
-			return
-		}
-
-		next.ServeHTTP(w, r)
-	})
-}
-
 // startServer starts the HTTP server in a new goroutine.
-func startServer(handler http.Handler) {
+func startServer(handler *gin.Engine) {
 	server := &http.Server{
 		Addr:    ":8000",
-		Handler: CORSHandler(router.JSONContentTypeMiddleware(handler)), // Added CORSHandler here
+		Handler: handler,
 	}
 
 	go func() {
@@ -134,8 +102,11 @@ func handleGracefulShutdown() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
+	server := &http.Server{
+		Addr: ":8000", // Server address must match the one used in startServer
+	}
+
 	// Attempt to gracefully shut down the server
-	server := &http.Server{}
 	if err := server.Shutdown(ctx); err != nil {
 		log.Println("Server forced to shutdown")
 		log.Fatal(err)
