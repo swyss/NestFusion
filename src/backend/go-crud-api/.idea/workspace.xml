@@ -4,54 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="fix (backend): add some models">
-      <change afterPath="$PROJECT_DIR$/internal/controllers/user/helper_controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/controllers/user/user_controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/models/user/access_level.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/models/user/audit_log.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/models/user/password.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/models/user/role.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/models/user/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/models/user/user_info.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/repos/user/helper_repo.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/repos/user/user_repo.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/services/user/helper_service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/services/user/user_service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/NestFusion.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/NestFusion/bruno.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/bruno.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/collection.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/delete -users--id.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/get -users--id.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/get -users.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/post -users--id-assign-accesslevel.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/post -users--id-assign-role.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/post -users--id-set-password.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/post -users--id-set-userinfo.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/post -users.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/NestFusion/user/put -users--id.bru" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_08_2024_19_10_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_08_2024_19_10_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_08_2024_19_10__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_08_2024_19_10__Changes_1.xml" beforeDir="false" />
+    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="fix (backend): create handler for http controller (taskcontroller)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/controllers/user_controller.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/databases/postgres.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/databases/postgres.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/models/user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repos/user_repo.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/services/user_service.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/controllers/task_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/controllers/task_controller.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/startup/init_controllers.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/startup/init_controllers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/mock_user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/tests/mock_user_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/user-controllers_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tests/user-controllers_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,12 +35,12 @@
     &quot;assignee&quot;: &quot;swyss&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/swyss/NestFusion.git&quot;,
-    &quot;accountId&quot;: &quot;286d4d9f-111b-422c-9aa2-528df6daa50d&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/swyss/NestFusion.git",
+    "accountId": "7258f2b8-0324-49c7-8971-f2ae3f05f25d"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
@@ -134,7 +94,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix (backend): add GORM remove unused code... SWAGGER is NOT working" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix (backend): add GORM remove unused code... SWAGGER is NOT working" />
+    <MESSAGE value="feat (backend): reformat project add models remove swagger, add bruno" />
+    <MESSAGE value="fix (backend): create handler for http controller (taskcontroller)" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix (backend): create handler for http controller (taskcontroller)" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

@@ -3,8 +3,11 @@ package startup
 import (
 	"log"
 
+	"go-crud-api/internal/controllers"
 	usercontroller "go-crud-api/internal/controllers/user"
+	"go-crud-api/internal/repos"
 	userrepo "go-crud-api/internal/repos/user"
+	"go-crud-api/internal/services"
 	userservice "go-crud-api/internal/services/user"
 	"gorm.io/gorm"
 )
@@ -51,16 +54,13 @@ func InitializeControllers(db *gorm.DB) *Controllers {
 func InitializeTaskController(db *gorm.DB) *controllers.TaskController {
 	log.Println("Initializing controllers...")
 
-
-  taskRepo := repos.NewTaskRepository(db)
-  taskService := services.NewTaskService(taskRepo)
+	taskRepo := repos.NewTaskRepository(db)
+	taskService := services.NewTaskService(taskRepo)
 
 	// Initialize UserController
-  taskController := controllers.NewTaskController(taskService)
+	taskController := controllers.NewTaskController(taskService)
 
 	log.Println("TaskController initialized successfully")
 
 	return taskController
 }
-
-

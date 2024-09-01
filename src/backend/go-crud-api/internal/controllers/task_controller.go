@@ -14,6 +14,23 @@ type TaskController struct {
 	TaskService services.TaskServiceInterface
 }
 
+// ServeHTTP implementiert die http.Handler-Schnittstelle für TaskController.
+func (c *TaskController) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
+	// Festlegen des Content-Types auf JSON
+	writer.Header().Set("Content-Type", "application/json")
+
+	// Verwenden von Gorilla Mux zur Routenbestimmung
+	router := mux.NewRouter()
+	router.HandleFunc("/tasks", c.GetAllTasks).Methods(http.MethodGet)
+	router.HandleFunc("/tasks", c.CreateTask).Methods(http.MethodPost)
+	router.HandleFunc("/tasks/{id:[0-9]+}", c.UpdateTask).Methods(http.MethodPut)
+	router.HandleFunc("/tasks/{id:[0-9]+}", c.DeleteTask).Methods(http.MethodDelete)
+	router.HandleFunc("/tasks/{id:[0-9]+}/done", c.MarkTaskAsDone).Methods(http.MethodPost)
+
+	// Mux-Router zur Bearbeitung der Anfrage verwenden
+	router.ServeHTTP(writer, request)
+}
+
 func NewTaskController(service services.TaskServiceInterface) *TaskController {
 	return &TaskController{TaskService: service}
 }

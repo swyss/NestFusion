@@ -3,25 +3,22 @@ package main
 import (
 	"context"
 	"errors"
+	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v8"
 	"github.com/joho/godotenv"
 	"go-crud-api/internal/startup"
 	"go-crud-api/pkg/router"
+	"gorm.io/gorm"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
-
-	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 func main() {
-
 	log.Println("Starting application...")
 
-	// Load environment variables from .env file
 	if err := godotenv.Load(); err != nil {
 		log.Println("Error loading .env file")
 		log.Fatal(err)
@@ -29,7 +26,6 @@ func main() {
 	}
 	log.Println(".env file loaded successfully")
 
-	// Initialize services
 	dbPostgres, redisClient, influxClient := startup.InitializeServices()
 	defer func(dbPostgres *gorm.DB) {
 		sqlDB, err := dbPostgres.DB()
@@ -50,34 +46,29 @@ func main() {
 
 	log.Println("All services initialized successfully")
 
-	// Initialize controllers
 	userController := startup.InitializeControllers(dbPostgres)
 	taskController := startup.InitializeTaskController(dbPostgres)
 
-	// Setup and start the HTTP server
 	r := setupRouter(userController, taskController)
 
 	startServer(r)
-
-	// Handle graceful server shutdown on OS interrupt signals
 	handleGracefulShutdown()
 }
 
-// setupRouter configures the HTTP router
-func setupRouter(controllers *startup.Controllers) *gin.Engine {
-	// Initialize router with all routes
+func setupRouter(userController *startup.Controllers, taskController http.Handler) *gin.Engine {
 	r := router.NewRouter(
-		controllers.UserController,
-		controllers.AuthController,
-		controllers.RoleController,
-		controllers.InfoController,
+		userController.UserController,
+		userController.AuthController,
+		userController.RoleController,
+		userController.InfoController,
 	)
-  r = router.TaskRouter(r, taskController)
+
+	// TaskController als http.Handler in den Gin-Router einbinden
+	r.Any("/tasks/*any", gin.WrapH(taskController))
 
 	return r
 }
 
-// startServer starts the HTTP server in a new goroutine.
 func startServer(handler *gin.Engine) {
 	server := &http.Server{
 		Addr:    ":8000",
@@ -93,23 +84,19 @@ func startServer(handler *gin.Engine) {
 	log.Println("Server started on port 8000")
 }
 
-// handleGracefulShutdown manages graceful server shutdown upon receiving OS signals.
 func handleGracefulShutdown() {
-	// Create a channel to listen for OS interrupt signals
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
-	<-quit // Block until a signal is received
+	<-quit
 	log.Println("Shutting down server...")
 
-	// Create a context with a 5-second timeout for the shutdown process
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	server := &http.Server{
-		Addr: ":8000", // Server address must match the one used in startServer
+		Addr: ":8000",
 	}
 
-	// Attempt to gracefully shut down the server
 	if err := server.Shutdown(ctx); err != nil {
 		log.Println("Server forced to shutdown")
 		log.Fatal(err)
