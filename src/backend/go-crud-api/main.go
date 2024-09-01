@@ -51,10 +51,12 @@ func main() {
 	log.Println("All services initialized successfully")
 
 	// Initialize controllers
-	controllers := startup.InitializeControllers(dbPostgres)
+	userController := startup.InitializeControllers(dbPostgres)
+	taskController := startup.InitializeTaskController(dbPostgres)
 
 	// Setup and start the HTTP server
-	r := setupRouter(controllers)
+	r := setupRouter(userController, taskController)
+
 	startServer(r)
 
 	// Handle graceful server shutdown on OS interrupt signals
@@ -70,6 +72,7 @@ func setupRouter(controllers *startup.Controllers) *gin.Engine {
 		controllers.RoleController,
 		controllers.InfoController,
 	)
+  r = router.TaskRouter(r, taskController)
 
 	return r
 }

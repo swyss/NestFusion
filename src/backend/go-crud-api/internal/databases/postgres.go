@@ -11,6 +11,7 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
+	"go-crud-api/internal/models"
 )
 
 // InitializePostgres initializes the PostgresSQL database connection using GORM.
@@ -65,6 +66,11 @@ func InitializePostgres() *gorm.DB {
 		log.Println("Database migration completed successfully")
 	}
 
+	if err := db.AutoMigrate(&models.Task{}); err == nil {
+		log.Println("Database migration completed successfully")
+	} else {
+		log.Fatalf("Failed to migrate tables: %v", err)
+	}
 	return db
 }
 

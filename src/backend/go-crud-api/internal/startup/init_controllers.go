@@ -47,3 +47,20 @@ func InitializeControllers(db *gorm.DB) *Controllers {
 		InfoController: infoController,
 	}
 }
+
+func InitializeTaskController(db *gorm.DB) *controllers.TaskController {
+	log.Println("Initializing controllers...")
+
+
+  taskRepo := repos.NewTaskRepository(db)
+  taskService := services.NewTaskService(taskRepo)
+
+	// Initialize UserController
+  taskController := controllers.NewTaskController(taskService)
+
+	log.Println("TaskController initialized successfully")
+
+	return taskController
+}
+
+

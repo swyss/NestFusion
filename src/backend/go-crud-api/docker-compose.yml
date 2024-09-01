@@ -14,6 +14,9 @@ services:
       INFLUXDB_TOKEN: "${INFLUXDB_TOKEN}"
     ports:
       - "8000:8000"
+    volumes:
+      - .:/app  # Mount the current directory to /app inside the container
+    command: ["air"]
     depends_on:
       - go_db
       - go_redis

@@ -7,6 +7,9 @@ WORKDIR /app
 # Install Swag CLI for generating Swagger documentation
 RUN go install github.com/swaggo/swag/cmd/swag@latest
 
+# Install air for hot-reloading
+RUN go install github.com/air-verse/air@latest
+
 # Copy the source code into the container
 COPY . .
 
@@ -23,4 +26,4 @@ RUN go build -o api .
 EXPOSE 8000
 
 # Set the command to run the application
-CMD ["./api"]
+CMD ["air"]
