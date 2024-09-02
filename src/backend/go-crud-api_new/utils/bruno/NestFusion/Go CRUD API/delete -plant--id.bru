@@ -1,0 +1,15 @@
+meta {
+  name: delete -plant--id
+  type: http
+  seq: 10
+}
+
+delete {
+  url: http://localhost:8000/plant/:id
+  body: none
+  auth: none
+}
+
+params:path {
+  id: 
+}

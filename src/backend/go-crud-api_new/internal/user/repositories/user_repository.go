@@ -1,0 +1,36 @@
+package user_repositories
+
+import (
+	models "go-crud-api/internal/user/models"
+	"gorm.io/gorm"
+)
+
+// DB Type alias for gorm.DB
+type DB = gorm.DB
+
+// UserRepository UserRepo is a struct that interacts with the user database table.
+type UserRepository struct {
+	db *DB
+}
+
+// NewUserRepository NewUserRepo creates a new instance of UserRepo.
+func NewUserRepository(db *DB) *UserRepository {
+	return &UserRepository{db: db}
+}
+
+// CreateUser inserts a new user into the database.
+func (repo *UserRepository) CreateUser(user *models.User) error {
+	return repo.db.Create(user).Error
+}
+
+// GetUserByID retrieves a user from the database by ID.
+func (repo *UserRepository) GetUserByID(id uint) (*models.User, error) {
+	var user models.User
+	err := repo.findUserByID(id, &user)
+	return &user, err
+}
+
+// Extracted function to find user by ID
+func (repo *UserRepository) findUserByID(id uint, user *models.User) error {
+	return repo.db.First(user, id).Error
+}

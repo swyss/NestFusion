@@ -1,0 +1,19 @@
+meta {
+  name: post -plant
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:8000/plant
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "",
+    "description": "",
+    "location": ""
+  }
+}
