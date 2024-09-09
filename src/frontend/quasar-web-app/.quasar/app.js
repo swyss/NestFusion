@@ -12,12 +12,16 @@
  **/
 
 
-import {Quasar} from 'quasar'
-import {markRaw} from 'vue'
+
+import { Quasar } from 'quasar'
+import { markRaw } from 'vue'
 import RootComponent from 'app/src/App.vue'
 
 import createStore from 'app/src/stores/index'
 import createRouter from 'app/src/router/index'
+
+
+
 
 
 export default async function (createAppFn, quasarUserOptions) {
@@ -32,12 +36,17 @@ export default async function (createAppFn, quasarUserOptions) {
   app.use(Quasar, quasarUserOptions)
 
 
-  const store = typeof createStore === 'function'
-    ? await createStore({})
-    : createStore
 
 
-  app.use(store)
+    const store = typeof createStore === 'function'
+      ? await createStore({})
+      : createStore
+
+
+      app.use(store)
+
+
+
 
 
   const router = markRaw(
@@ -47,11 +56,10 @@ export default async function (createAppFn, quasarUserOptions) {
   )
 
 
-  // make router instance available in store
+    // make router instance available in store
 
-  store.use(({store}) => {
-    store.router = router
-  })
+      store.use(({ store }) => { store.router = router })
+
 
 
   // Expose the app, the router and the store.
