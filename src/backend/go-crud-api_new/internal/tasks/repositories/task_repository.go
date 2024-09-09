@@ -2,23 +2,75 @@ package task_repositories
 
 import (
 	models "go-crud-api/internal/tasks/models"
-	"gorm.io/gorm"
+  "go-crud-api/pkg/databases/postgres"
+  "errors"
 )
 
 type TaskRepository struct {
-	db *gorm.DB
 }
 
-func NewTaskRepository(db *gorm.DB) *TaskRepository {
-	return &TaskRepository{db: db}
+func NewTaskRepository() *TaskRepository {
+	return &TaskRepository{}
 }
 
-func (repo *TaskRepository) CreateTask(task *models.Task) error {
-	return repo.db.Create(task).Error
+func (repo *TaskRepository) GetAllTasks() []models.Task{
+  var tasks []models.Task
+	result := postgres.GetDBClient().Find(&tasks)
+	if result.Error != nil {
+		panic(result.Error)
+	}
+	return tasks
 }
 
-func (repo *TaskRepository) GetTaskByID(id uint) (*models.Task, error) {
-	var task models.Task
-	err := repo.db.First(&task, id).Error
-	return &task, err
+func (repo *TaskRepository) CreateTask(task *models.Task) ([]models.Task, error) {
+  result := postgres.GetDBClient().Create(&task)
+	if result.Error != nil {
+		return repo.GetAllTasks(), result.Error
+	}
+	return repo.GetAllTasks(), nil
+}
+
+func (r *TaskRepository) UpdateTask(task *models.Task) ([]models.Task, error) {
+	var DBtask = models.Task{ID: task.ID}
+	result := postgres.GetDBClient().First(&DBtask)
+	if result.Error != nil {
+		return nil, errors.New("Task not found")
+	}
+
+	DBtask.IsFinished = task.IsFinished
+	DBtask.Name = task.Name
+	DBtask.Due = task.Due
+
+	savedTask := postgres.GetDBClient().Save(&DBtask)
+	if savedTask.Error != nil {
+		return nil, errors.New("Failed to update task!")
+	}
+
+	return r.GetAllTasks(), nil
+}
+
+func (r *TaskRepository) MarkTaskAsDone(id uint) ([]models.Task, error) {
+	var DBtask = models.Task{ID: id}
+	result := postgres.GetDBClient().First(&DBtask)
+	if result.Error != nil {
+		return nil, errors.New("Task not found")
+	}
+
+	DBtask.IsFinished = true
+	savedTask := postgres.GetDBClient().Save(&DBtask)
+	if savedTask.Error != nil {
+		return nil, errors.New("Failed to update task!")
+	}
+
+	return r.GetAllTasks(), nil
+}
+
+func (r *TaskRepository) DeleteTask(id uint) ([]models.Task, error) {
+	var task = models.Task{ID: id}
+	result := postgres.GetDBClient().Delete(&task)
+	if result.RowsAffected == 0 {
+		return r.GetAllTasks(), errors.New("Failed to delete task!")
+	}
+
+	return r.GetAllTasks(), nil
 }
