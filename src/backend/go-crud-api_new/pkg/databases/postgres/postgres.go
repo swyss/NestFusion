@@ -1,17 +1,24 @@
 package postgres
 
 import (
+	task_models "go-crud-api/internal/tasks/models"
 	models "go-crud-api/internal/user/models"
+	"log"
+	"os"
+	"sync"
+	"time"
+
 	"gorm.io/driver/postgres" // PostgresSQL driver for GORM
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
-	"log"
-	"os"
-	"time"
 )
 
 var PostgresDB *gorm.DB
+var ( 
+  database *gorm.DB
+  once sync.Once
+)
 
 // InitializePostgres initializes the PostgresSQL database connection using GORM.
 func InitializePostgres() *gorm.DB {
@@ -62,6 +69,11 @@ func InitializePostgres() *gorm.DB {
 		log.Fatalf("Failed to migrate tables: %v", err)
 	}
 
+	if err := PostgresDB.AutoMigrate(&task_models.Task{}); err == nil {
+		log.Println("Database migration completed successfully")
+	} else {
+		log.Fatalf("Failed to migrate tables: %v", err)
+	}
 	return PostgresDB
 }
 
@@ -76,4 +88,13 @@ func configureDBPooling(db *gorm.DB) {
 	sqlDB.SetMaxIdleConns(25)
 	sqlDB.SetConnMaxLifetime(5 * time.Minute)
 	log.Println("Database connection pooling configured")
+}
+
+func initPostgres(){
+  database = InitializePostgres()
+}
+
+func GetDBClient() *gorm.DB{
+  once.Do(initPostgres)
+  return database
 }
