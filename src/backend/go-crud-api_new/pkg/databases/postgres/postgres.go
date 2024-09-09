@@ -9,9 +9,14 @@ import (
 	"log"
 	"os"
 	"time"
+  "sync"
 )
 
 var PostgresDB *gorm.DB
+var ( 
+  database *gorm.DB
+  once sync.Once
+)
 
 // InitializePostgres initializes the PostgresSQL database connection using GORM.
 func InitializePostgres() *gorm.DB {
@@ -76,4 +81,13 @@ func configureDBPooling(db *gorm.DB) {
 	sqlDB.SetMaxIdleConns(25)
 	sqlDB.SetConnMaxLifetime(5 * time.Minute)
 	log.Println("Database connection pooling configured")
+}
+
+func initPostgres(){
+  database = InitializePostgres()
+}
+
+func GetDBClient() *gorm.DB{
+  once.Do(initPostgres)
+  return database
 }
