@@ -1,7 +1,6 @@
 services:
   go_app:
     container_name: go_app
-    # Build the Docker image from the Dockerfile in the current directory
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,9 +12,17 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - go_db
-      - go_redis
-      - go_influxdb
+      go_db:
+        condition: service_healthy
+      go_redis:
+        condition: service_healthy
+      go_influxdb:
+        condition: service_healthy
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   go_db:
     container_name: go_db
@@ -28,6 +35,16 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER}" ]
+      interval: 5s      # Healthcheck alle 5 Sekunden ausführen
+      timeout: 10s      # 10 Sekunden warten, bevor ein Timeout ausgelöst wird
+      retries: 10       # Bis zu 10 Versuche vor dem Fehlschlag
 
   go_redis:
     container_name: go_redis
@@ -36,6 +53,16 @@ services:
       - "6379:6379"
     volumes:
       - redisdata:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   go_influxdb:
     container_name: go_influxdb
@@ -48,6 +75,16 @@ services:
       - "8086:8086"
     volumes:
       - influxdbdata:/var/lib/influxdb
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: [ "CMD", "curl", "-s", "http://localhost:8086/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   pgdata: { }

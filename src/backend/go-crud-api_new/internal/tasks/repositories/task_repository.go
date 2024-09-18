@@ -1,9 +1,9 @@
 package task_repositories
 
 import (
+	"errors"
 	models "go-crud-api/internal/tasks/models"
-  "go-crud-api/pkg/databases/postgres"
-  "errors"
+	"go-crud-api/pkg/databases/postgres"
 )
 
 type TaskRepository struct {
@@ -13,8 +13,8 @@ func NewTaskRepository() *TaskRepository {
 	return &TaskRepository{}
 }
 
-func (repo *TaskRepository) GetAllTasks() []models.Task{
-  var tasks []models.Task
+func (repo *TaskRepository) GetAllTasks() []models.Task {
+	var tasks []models.Task
 	result := postgres.GetDBClient().Find(&tasks)
 	if result.Error != nil {
 		panic(result.Error)
@@ -23,7 +23,7 @@ func (repo *TaskRepository) GetAllTasks() []models.Task{
 }
 
 func (repo *TaskRepository) CreateTask(task *models.Task) ([]models.Task, error) {
-  result := postgres.GetDBClient().Create(&task)
+	result := postgres.GetDBClient().Create(&task)
 	if result.Error != nil {
 		return repo.GetAllTasks(), result.Error
 	}

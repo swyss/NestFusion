@@ -8,7 +8,7 @@ import (
 func RegisterTaskRoutes(r *gin.Engine) {
 	taskController := controllers.NewTaskController()
 
-  taskRoutes := r.Group("/tasks")
+	taskRoutes := r.Group("/tasks")
 	{
 		taskRoutes.GET("", taskController.GetAllTasks)
 		taskRoutes.POST("", taskController.CreateTask)

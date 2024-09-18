@@ -2,14 +2,15 @@ package task_services
 
 import (
 	models "go-crud-api/internal/tasks/models"
-  "go-crud-api/internal/tasks/repositories"
+	"go-crud-api/internal/tasks/repositories"
 )
 
-type TaskService struct {}
+type TaskService struct{}
+
 var _taskRepo *task_repositories.TaskRepository
 
 func NewTaskService() *TaskService {
-  _taskRepo = task_repositories.NewTaskRepository()
+	_taskRepo = task_repositories.NewTaskRepository()
 	return &TaskService{}
 }
 

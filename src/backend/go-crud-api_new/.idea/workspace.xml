@@ -4,11 +4,38 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="fix (backend): add GORM remove unused code... SWAGGER is NOT working" />
+    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="fix (frontend): update yarn packages">
+      <change afterPath="$PROJECT_DIR$/pkg/startup/docker_starter.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/console.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/spinner.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/tasks/models/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/tasks/models/task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/tasks/repositories/task_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/tasks/repositories/task_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/tasks/router/task_router.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/tasks/router/task_router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/tasks/services/task_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/tasks/services/task_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/user/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/models/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/databases/influxdb/influxdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/databases/influxdb/influxdb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/databases/postgres/postgres.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/databases/postgres/postgres.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/databases/redisdb/redis.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/databases/redisdb/redis.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/startup/init_services.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/startup/init_services.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -19,6 +46,11 @@
   </component>
   <component name="GOROOT" url="file://$USER_HOME$/go/go1.22.6" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../../.." value="develop" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -30,7 +62,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/swyss/NestFusion.git&quot;,
-    &quot;accountId&quot;: &quot;286d4d9f-111b-422c-9aa2-528df6daa50d&quot;
+    &quot;accountId&quot;: &quot;7258f2b8-0324-49c7-8971-f2ae3f05f25d&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -48,6 +80,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build go-crud-api.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
@@ -56,7 +89,7 @@
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/repos/test/go-crud-api",
+    "last_opened_file_path": "C:/Users/uller",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -65,15 +98,34 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\repos\projects\NestFusion\src\backend\go-crud-api_new\pkg\startup" />
+      <recent name="D:\repos\projects\NestFusion\src\backend\go-crud-api_new" />
       <recent name="D:\repos\test\go-crud-api\pkg" />
       <recent name="D:\repos\test\go-crud-api\internal\databases\postgres" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="go build go-crud-api" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="go-crud-api" />
+      <working_directory value="$PROJECT_DIR$" />
+      <parameters value="--reset-docker" />
+      <kind value="PACKAGE" />
+      <package value="go-crud-api" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build go-crud-api" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-gosdk-5df93f7ad4aa-df9ad98b711f-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-242.21829.165" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-GO-242.21829.165" />
+        <option value="bundled-gosdk-5df93f7ad4aa-df9ad98b711f-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-242.21829.220" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-GO-242.21829.220" />
       </set>
     </attachedChunks>
   </component>
@@ -83,7 +135,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix (backend): add GORM remove unused code... SWAGGER is NOT working" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix (backend): add GORM remove unused code... SWAGGER is NOT working" />
+    <MESSAGE value="fix (frontend): update yarn packages" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix (frontend): update yarn packages" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
