@@ -10,14 +10,12 @@ import (
 )
 
 type TaskController struct {
+  taskService *task_services.TaskService
 }
 
-var _taskService *task_services.TaskService
 
-func NewTaskController() *TaskController {
-
-	_taskService = task_services.NewTaskService()
-	return &TaskController{}
+func NewTaskController(service *task_services.TaskService) *TaskController {
+	return &TaskController{ taskService: service}
 }
 
 func (controller *TaskController) CreateTask(c *gin.Context) {
@@ -27,7 +25,7 @@ func (controller *TaskController) CreateTask(c *gin.Context) {
 		return
 	}
 
-	tasks, err := _taskService.CreateTask(&task)
+	tasks, err := controller.taskService.CreateTask(&task)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create task"})
 		return
@@ -37,7 +35,7 @@ func (controller *TaskController) CreateTask(c *gin.Context) {
 }
 
 func (controller *TaskController) GetAllTasks(c *gin.Context) {
-	tasks, err := _taskService.GetAllTasks()
+	tasks, err := controller.taskService.GetAllTasks()
 	if err != nil {
 		// If there is an error, respond with a 500 status code.
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -64,7 +62,7 @@ func (controllers *TaskController) UpdateTask(c *gin.Context) {
 	}
 
 	task.ID = uint(id)
-	tasks, err := _taskService.UpdateTask(&task)
+	tasks, err := controllers.taskService.UpdateTask(&task)
 	if err != nil {
 		// If there is an error while updating the task, respond with a 500 status code.
 		c.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to update task!"})
@@ -82,7 +80,7 @@ func (controller *TaskController) DeleteTask(c *gin.Context) {
 		return
 	}
 
-	tasks, err := _taskService.DeleteTask(uint(id))
+	tasks, err := controller.taskService.DeleteTask(uint(id))
 	// If there is an error while deleting the task, respond with a 500 status code.
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to delete task"})
@@ -102,7 +100,7 @@ func (controller *TaskController) MarkTaskAsDone(c *gin.Context) {
 		return
 	}
 
-	tasks, err := _taskService.MarkTaskAsDone(uint(id))
+	tasks, err := controller.taskService.MarkTaskAsDone(uint(id))
 	// If there is an error while deleting the task, respond with a 500 status code.
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to update task"})
