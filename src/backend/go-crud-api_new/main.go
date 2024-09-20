@@ -3,6 +3,10 @@ package main
 import (
 	"context"
 	"errors"
+	"flag"
+	"go-crud-api/pkg/router"
+	"go-crud-api/pkg/startup"
+	"go-crud-api/utils"
 	"log"
 	"net/http"
 	"os"
@@ -10,50 +14,77 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"go-crud-api/pkg/router"
-	"go-crud-api/pkg/startup"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	log.Println("Starting application...")
+	// Load the .env file
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
 
-	// Initialize services
-	log.Println("Initializing services...")
+	// Command-line flags
+	resetDocker := flag.Bool("reset-docker", false, "Reset Docker and start environment")
+	startAppOnly := flag.Bool("app-only", false, "Start the application without Docker setup")
+	flag.Parse()
+
+	// Select workflow based on flags
+	if *resetDocker {
+		utils.PrintWarning("Resetting Docker environment...\n")
+		utils.StartSpinner(utils.FormatWarning, "Resetting Docker")
+		startup.ResetDockerEnvironment()
+		utils.StopSpinner()
+		utils.PrintSuccess("Docker environment reset and started.\n")
+		startApp()
+	} else if *startAppOnly {
+		utils.PrintSuccess("Starting application without Docker setup...\n")
+		startApp()
+	} else {
+		if !startup.IsDockerRunning() {
+			utils.PrintError("Docker environment not running. Starting Docker...\n")
+			utils.StartSpinner(utils.FormatError, "Starting Docker")
+			startup.StartDockerEnvironment()
+			utils.StopSpinner()
+		}
+		utils.PrintInfo("Starting application after Docker setup...\n")
+		startApp()
+	}
+}
+
+// startApp handles service initialization and server startup
+func startApp() {
+	utils.PrintInfo("Initializing application services...\n")
+	utils.StartSpinner(utils.FormatInfo, "Initializing Services")
+
 	dbPostgres, redisClient, influxClient := startup.InitializeServices()
+
 	defer func() {
-		sqlDB, err := dbPostgres.DB()
-		if err != nil {
-			log.Fatalf("Failed to close database connection: %v", err)
-		}
+		// Close all services on exit
+		sqlDB, _ := dbPostgres.DB()
 		if err := sqlDB.Close(); err != nil {
-			log.Fatalf("Failed to close database connection: %v", err)
+			return
 		}
-		log.Println("Database connection closed successfully.")
-	}()
-	defer func() {
 		if err := redisClient.Close(); err != nil {
-			log.Fatalf("Failed to close Redis client: %v", err)
+			return
 		}
-		log.Println("Redis client closed successfully.")
-	}()
-	defer func() {
 		influxClient.Close()
-		log.Println("InfluxDB client closed successfully.")
+		utils.PrintSuccess("All services stopped successfully.\n")
 	}()
 
-	log.Println("All services initialized successfully.")
+	// Stop spinner for services
+	utils.StopSpinner()
+	utils.PrintSuccess("✔ Services initialized!\n")
 
-	// Setup and start the HTTP server using Gin
+	// Start the HTTP server using Gin
 	r := gin.Default()
 	router.SetupRoutes(r)
-
 	startServer(r)
-
-	// Handle graceful server shutdown on OS interrupt signals
+	utils.PrintSuccess("App is running\n")
 	handleGracefulShutdown()
 }
 
-// startServer starts the HTTP server in a new goroutine.
+// startServer starts the HTTP server
 func startServer(router *gin.Engine) {
 	server := &http.Server{
 		Addr:    ":8000",
@@ -61,27 +92,27 @@ func startServer(router *gin.Engine) {
 	}
 
 	go func() {
-		log.Println("Starting HTTP server on port 8000...")
+		utils.PrintSuccess("HTTP server running on port 8000...\n")
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
-			log.Fatalf("Could not listen on :8000: %v", err)
+			log.Fatalf("Failed to start server: %v", err)
 		}
 	}()
-	log.Println("Server started on port 8000.")
 }
 
-// handleGracefulShutdown manages graceful server shutdown upon receiving OS signals.
+// handleGracefulShutdown ensures app shuts down properly on interrupt
 func handleGracefulShutdown() {
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
-	<-quit // Block until a signal is received
-	log.Println("Shutting down server...")
+	<-quit
 
+	utils.PrintWarning("Graceful shutdown initiated...\n")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	server := &http.Server{}
 	if err := server.Shutdown(ctx); err != nil {
-		log.Fatalf("Server forced to shutdown: %v", err)
+		log.Fatalf("Forced to shutdown: %v", err)
 	}
-	log.Println("Server exited gracefully.")
+
+	utils.PrintSuccess("Server exited.\n")
 }

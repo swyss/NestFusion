@@ -2,7 +2,7 @@ package task_services
 
 import (
 	models "go-crud-api/internal/tasks/models"
-  "go-crud-api/internal/tasks/repositories"
+	"go-crud-api/internal/tasks/repositories"
 )
 
 type TaskService struct {

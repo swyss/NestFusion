@@ -9,6 +9,12 @@ import (
 )
 
 func SetupRoutes(r *gin.Engine) {
+	// Define your routes here
+	r.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "Server is healthy",
+		})
+	})
 	// Register User Routes
 	userGroup := r.Group("/user")
 	userRouter.RegisterUserRoutes(userGroup)
