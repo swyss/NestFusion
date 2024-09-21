@@ -17,7 +17,6 @@ func IsDockerRunning() bool {
 
 // StartDockerEnvironment starts Docker containers if not running
 func StartDockerEnvironment() {
-	// Verwende FormatInfo anstelle von PrintInfo
 	utils.StartSpinner(utils.FormatInfo, "Starting Docker containers")
 
 	cmd := exec.Command("docker-compose", "up", "-d")
@@ -32,7 +31,6 @@ func StartDockerEnvironment() {
 
 // ResetDockerEnvironment stops and removes all Docker containers
 func ResetDockerEnvironment() {
-	// Verwende FormatWarning anstelle von PrintWarning
 	utils.StartSpinner(utils.FormatWarning, "Resetting Docker environment")
 
 	cmd := exec.Command("docker-compose", "down", "--volumes", "--remove-orphans")

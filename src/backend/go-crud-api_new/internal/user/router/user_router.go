@@ -29,5 +29,4 @@ func RegisterUserRoutes(r *gin.RouterGroup) {
 	// Register routes
 	r.POST(CreateUserRoute, userController.CreateUser)
 	r.GET(GetUserRoute, userController.GetUser)
-	// Additional user routes can be added here
 }

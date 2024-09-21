@@ -2,18 +2,20 @@ package auditlog_router
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis/v8"
 	controllers "go-crud-api/internal/auditlog/controllers"
 	repositories "go-crud-api/internal/auditlog/repositories"
 	services "go-crud-api/internal/auditlog/services"
-	database "go-crud-api/pkg/databases/postgres"
 )
 
-// Constants for route paths
-const auditLogRoutePath = "/"
+const auditLogRoutePath = "/audit-logs"
 
-// Function to initialize components
 func initAuditLogComponents() (*controllers.AuditLogController, error) {
-	auditLogRepo := repositories.NewAuditLogRepository(database.PostgresDB)
+	redisClient := redis.NewClient(&redis.Options{
+		Addr: "localhost:6379",
+	})
+
+	auditLogRepo := repositories.NewAuditLogRepository(redisClient)
 	auditLogService := services.NewAuditLogService(auditLogRepo)
 	return controllers.NewAuditLogController(auditLogService), nil
 }
@@ -21,9 +23,9 @@ func initAuditLogComponents() (*controllers.AuditLogController, error) {
 func RegisterAuditLogRoutes(r *gin.RouterGroup) {
 	auditLogController, err := initAuditLogComponents()
 	if err != nil {
-		// Handle initialization error (optional)
 		return
 	}
+
 	r.GET(auditLogRoutePath, auditLogController.GetAuditLogs)
-	// Additional audit log routes can be added here
+	r.POST(auditLogRoutePath, auditLogController.StoreAuditLog)
 }

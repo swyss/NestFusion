@@ -1,16 +1,17 @@
 package auditlog_services
 
 import (
-	"fmt"
 	models "go-crud-api/internal/auditlog/models"
 	repositories "go-crud-api/internal/auditlog/repositories"
+	"time"
 )
 
-// Error messages
-const (
-	errMsgRetrieveAllLogs = "Failed to retrieve all audit logs"
-)
+type AuditLogEntry struct {
+	UserID     uint   `json:"user_id"`
+	ActionType string `json:"action_type"`
+}
 
+// AuditLogService provides services related to audit logs
 type AuditLogService struct {
 	repository *repositories.AuditLogRepository
 }
@@ -19,10 +20,17 @@ func NewAuditLogService(repository *repositories.AuditLogRepository) *AuditLogSe
 	return &AuditLogService{repository: repository}
 }
 
-func (service *AuditLogService) GetAllLogs() ([]models.AuditLog, error) {
-	logs, err := service.repository.GetAll()
-	if err != nil {
-		return nil, fmt.Errorf("%s: %w", errMsgRetrieveAllLogs, err)
+// StoreLog stores a new audit log
+func (service *AuditLogService) StoreLog(entry AuditLogEntry) error {
+	log := models.AuditLog{
+		UserID:     entry.UserID,
+		ActionType: entry.ActionType,
+		CreatedAt:  time.Now(),
 	}
-	return logs, nil
+	return service.repository.StoreLog(log)
+}
+
+// GetAllLogs retrieves all audit logs
+func (service *AuditLogService) GetAllLogs() ([]models.AuditLog, error) {
+	return service.repository.GetAll()
 }

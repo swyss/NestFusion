@@ -36,7 +36,7 @@ func (controller *UserController) GetUser(c *gin.Context) {
 		handleError(c, http.StatusBadRequest, "Invalid user ID")
 		return
 	}
-	user, err := controller.service.GetUser(userID)
+	user, err := controller.service.GetUserByID(userID)
 	if err != nil {
 		handleError(c, http.StatusNotFound, "User not found")
 		return

@@ -30,6 +30,17 @@ func (repo *UserRepository) GetUserByID(id uint) (*models.User, error) {
 	return &user, err
 }
 
+// GetUserByEmail retrieves a user from the database by email.
+// This is the method needed for the login process.
+func (repo *UserRepository) GetUserByEmail(email string) (*models.User, error) {
+	var user models.User
+	err := repo.db.Where("email = ?", email).First(&user).Error
+	if err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
 // Extracted function to find user by ID
 func (repo *UserRepository) findUserByID(id uint, user *models.User) error {
 	return repo.db.First(user, id).Error

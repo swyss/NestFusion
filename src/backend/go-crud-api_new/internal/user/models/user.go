@@ -16,8 +16,9 @@ type User struct {
 	Name     string   `gorm:"type:varchar(100);not null" json:"name"`
 	Email    string   `gorm:"type:varchar(100);unique;not null" json:"email"`
 	Password string   `gorm:"type:varchar(255);not null" json:"-"`
-	RoleID   uint     `gorm:"not null" json:"role_id"`       // Foreign key for the user's role
-	Role     UserRole `gorm:"foreignKey:RoleID" json:"role"` // One-to-one relationship with a role
+	Salt     string   `gorm:"type:varchar(255);not null" json:"-"` // Füge das Salt hinzu
+	RoleID   uint     `gorm:"not null" json:"role_id"`
+	Role     UserRole `gorm:"foreignKey:RoleID" json:"role"`
 }
 
 // UserInfo represents additional user information, with a foreign key referencing the User.

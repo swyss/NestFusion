@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"flag"
+	"fmt"
 	"go-crud-api/pkg/router"
 	"go-crud-api/pkg/startup"
 	"go-crud-api/utils"
@@ -18,6 +19,8 @@ import (
 )
 
 func main() {
+	printAsciiArtTitle()
+
 	// Load the .env file
 	err := godotenv.Load()
 	if err != nil {
@@ -50,6 +53,16 @@ func main() {
 		utils.PrintInfo("Starting application after Docker setup...\n")
 		startApp()
 	}
+}
+
+// printAsciiArtTitle outputs the ASCII art title at startup
+func printAsciiArtTitle() {
+	fmt.Println(`
+   _  __        __  ____         _         
+  / |/ /__ ___ / /_/ __/_ _____ (_)__  ___ 
+ /    / -_|_-</ __/ _// // (_-</ / _ \/ _ \
+/_/|_/\__/___/\__/_/  \_,_/___/_/\___/_//_/
+`)
 }
 
 // startApp handles service initialization and server startup
@@ -92,6 +105,7 @@ func startServer(router *gin.Engine) {
 	}
 
 	go func() {
+		printAsciiArtTitle()
 		utils.PrintSuccess("HTTP server running on port 8000...\n")
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			log.Fatalf("Failed to start server: %v", err)
