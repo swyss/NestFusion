@@ -1,19 +1,29 @@
 package task_router
 
 import (
-	"github.com/gin-gonic/gin"
 	controllers "go-crud-api/internal/tasks/controllers"
+	task_repositories "go-crud-api/internal/tasks/repositories"
+	task_services "go-crud-api/internal/tasks/services"
+	database "go-crud-api/pkg/databases/postgres"
+
+	"github.com/gin-gonic/gin"
 )
 
-func RegisterTaskRoutes(r *gin.Engine) {
-	taskController := controllers.NewTaskController()
+func initializeTaskComponents() (*controllers.TaskController) {
+	taskRepo := task_repositories.NewTaskRepository(database.PostgresDB)
+	taskService := task_services.NewTaskService(taskRepo)
+	taskController := controllers.NewTaskController(taskService)
+	return taskController
+}
 
-	taskRoutes := r.Group("/tasks")
+func RegisterTaskRoutes(taskGroup *gin.RouterGroup) {
+	taskController := initializeTaskComponents()
+
 	{
-		taskRoutes.GET("", taskController.GetAllTasks)
-		taskRoutes.POST("", taskController.CreateTask)
-		taskRoutes.PUT("/markAsDone/:id", taskController.MarkTaskAsDone)
-		taskRoutes.DELETE("/:id", taskController.DeleteTask)
-		taskRoutes.PUT("/:id", taskController.UpdateTask)
+		taskGroup.GET("", taskController.GetAllTasks)
+		taskGroup.POST("", taskController.CreateTask)
+		taskGroup.PUT("/markAsDone/:id", taskController.MarkTaskAsDone)
+		taskGroup.DELETE("/:id", taskController.DeleteTask)
+		taskGroup.PUT("/:id", taskController.UpdateTask)
 	}
 }
