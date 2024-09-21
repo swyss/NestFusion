@@ -4,23 +4,26 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="feat (gogogo): start workflow in go files -&gt; see README.md">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="feat (gogogo): add ascii art and code cleaning">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/auditlog/controllers/auditlog_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/auditlog/controllers/auditlog_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/auditlog/repositories/auditlog_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/auditlog/repositories/auditlog_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/auditlog/router/auditlog_router.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/auditlog/router/auditlog_router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/auditlog/services/auditlog_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/auditlog/services/auditlog_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/controllers/user_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/controllers/user_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/models/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/repositories/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/repositories/user_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/router/user_router.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/router/user_router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/services/user_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/startup/docker_starter.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/startup/docker_starter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/console.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/console.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/bruno.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/delete -plant--id.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/delete -users--id.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/get -auditlog.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/get -plant--id.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/get -users--id.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/get -users.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/post -plant.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/post -users.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/put -plant--id.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/put -users--id.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/task/Create new Task.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/task/Delete Task.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/task/Get All Tasks.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/task/Mark task as done.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/task/Update Task.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/bruno.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/openapi.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,27 +75,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Go Build.go build go-crud-api.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/uller&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build go-crud-api.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "develop",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/uller",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "com.goide.configuration.GoLibrariesConfigurableProvider"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\repos\projects\NestFusion\src\backend\go-crud-api_new\pkg\startup" />
@@ -130,11 +134,23 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix (backend): add GORM remove unused code... SWAGGER is NOT working" />
     <MESSAGE value="fix (frontend): update yarn packages" />
     <MESSAGE value="feat (gogogo): start workflow in go files -&gt; see README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat (gogogo): start workflow in go files -&gt; see README.md" />
+    <MESSAGE value="feat (gogogo): add ascii art and code cleaning" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat (gogogo): add ascii art and code cleaning" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
