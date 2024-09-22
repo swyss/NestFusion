@@ -1,4 +1,4 @@
-package user_models
+package models
 
 import "gorm.io/gorm"
 
@@ -18,23 +18,6 @@ type User struct {
 	Salt     string   `gorm:"type:varchar(255);not null" json:"-"`
 	RoleID   uint     `gorm:"not null" json:"role_id"`
 	Role     UserRole `gorm:"foreignKey:RoleID" json:"role"`
-}
-
-// UserInfo represents additional user information, with a foreign key referencing the User.
-type UserInfo struct {
-	gorm.Model
-	ID     uint   `gorm:"primaryKey" json:"id"`
-	UserID uint   `gorm:"not null" json:"user_id"`
-	Name   string `gorm:"type:varchar(100);not null" json:"name"`
-	Email  string `gorm:"type:varchar(100);unique;not null" json:"email"`
-	User   User   `gorm:"foreignKey:UserID"`
-}
-
-// UserRole represents the role assigned to a user.
-type UserRole struct {
-	gorm.Model
-	ID       uint   `gorm:"primaryKey" json:"id"`
-	RoleName string `gorm:"type:varchar(100);not null" json:"role_name"`
 }
 
 // LoginCredentials represents login information, not stored in the database.

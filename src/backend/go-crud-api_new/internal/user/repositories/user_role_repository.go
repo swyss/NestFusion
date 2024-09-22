@@ -1,19 +1,30 @@
-package user_repositories
+package repositories
 
 import (
 	models "go-crud-api/internal/user/models"
 	"gorm.io/gorm"
 )
 
+// UserRoleRepository handles the database operations for user roles.
 type UserRoleRepository struct {
-	db *gorm.DB
+	DB *gorm.DB
 }
 
+// NewUserRoleRepository initializes a new UserRoleRepository.
 func NewUserRoleRepository(db *gorm.DB) *UserRoleRepository {
-	return &UserRoleRepository{db: db}
+	return &UserRoleRepository{DB: db}
 }
 
-// CreateUserRole inserts a new role into the database.
-func (repo *UserRoleRepository) CreateUserRole(role *models.UserRole) error {
-	return repo.db.Create(role).Error
+// GetAll retrieves all roles.
+func (r *UserRoleRepository) GetAll() ([]models.UserRole, error) {
+	var roles []models.UserRole
+	if err := r.DB.Find(&roles).Error; err != nil {
+		return nil, err
+	}
+	return roles, nil
+}
+
+// Create creates a new role.
+func (r *UserRoleRepository) Create(role *models.UserRole) error {
+	return r.DB.Create(role).Error
 }

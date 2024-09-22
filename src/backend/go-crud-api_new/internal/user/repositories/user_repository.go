@@ -1,4 +1,4 @@
-package user_repositories
+package repositories
 
 import (
 	models "go-crud-api/internal/user/models"

@@ -1,19 +1,28 @@
-package user_services
+package services
 
 import (
 	models "go-crud-api/internal/user/models"
-	repositories "go-crud-api/internal/user/repositories"
+	"go-crud-api/internal/user/repositories"
 )
 
+// UserInfoService provides methods for user info operations.
 type UserInfoService struct {
-	repository *repositories.UserInfoRepository
+	UserInfoRepo *repositories.UserInfoRepository
 }
 
+// NewUserInfoService initializes a new UserInfoService.
 func NewUserInfoService(repo *repositories.UserInfoRepository) *UserInfoService {
-	return &UserInfoService{repository: repo}
+	return &UserInfoService{
+		UserInfoRepo: repo,
+	}
 }
 
-// CreateUserInfo creates new user info in the database.
-func (service *UserInfoService) CreateUserInfo(info *models.UserInfo) error {
-	return service.repository.CreateUserInfo(info)
+// GetAllUserInfo retrieves all user info records.
+func (s *UserInfoService) GetAllUserInfo() ([]models.UserInfo, error) {
+	return s.UserInfoRepo.GetAll()
+}
+
+// CreateUserInfo creates a new user info record.
+func (s *UserInfoService) CreateUserInfo(userInfo *models.UserInfo) error {
+	return s.UserInfoRepo.Create(userInfo)
 }

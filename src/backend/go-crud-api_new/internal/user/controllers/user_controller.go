@@ -1,4 +1,4 @@
-package user_controllers
+package controllers
 
 import (
 	"net/http"

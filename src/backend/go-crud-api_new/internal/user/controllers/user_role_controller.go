@@ -1,30 +1,38 @@
-package user_controllers
+package controllers
 
 import (
 	"github.com/gin-gonic/gin"
 	models "go-crud-api/internal/user/models"
-	services "go-crud-api/internal/user/services"
+	"go-crud-api/internal/user/services"
 	"net/http"
 )
 
+// UserRoleController handles requests related to user roles.
 type UserRoleController struct {
-	service *services.UserRoleService
+	UserRoleService services.UserRoleService
 }
 
-func NewUserRoleController(service *services.UserRoleService) *UserRoleController {
-	return &UserRoleController{service: service}
+// GetAllRoles fetches all roles.
+func (c *UserRoleController) GetAllRoles(ctx *gin.Context) {
+	roles, err := c.UserRoleService.GetAllRoles()
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to retrieve roles."})
+		return
+	}
+	ctx.JSON(http.StatusOK, roles)
 }
 
-// CreateUserRole handles the creation of a new role.
-func (controller *UserRoleController) CreateUserRole(c *gin.Context) {
+// CreateRole creates a new user role.
+func (c *UserRoleController) CreateRole(ctx *gin.Context) {
 	var role models.UserRole
-	if err := c.ShouldBindJSON(&role); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	if err := ctx.ShouldBindJSON(&role); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	if err := controller.service.CreateUserRole(&role); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create role"})
+
+	if err := c.UserRoleService.CreateRole(&role); err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to create role."})
 		return
 	}
-	c.JSON(http.StatusCreated, role)
+	ctx.JSON(http.StatusOK, role)
 }

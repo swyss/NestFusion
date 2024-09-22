@@ -1,19 +1,28 @@
-package user_services
+package services
 
 import (
 	models "go-crud-api/internal/user/models"
-	repositories "go-crud-api/internal/user/repositories"
+	"go-crud-api/internal/user/repositories"
 )
 
+// UserRoleService provides methods for role operations.
 type UserRoleService struct {
-	repository *repositories.UserRoleRepository
+	UserRoleRepo *repositories.UserRoleRepository
 }
 
+// NewUserRoleService initializes a new UserRoleService.
 func NewUserRoleService(repo *repositories.UserRoleRepository) *UserRoleService {
-	return &UserRoleService{repository: repo}
+	return &UserRoleService{
+		UserRoleRepo: repo,
+	}
 }
 
-// CreateUserRole creates a new role in the database.
-func (service *UserRoleService) CreateUserRole(role *models.UserRole) error {
-	return service.repository.CreateUserRole(role)
+// GetAllRoles retrieves all roles.
+func (s *UserRoleService) GetAllRoles() ([]models.UserRole, error) {
+	return s.UserRoleRepo.GetAll()
+}
+
+// CreateRole creates a new role.
+func (s *UserRoleService) CreateRole(role *models.UserRole) error {
+	return s.UserRoleRepo.Create(role)
 }
