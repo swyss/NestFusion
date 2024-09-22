@@ -4,21 +4,17 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/internal/user/models/user_info.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/user/models/user_role.go" afterDir="false" />
+    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="feat (user-endpoint): update endpoint">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/controllers/user_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/controllers/user_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/controllers/user_info_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/controllers/user_info_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/controllers/user_role_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/controllers/user_role_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/models/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/repositories/user_info_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/repositories/user_info_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/repositories/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/repositories/user_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/repositories/user_role_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/repositories/user_role_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/router/user_router.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/router/user_router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/services/user_info_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/services/user_info_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/services/user_role_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/services/user_role_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/services/user_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/databases/influxdb/influxdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/databases/influxdb/influxdb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/databases/postgres/postgres.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/databases/postgres/postgres.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/databases/redisdb/redis.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/databases/redisdb/redis.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/startup/docker_starter.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/startup/docker_starter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/startup/init_services.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/startup/init_services.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/console.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/console.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/spinner.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/spinner.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +143,8 @@
     <MESSAGE value="feat (gogogo): start workflow in go files -&gt; see README.md" />
     <MESSAGE value="fix (project): fixfixfix" />
     <MESSAGE value="Revert &quot;fix (project): adjust bruno config&quot;&#10;&#10;This reverts commit 4becbe92" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;fix (project): adjust bruno config&quot;&#10;&#10;This reverts commit 4becbe92" />
+    <MESSAGE value="feat (user-endpoint): update endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat (user-endpoint): update endpoint" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

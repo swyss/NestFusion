@@ -2,7 +2,7 @@ package postgres
 
 import (
 	task_models "go-crud-api/internal/tasks/models"
-	models "go-crud-api/internal/user/models"
+	"go-crud-api/internal/user/models"
 	"go-crud-api/utils"
 	"log"
 	"os"
@@ -21,25 +21,35 @@ var (
 	once     sync.Once
 )
 
-// InitializePostgres initializes the PostgreSQL database connection using GORM.
+// InitializePostgres initializes the PostgreSQL database connection using GORM
+// and ensures the database and tables are created.
 func InitializePostgres() *gorm.DB {
 	dbURL := os.Getenv("DATABASE_URL")
 	if dbURL == "" {
 		utils.PrintError("Error: DATABASE_URL environment variable is not set")
 		log.Fatal("DATABASE_URL environment variable is not set")
 	}
-	utils.PrintSuccess("DATABASE_URL environment variable loaded successfully")
+	utils.PrintSuccess("DATABASE_URL environment variable loaded successfully: " + dbURL)
 
-	// Configure the GORM settings
-	db, err := gorm.Open(postgres.Open(dbURL), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Info),
-		NamingStrategy: schema.NamingStrategy{
-			SingularTable: true,
-		},
-	})
+	// Retry logic for connecting to PostgreSQL
+	var db *gorm.DB
+	var err error
+	for i := 0; i < 10; i++ { // Retry 10 times
+		db, err = gorm.Open(postgres.Open(dbURL), &gorm.Config{
+			Logger: logger.Default.LogMode(logger.Info),
+			NamingStrategy: schema.NamingStrategy{
+				SingularTable: true,
+			},
+		})
+		if err == nil {
+			break
+		}
+		utils.PrintWarning("Waiting for PostgreSQL to be ready...")
+		time.Sleep(5 * time.Second) // Wait 5 seconds before retrying
+	}
 
 	if err != nil {
-		utils.PrintError("Failed to connect to PostgreSQL")
+		utils.PrintError("Failed to connect to PostgreSQL after multiple attempts")
 		log.Fatalf("Failed to connect to PostgreSQL: %v", err)
 	}
 

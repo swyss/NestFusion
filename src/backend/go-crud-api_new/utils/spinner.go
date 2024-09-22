@@ -43,3 +43,9 @@ func spinner(stopChan chan bool, colorFn func(format string, a ...interface{}) s
 		}
 	}
 }
+
+// StopSpinnerWithError stops the spinner and shows an error message.
+func StopSpinnerWithError(message string) {
+	StopSpinner()
+	PrintError(fmt.Sprintf("✘ %s failed!", message))
+}

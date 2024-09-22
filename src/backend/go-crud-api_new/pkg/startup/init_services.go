@@ -6,8 +6,9 @@ import (
 	influxdb2 "github.com/influxdata/influxdb-client-go/v2"
 	models "go-crud-api/internal/user/models"
 	"go-crud-api/pkg/databases/influxdb"
-	"go-crud-api/pkg/databases/postgres"
-	"go-crud-api/pkg/databases/redisdb"
+	postgres "go-crud-api/pkg/databases/postgres"
+	redisdb "go-crud-api/pkg/databases/redisdb"
+
 	"go-crud-api/utils"
 
 	"gorm.io/gorm"

@@ -43,3 +43,8 @@ func FormatError(format string, a ...interface{}) string {
 func FormatWarning(format string, a ...interface{}) string {
 	return color.New(color.FgYellow, color.Bold).Sprintf(format, a...)
 }
+
+// PrintCompletion prints the completion message with checkmark
+func PrintCompletion(message string) {
+	PrintSuccess("✔ " + message)
+}
