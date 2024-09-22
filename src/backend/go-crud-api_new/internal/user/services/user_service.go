@@ -59,6 +59,9 @@ func (service *UserService) LoginUser(email string, password string) (string, er
 
 	return createJwtToken(user.ID)
 }
+func (service *UserService) GetAllUsers() ([]*models.User, error) {
+	return service.repository.GetAllUsers()
+}
 
 // hashPassword generates a bcrypt hash of the password with salt and pepper
 func hashPassword(password string) (string, string, error) {

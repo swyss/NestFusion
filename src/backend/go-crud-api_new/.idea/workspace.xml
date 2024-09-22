@@ -4,8 +4,37 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="feat (gogogo): start workflow in go files -&gt; see README.md">
+    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/user/controllers/user_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/controllers/user_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/user/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/models/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/user/repositories/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/repositories/user_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/user/router/user_router.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/router/user_router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/user/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/services/user_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/databases/postgres/postgres.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/databases/postgres/postgres.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/startup/docker_starter.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/startup/docker_starter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/startup/init_services.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/startup/init_services.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/bruno.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/delete -plant--id.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/delete -users--id.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/get -auditlog.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/get -plant--id.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/get -users--id.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/get -users.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/post -plant.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/post -users.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/put -plant--id.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/put -users--id.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/task/Create new Task.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/task/Delete Task.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/task/Get All Tasks.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/task/Mark task as done.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/Go CRUD API/task/Update Task.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/NestFusion/bruno.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/bruno/openapi.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +120,15 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="go-crud-api" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="go-crud-api" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build go-crud-api" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="go-crud-api" />
       <working_directory value="$PROJECT_DIR$" />
@@ -123,7 +161,9 @@
     <MESSAGE value="fix (backend): add GORM remove unused code... SWAGGER is NOT working" />
     <MESSAGE value="fix (frontend): update yarn packages" />
     <MESSAGE value="feat (gogogo): start workflow in go files -&gt; see README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat (gogogo): start workflow in go files -&gt; see README.md" />
+    <MESSAGE value="fix (project): fixfixfix" />
+    <MESSAGE value="Revert &quot;fix (project): adjust bruno config&quot;&#10;&#10;This reverts commit 4becbe92" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;fix (project): adjust bruno config&quot;&#10;&#10;This reverts commit 4becbe92" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

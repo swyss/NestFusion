@@ -6,64 +6,105 @@ import (
 	influxdb2 "github.com/influxdata/influxdb-client-go/v2"
 	models "go-crud-api/internal/user/models"
 	"go-crud-api/pkg/databases/influxdb"
-	db "go-crud-api/pkg/databases/postgres"
+	"go-crud-api/pkg/databases/postgres"
 	"go-crud-api/pkg/databases/redisdb"
+	"go-crud-api/utils"
+
 	"gorm.io/gorm"
 	"log"
 )
 
 // InitializeServices initializes all services and returns their instances.
 func InitializeServices() (*gorm.DB, *redis.Client, influxdb2.Client) {
-	log.Println("Initializing services...")
+	utils.PrintInfo("Initializing services...")
 
-	// Initialize the PostgresSQL database using GORM
-	dbPostgres := db.InitializePostgres()
-	color.Blue("PostgresSQL database initialized successfully with GORM")
+	// Initialize the PostgreSQL database using GORM
+	dbPostgres := postgres.InitializePostgres()
+	if dbPostgres == nil {
+		color.Red("Error initializing PostgreSQL.")
+	} else {
+		utils.PrintSuccess("PostgreSQL initialized successfully.")
+	}
 
-	// Initialize Redis client
+	// Initialize the Redis client
 	redisClient := redisdb.InitializeRedis()
-	color.Green("Redis client initialized successfully")
+	if redisClient == nil {
+		color.Red("Error initializing Redis.")
+	} else {
+		utils.PrintSuccess("Redis initialized successfully.")
+	}
 
-	// Initialize InfluxDB client
+	// Initialize the InfluxDB client
 	influxClient := influxdb.InitializeInfluxDB()
-	color.Cyan("InfluxDB client initialized successfully")
+	if influxClient == nil {
+		color.Red("Error initializing InfluxDB.")
+	} else {
+		utils.PrintSuccess("InfluxDB initialized successfully.")
+	}
 
-	// Run database migrations
-	MigrateDatabase(dbPostgres)
+	// Seed the PostgreSQL database with sample data
+	SeedDatabase(dbPostgres)
 
 	return dbPostgres, redisClient, influxClient
 }
 
-// MigrateDatabase runs the database migrations and inserts test data if needed
-func MigrateDatabase(db *gorm.DB) {
-	log.Println("Checking and migrating database schema...")
+// SeedDatabase inserts test data into the PostgreSQL database
+func SeedDatabase(db *gorm.DB) {
+	log.Println("Seeding database with test data...")
 
-	err := db.AutoMigrate(
-		// Add models that need to be migrated
-		&models.User{},
-	)
-	if err != nil {
-		color.Red("Database migration failed: %v", err)
-		return
+	// Create roles
+	adminRole := models.UserRole{RoleName: "Admin"}
+	userRole := models.UserRole{RoleName: "User"}
+	managerRole := models.UserRole{RoleName: "Manager"}
+
+	// Insert roles into the database
+	db.FirstOrCreate(&adminRole, models.UserRole{RoleName: "Admin"})
+	db.FirstOrCreate(&userRole, models.UserRole{RoleName: "User"})
+	db.FirstOrCreate(&managerRole, models.UserRole{RoleName: "Manager"})
+
+	// Create users
+	admin := models.User{
+		UserName: "admin",
+		Password: "adminpass", // This password should be hashed in a real application
+		RoleID:   adminRole.ID,
 	}
-
-	color.Yellow("Database schema migrated successfully")
-}
-
-// InsertTestData inserts test data into the database
-func InsertTestData(db *gorm.DB) {
-	log.Println("Inserting test data...")
-
 	user := models.User{
-		Name:  "Test User",
-		Email: "test@example.com",
-		// Add more fields as necessary
+		UserName: "user",
+		Password: "userpass", // This password should be hashed in a real application
+		RoleID:   userRole.ID,
+	}
+	manager := models.User{
+		UserName: "manager",
+		Password: "managerpass", // This password should be hashed in a real application
+		RoleID:   managerRole.ID,
 	}
 
-	result := db.Create(&user)
-	if result.Error != nil {
-		color.Red("Failed to insert test data: %v", result.Error)
-	} else {
-		color.Green("Test data inserted successfully")
+	// Insert users into the database
+	db.FirstOrCreate(&admin, models.User{UserName: "admin"})
+	db.FirstOrCreate(&user, models.User{UserName: "user"})
+	db.FirstOrCreate(&manager, models.User{UserName: "manager"})
+
+	// Create UserInfo for each user
+	adminInfo := models.UserInfo{
+		UserID: admin.ID,
+		Name:   "Admin User",
+		Email:  "admin@example.com",
 	}
+	userInfo := models.UserInfo{
+		UserID: user.ID,
+		Name:   "Regular User",
+		Email:  "user@example.com",
+	}
+	managerInfo := models.UserInfo{
+		UserID: manager.ID,
+		Name:   "Manager User",
+		Email:  "manager@example.com",
+	}
+
+	// Insert UserInfo into the database
+	db.FirstOrCreate(&adminInfo, models.UserInfo{UserID: admin.ID})
+	db.FirstOrCreate(&userInfo, models.UserInfo{UserID: user.ID})
+	db.FirstOrCreate(&managerInfo, models.UserInfo{UserID: manager.ID})
+
+	utils.PrintSuccess("Database seeded with test data successfully.")
 }

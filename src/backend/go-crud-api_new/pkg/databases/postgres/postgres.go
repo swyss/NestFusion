@@ -30,58 +30,29 @@ func InitializePostgres() *gorm.DB {
 	}
 	utils.PrintSuccess("DATABASE_URL environment variable loaded successfully")
 
-	var err error
-	maxRetries := 10
-	// Start the spinner while connecting to the database
-	utils.StartSpinner(utils.FormatInfo, "Connecting to PostgreSQL")
-
-	for i := 0; i < maxRetries; i++ {
-		PostgresDB, err = gorm.Open(postgres.Open(dbURL), &gorm.Config{
-			NamingStrategy: schema.NamingStrategy{
-				SingularTable: true,
-			},
-			Logger: logger.Default.LogMode(logger.Info),
-		})
-		if err == nil {
-			sqlDB, err := PostgresDB.DB()
-			if err != nil {
-				utils.PrintError("Failed to get database instance")
-				log.Fatalf("Failed to get database instance: %v", err)
-			}
-
-			if err = sqlDB.Ping(); err == nil {
-				utils.StopSpinner()
-				utils.PrintSuccess("Successfully connected to PostgreSQL database using GORM")
-				break
-			}
-		}
-
-		utils.PrintWarning("Failed to ping the database (attempt %d/%d): %v", i+1, maxRetries, err)
-		time.Sleep(5 * time.Second)
-	}
+	// Configure the GORM settings
+	db, err := gorm.Open(postgres.Open(dbURL), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Info),
+		NamingStrategy: schema.NamingStrategy{
+			SingularTable: true,
+		},
+	})
 
 	if err != nil {
-		utils.StopSpinner()
-		utils.PrintError("Could not connect to the database after %d attempts", maxRetries)
-		log.Fatalf("Could not connect to the database after %d attempts: %v", maxRetries, err)
+		utils.PrintError("Failed to connect to PostgreSQL")
+		log.Fatalf("Failed to connect to PostgreSQL: %v", err)
 	}
 
-	configureDBPooling(PostgresDB)
+	utils.PrintSuccess("Connected to PostgreSQL")
 
-	if err := PostgresDB.AutoMigrate(&models.User{}); err == nil {
-		utils.PrintSuccess("User table migration completed successfully")
-	} else {
-		utils.PrintError("Failed to migrate User table: %v", err)
-		log.Fatalf("Failed to migrate User table: %v", err)
-	}
+	// Configure connection pooling
+	configureDBPooling(db)
 
-	if err := PostgresDB.AutoMigrate(&task_models.Task{}); err == nil {
-		utils.PrintSuccess("Task table migration completed successfully")
-	} else {
-		utils.PrintError("Failed to migrate Task table: %v", err)
-		log.Fatalf("Failed to migrate Task table: %v", err)
-	}
-	return PostgresDB
+	// Migrate the schema
+	db.AutoMigrate(&models.User{}, &task_models.Task{})
+	PostgresDB = db
+
+	return db
 }
 
 // configureDBPooling configures the connection pool settings for the database.

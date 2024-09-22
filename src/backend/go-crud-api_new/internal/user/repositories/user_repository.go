@@ -41,6 +41,12 @@ func (repo *UserRepository) GetUserByEmail(email string) (*models.User, error) {
 	return &user, nil
 }
 
+func (repo *UserRepository) GetAllUsers() ([]*models.User, error) {
+	var users []*models.User
+	result := repo.db.Find(&users)
+	return users, result.Error
+}
+
 // Extracted function to find user by ID
 func (repo *UserRepository) findUserByID(id uint, user *models.User) error {
 	return repo.db.First(user, id).Error
