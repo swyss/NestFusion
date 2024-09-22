@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func initializeTaskComponents() (*controllers.TaskController) {
+func initializeTaskComponents() *controllers.TaskController {
 	taskRepo := task_repositories.NewTaskRepository(database.PostgresDB)
 	taskService := task_services.NewTaskService(taskRepo)
 	taskController := controllers.NewTaskController(taskService)

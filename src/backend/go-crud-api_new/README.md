@@ -2,7 +2,8 @@
 
 ## Project Overview
 
-This project is a Go-based CRUD API with services that use PostgreSQL, Redis, and InfluxDB for data storage and management.
+This project is a Go-based CRUD API with services that use PostgreSQL, Redis, and InfluxDB for data storage and
+management.
 
 ## Prerequisites
 
@@ -34,7 +35,8 @@ INFLUXDB_TOKEN=your_token
 
 ### 1. Docker Setup
 
-You need to make sure Docker is running, as the application relies on Docker containers for PostgreSQL, Redis, and InfluxDB.
+You need to make sure Docker is running, as the application relies on Docker containers for PostgreSQL, Redis, and
+InfluxDB.
 
 Use the following command to start the required containers:
 
@@ -43,6 +45,7 @@ docker-compose up -d
 ```
 
 This command will start the following containers:
+
 - **app_redis** (Redis)
 - **app_influxdb** (InfluxDB)
 - **app_postgres** (PostgreSQL)
@@ -130,4 +133,5 @@ This opens an HTML report in your browser showing which lines of code are covere
 
 ---
 
-By following the steps above, you can start and manage your Go-based application without the need to manually execute `main.exe`. Instead, use `go run main.go` for easier and direct execution.
+By following the steps above, you can start and manage your Go-based application without the need to manually execute
+`main.exe`. Instead, use `go run main.go` for easier and direct execution.

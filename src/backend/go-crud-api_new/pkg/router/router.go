@@ -20,7 +20,7 @@ func SetupRoutes(r *gin.Engine) {
 	userRouter.RegisterUserRoutes(userGroup)
 
 	// Register Task Routes
-  taskGroup := r.Group("/tasks")
+	taskGroup := r.Group("/tasks")
 	taskRouter.RegisterTaskRoutes(taskGroup)
 
 	// Register Audit Log Routes

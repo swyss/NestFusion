@@ -7,15 +7,15 @@ import (
 )
 
 type TaskRepository struct {
-  DB *gorm.DB
+	DB *gorm.DB
 }
 
 func NewTaskRepository(db *gorm.DB) *TaskRepository {
-	return &TaskRepository{ DB: db}
+	return &TaskRepository{DB: db}
 }
 
-func (repo *TaskRepository) GetAllTasks() []models.Task{
-  var tasks []models.Task
+func (repo *TaskRepository) GetAllTasks() []models.Task {
+	var tasks []models.Task
 	result := repo.DB.Find(&tasks)
 	if result.Error != nil {
 		panic(result.Error)
@@ -24,7 +24,7 @@ func (repo *TaskRepository) GetAllTasks() []models.Task{
 }
 
 func (repo *TaskRepository) CreateTask(task *models.Task) ([]models.Task, error) {
-  result := repo.DB.Create(&task)
+	result := repo.DB.Create(&task)
 	if result.Error != nil {
 		return repo.GetAllTasks(), result.Error
 	}

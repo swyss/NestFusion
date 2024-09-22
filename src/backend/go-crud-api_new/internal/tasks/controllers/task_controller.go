@@ -10,12 +10,11 @@ import (
 )
 
 type TaskController struct {
-  taskService *task_services.TaskService
+	taskService *task_services.TaskService
 }
 
-
 func NewTaskController(service *task_services.TaskService) *TaskController {
-	return &TaskController{ taskService: service}
+	return &TaskController{taskService: service}
 }
 
 func (controller *TaskController) CreateTask(c *gin.Context) {
