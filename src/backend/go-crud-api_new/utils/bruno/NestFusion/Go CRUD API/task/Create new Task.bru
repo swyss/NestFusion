@@ -1,0 +1,19 @@
+meta {
+  name: Create new task
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8000/tasks
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "name": "Test Bruno",
+      "created": "2024-09-04T12:00:00Z",
+      "due": "2024-07-27T12:00:00Z"
+  }
+}
