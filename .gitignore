@@ -77,3 +77,6 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 src/backend/go-crud-api/tmp/*
+src/backend/.DS_Store
+src/.DS_Store
+.DS_Store
