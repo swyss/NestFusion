@@ -18,13 +18,15 @@ import (
 	"github.com/joho/godotenv"
 )
 
+var server *http.Server
+
 func main() {
 	printAsciiArtTitle()
 
 	// Load the .env file
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatalf("Error loading .env file")
+		log.Fatalf("Error loading .env file: %v", err)
 	}
 
 	// Command-line flags
@@ -70,22 +72,32 @@ func startApp() {
 	utils.PrintInfo("Initializing application services...\n")
 	utils.StartSpinner(utils.FormatInfo, "Initializing Services")
 
+	// Initialize services (PostgreSQL, Redis, InfluxDB)
 	dbPostgres, redisClient, influxClient := startup.InitializeServices()
 
+	// Ensure services are properly shut down on application exit
 	defer func() {
-		// Close all services on exit
-		sqlDB, _ := dbPostgres.DB()
-		if err := sqlDB.Close(); err != nil {
-			return
+		if dbPostgres != nil {
+			sqlDB, _ := dbPostgres.DB()
+			if err := sqlDB.Close(); err != nil {
+				log.Printf("Error closing PostgreSQL connection: %v", err)
+			}
 		}
-		if err := redisClient.Close(); err != nil {
-			return
+
+		if redisClient != nil {
+			if err := redisClient.Close(); err != nil {
+				log.Printf("Error closing Redis connection: %v", err)
+			}
 		}
-		influxClient.Close()
+
+		if influxClient != nil {
+			influxClient.Close()
+		}
+
 		utils.PrintSuccess("All services stopped successfully.\n")
 	}()
 
-	// Stop spinner for services
+	// Stop spinner after services are initialized
 	utils.StopSpinner()
 	utils.PrintSuccess("✔ Services initialized!\n")
 
@@ -99,7 +111,7 @@ func startApp() {
 
 // startServer starts the HTTP server
 func startServer(router *gin.Engine) {
-	server := &http.Server{
+	server = &http.Server{
 		Addr:    ":8000",
 		Handler: router,
 	}
@@ -113,17 +125,17 @@ func startServer(router *gin.Engine) {
 	}()
 }
 
-// handleGracefulShutdown ensures app shuts down properly on interrupt
+// handleGracefulShutdown ensures the app shuts down properly on interrupt
 func handleGracefulShutdown() {
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
 
 	utils.PrintWarning("Graceful shutdown initiated...\n")
+
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	server := &http.Server{}
 	if err := server.Shutdown(ctx); err != nil {
 		log.Fatalf("Forced to shutdown: %v", err)
 	}

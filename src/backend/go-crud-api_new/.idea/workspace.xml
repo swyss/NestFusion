@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="feat (user-endpoint): update endpoint">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="fix (cleaning): code-cleaning">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/databases/influxdb/influxdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/databases/influxdb/influxdb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/user/models/user_info.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/models/user_info.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/databases/postgres/postgres.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/databases/postgres/postgres.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/databases/redisdb/redis.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/databases/redisdb/redis.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/startup/docker_starter.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/startup/docker_starter.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/startup/init_services.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/startup/init_services.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/console.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/console.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/spinner.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/spinner.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +50,10 @@
     &quot;url&quot;: &quot;https://github.com/swyss/NestFusion.git&quot;,
     &quot;accountId&quot;: &quot;7258f2b8-0324-49c7-8971-f2ae3f05f25d&quot;
   }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
 }</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
@@ -128,8 +128,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-gosdk-5df93f7ad4aa-df9ad98b711f-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-242.22855.85" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-GO-242.22855.85" />
+        <option value="bundled-gosdk-5df93f7ad4aa-df9ad98b711f-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-242.22855.106" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-GO-242.22855.106" />
       </set>
     </attachedChunks>
   </component>
@@ -144,7 +144,9 @@
     <MESSAGE value="fix (project): fixfixfix" />
     <MESSAGE value="Revert &quot;fix (project): adjust bruno config&quot;&#10;&#10;This reverts commit 4becbe92" />
     <MESSAGE value="feat (user-endpoint): update endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat (user-endpoint): update endpoint" />
+    <MESSAGE value="fix (startup): update startup-workflow" />
+    <MESSAGE value="fix (cleaning): code-cleaning" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix (cleaning): code-cleaning" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

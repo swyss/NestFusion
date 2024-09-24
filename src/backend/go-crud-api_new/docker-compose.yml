@@ -26,6 +26,49 @@ services:
       INFLUXDB_ADMIN_PASSWORD: password
     networks:
       - backend
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+
+  redis:
+    image: redis:latest
+    container_name: "app_redis"
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+    volumes:
+      - redis_data:/data
+
+  adminer:
+    image: adminer:latest
+    container_name: "app_adminer"
+    environment:
+      ADMINER_DEFAULT_SERVER: app_postgres
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "app_go"
+    environment:
+      - GO_ENV=production
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin_password
+      - POSTGRES_DB=app_db
+      - REDIS_HOST=app_redis
+      - INFLUXDB_HOST=app_influxdb
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+      - influxdb
+    networks:
+      - backend
 
 networks:
   backend:
@@ -33,3 +76,5 @@ networks:
 
 volumes:
   postgres_data:
+  influxdb_data:
+  redis_data:
