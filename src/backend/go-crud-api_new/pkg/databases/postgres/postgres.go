@@ -20,6 +20,7 @@ var (
 // InitializePostgres establishes a connection to the PostgreSQL database
 func InitializePostgres() (*gorm.DB, error) {
 	databaseURL := os.Getenv("DATABASE_URL")
+	fmt.Println(databaseURL)
 	if databaseURL == "" {
 		return nil, fmt.Errorf("DATABASE_URL environment variable not set")
 	}

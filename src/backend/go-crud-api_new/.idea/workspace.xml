@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="fix (cleaning): code-cleaning">
+    <list default="true" id="b74fb6b3-8e56-435f-aabd-7fe796b39633" name="Changes" comment="fix (startup/cleaning): fixfixix &amp;&amp; code-cleaning">
+      <change afterPath="$PROJECT_DIR$/air.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/user/models/user_info.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/models/user_info.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/databases/postgres/postgres.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/databases/postgres/postgres.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/startup/init_services.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/startup/init_services.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +86,8 @@
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;go&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -137,6 +136,17 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix (backend): add GORM remove unused code... SWAGGER is NOT working" />
     <MESSAGE value="fix (frontend): update yarn packages" />
@@ -146,7 +156,8 @@
     <MESSAGE value="feat (user-endpoint): update endpoint" />
     <MESSAGE value="fix (startup): update startup-workflow" />
     <MESSAGE value="fix (cleaning): code-cleaning" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix (cleaning): code-cleaning" />
+    <MESSAGE value="fix (startup/cleaning): fixfixix &amp;&amp; code-cleaning" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix (startup/cleaning): fixfixix &amp;&amp; code-cleaning" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

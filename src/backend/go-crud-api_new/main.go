@@ -29,6 +29,12 @@ func main() {
 		log.Fatalf("Error loading .env file: %v", err)
 	}
 
+	// Check if Air is running, based on the AIR_RELOAD environment variable
+	isAirReload := os.Getenv("AIR_RELOAD")
+	if isAirReload != "" {
+		utils.PrintInfo("Running in Hot Reload mode with Air")
+	}
+
 	// Command-line flags
 	resetDocker := flag.Bool("reset-docker", false, "Reset Docker and start environment")
 	startAppOnly := flag.Bool("app-only", false, "Start the application without Docker setup")

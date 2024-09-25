@@ -1,0 +1,24 @@
+# Config file for Air
+
+# Root directory for the app
+root = "."
+tmp_dir = "tmp"
+build_cmd = "go build -o ./tmp/main ."
+
+[build]
+# Command to run the app after a successful build
+cmd = "./tmp/main --reset-docker"
+# Exclude these directories from being watched
+exclude_dir = ["tmp", "vendor", "node_modules", ".git"]
+
+# Watch for changes in these file extensions
+[watch]
+extensions = [".go", ".html", ".tpl"]
+
+# Set environment variables during the build
+[env]
+AIR_RELOAD = "true"
+
+# Log configuration
+[log]
+level = "debug"
