@@ -52,7 +52,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ${DOCKERFILE}
     container_name: "app_go"
     environment:
       - GO_ENV=production
@@ -69,6 +69,8 @@ services:
       - influxdb
     networks:
       - backend
+    volumes:
+      - ./:/app
 
 networks:
   backend:
@@ -78,3 +80,4 @@ volumes:
   postgres_data:
   influxdb_data:
   redis_data:
+  app_data:

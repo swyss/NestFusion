@@ -41,7 +41,7 @@ InfluxDB.
 Use the following command to start the required containers:
 
 ```bash
-docker-compose up -d
+docker-compose --env-file .env.develop up -d
 ```
 
 This command will start the following containers:

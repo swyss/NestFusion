@@ -80,3 +80,6 @@ src/backend/go-crud-api/tmp/*
 src/backend/.DS_Store
 src/.DS_Store
 .DS_Store
+
+# Air
+src/backend/go-crud-api_new/tmp/*
