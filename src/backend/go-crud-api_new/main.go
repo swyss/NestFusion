@@ -8,6 +8,7 @@ import (
 	"go-crud-api/pkg/router"
 	"go-crud-api/pkg/startup"
 	"go-crud-api/utils"
+  "go-crud-api/config"
 	"log"
 	"net/http"
 	"os"
@@ -38,8 +39,10 @@ func main() {
 	// Command-line flags
 	resetDocker := flag.Bool("reset-docker", false, "Reset Docker and start environment")
 	startAppOnly := flag.Bool("app-only", false, "Start the application without Docker setup")
+  prodBuild := flag.Bool("prod", false, "Use production environment variables")
 	flag.Parse()
 
+  config := config.GetEnvironmentVariables(prodBuild)
 	// Select workflow based on flags
 	if *resetDocker {
 		utils.PrintWarning("Resetting Docker environment...\n")
